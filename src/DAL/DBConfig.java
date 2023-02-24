@@ -9,7 +9,7 @@ import java.sql.*;
  * @author phatl
  */
 public class DBConfig {
-    private static String servername = "@localhost";
+    private static String servername = "@Phat-MSI";
     private static String port = "1521";
     private static String SID = "orcl";
     public static String username;
@@ -18,10 +18,10 @@ public class DBConfig {
     public static Connection getConnectionString()
     {
         try{
-            //step1 load the driver class  
+            //load the driver class  
             Class.forName("oracle.jdbc.driver.OracleDriver");  
-            //username += " as sysdba";
-            //step2 create  the connection object  
+            if(username.equals("sys"))
+                username += " as sysdba"; 
             return DriverManager.getConnection(String.format("jdbc:oracle:thin:%s:%s:%s", servername, port, SID), username, password);   
         }
         catch(Exception err)
@@ -31,6 +31,7 @@ public class DBConfig {
     }
     
     public static void testgetConnect(){
-        System.out.print(String.format("jdbc:oracle:thin:%s:%s:%s - %s/%s", servername, port, SID, username, password));
+        System.out.println();
+        System.out.println(String.format("jdbc:oracle:thin:%s:%s:%s - %s/%s", servername, port, SID, username, password));
     }
 }
