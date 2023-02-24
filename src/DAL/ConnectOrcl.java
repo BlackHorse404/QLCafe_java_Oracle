@@ -19,7 +19,7 @@ public class ConnectOrcl {
             ); 
                 
             // query database
-            ResultSet rs = stmt.executeQuery("select * from countries");
+            ResultSet rs = stmt.executeQuery("select * from hr.countries");
             
             
             //get column name
@@ -67,7 +67,7 @@ public class ConnectOrcl {
             ); 
                 
             // query database
-            ResultSet rs = stmt.executeQuery("select * from Employees");
+            ResultSet rs = stmt.executeQuery("select * from hr.Employees");
 
             //get column name
             ResultSetMetaData rsmd = rs.getMetaData();
@@ -81,7 +81,7 @@ public class ConnectOrcl {
             rs.last();
             size = rs.getRow();
             rs.beforeFirst();
-            System.out.print(size);
+            //System.out.print(size);
             //show resulut query
             String[][] temps = new String[size][11];
             
@@ -103,7 +103,7 @@ public class ConnectOrcl {
             return temps;
         }
         catch(Exception e){ 
-            System.out.println(e+"-106");
+            System.out.println(e+"-105");
         }  
         finally{
             con.close(); 

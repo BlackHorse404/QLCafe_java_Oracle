@@ -1,11 +1,12 @@
 package GUI;
 
 import java.awt.Color;
+import DAL.DBConfig;
+import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-/**
- *
- * @author RAVEN
- */
+       
 public class Login extends javax.swing.JFrame {
 
     /**
@@ -61,6 +62,11 @@ public class Login extends javax.swing.JFrame {
         });
 
         buttonCustom1.setText("CANCEL");
+        buttonCustom1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonCustom1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelLayout = new javax.swing.GroupLayout(panel);
         panel.setLayout(panelLayout);
@@ -131,7 +137,29 @@ public class Login extends javax.swing.JFrame {
     private void cmdLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdLoginActionPerformed
         String user = txtUser.getText();
         String pass = String.valueOf(txtPassword.getPassword());
+        DBConfig.username = user;
+        DBConfig.password = pass;
+        Connection conn = DBConfig.getConnectionString();
+        try{
+            conn.createStatement();
+            LoadData ld = new LoadData();
+            ld.setVisible(true);
+        }
+        catch(Exception err){
+            System.out.print(err.getMessage());
+        }
+        finally{
+            try {
+                conn.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }//GEN-LAST:event_cmdLoginActionPerformed
+
+    private void buttonCustom1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCustom1ActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_buttonCustom1ActionPerformed
 
     /**
      * @param args the command line arguments
