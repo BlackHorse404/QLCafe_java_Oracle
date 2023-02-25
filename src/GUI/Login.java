@@ -2,11 +2,13 @@ package GUI;
 
 import java.awt.Color;
 import DAL.DBConfig;
+import BLL.*;
 import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import Ultilities.ConvertData.*;
+import java.util.ArrayList;
 
-       
 public class Login extends javax.swing.JFrame {
 
     /**
@@ -141,9 +143,29 @@ public class Login extends javax.swing.JFrame {
         DBConfig.password = pass;
         Connection conn = DBConfig.getConnectionString();
         try{
+            
             conn.createStatement();
+            
+//            GetData x = new GetData();
+//            ArrayList l = x.showSGA();
+//            String[] ColumnNames = (String[])l.get(0);
+//            for(var e : ColumnNames){
+//                System.out.println((String)e.toString());
+//            }
+//            
+//            Object[][] content = (Object[][])l.get(1);
+//            for(int i = 0;i<content.length;i++)
+//            {
+//                for(int j =0;j<content[0].length;j++)
+//                {
+//                    System.out.print(ConvertDataORCL.ConvertDataToString(content[i][j]+", "));
+//                }
+//                System.out.println();
+//            }
+            
             LoadData ld = new LoadData();
             ld.setVisible(true);
+            //new Dashboard().setVisible(true);
         }
         catch(Exception err){
             System.out.print(err.getMessage());
@@ -187,7 +209,8 @@ public class Login extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

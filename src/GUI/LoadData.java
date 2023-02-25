@@ -3,11 +3,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package GUI;
+import BLL.GetData;
+import Ultilities.ConvertData.*;
 import javax.swing.table.DefaultTableModel;
-import DAL.ConnectOrcl;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.ArrayList;
 
 /**
  *
@@ -26,16 +25,15 @@ public class LoadData extends javax.swing.JFrame {
     
     public void showDataOnTable()
     {
-        try {
-            DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
-            
-            String[] columnNames = new String[11];
-            String[][] data = ConnectOrcl.GetTableEmployees(columnNames);
+        GetData x = new GetData();
+        DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
 
-            model.setDataVector(data, columnNames);
-        } catch (SQLException ex) {
-            Logger.getLogger(LoadData.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        ArrayList arr = x.showSGA();
+
+        String[] columnNames = (String[])arr.get(0);
+        String[][] data = ConvertDataORCL.ConvertObject2DToString2D((Object[][])arr.get(1));
+
+        model.setDataVector(data, columnNames);
     }
     
     /**

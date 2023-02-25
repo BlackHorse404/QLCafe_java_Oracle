@@ -24,6 +24,8 @@ public class ConnectOrcl {
             
             //get column name
             ResultSetMetaData rsmd = rs.getMetaData();
+            System.out.print(rsmd.getColumnCount());
+            
             ColumnNames[0] = rsmd.getColumnName(1);
             ColumnNames[1] = rsmd.getColumnName(2);
             ColumnNames[2] = rsmd.getColumnName(3);
@@ -72,6 +74,7 @@ public class ConnectOrcl {
             //get column name
             ResultSetMetaData rsmd = rs.getMetaData();
             int numColumn = rsmd.getColumnCount();
+            System.out.print(rsmd.getColumnCount());
             for(int i =0;i<numColumn;i++)
             {
                 ColumnNames[i] = rsmd.getColumnName(i+1);
@@ -81,7 +84,6 @@ public class ConnectOrcl {
             rs.last();
             size = rs.getRow();
             rs.beforeFirst();
-            //System.out.print(size);
             //show resulut query
             String[][] temps = new String[size][11];
             
