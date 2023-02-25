@@ -2,7 +2,7 @@ package DAL;
 
 import java.sql.*; 
 /**
- *
+ * DO NOT USE THIS FILE !
  * @author phatl
  */
 public class ConnectOrcl {

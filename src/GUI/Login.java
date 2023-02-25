@@ -145,7 +145,13 @@ public class Login extends javax.swing.JFrame {
         try{
             
             conn.createStatement();
+           
+            LoadData ld = new LoadData();
+            ld.setVisible(true);
+
+            //new Dashboard().setVisible(true);
             
+            //<editor-fold defaultstate="collapsed" desc=" Code Test ">
 //            GetData x = new GetData();
 //            ArrayList l = x.showSGA();
 //            String[] ColumnNames = (String[])l.get(0);
@@ -162,10 +168,7 @@ public class Login extends javax.swing.JFrame {
 //                }
 //                System.out.println();
 //            }
-            
-            LoadData ld = new LoadData();
-            ld.setVisible(true);
-            //new Dashboard().setVisible(true);
+            //</editor-fold>
         }
         catch(Exception err){
             System.out.print(err.getMessage());
