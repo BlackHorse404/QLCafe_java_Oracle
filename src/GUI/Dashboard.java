@@ -26,6 +26,10 @@ public class Dashboard extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenu2 = new javax.swing.JMenu();
+        jMenuBar2 = new javax.swing.JMenuBar();
+        jMenu3 = new javax.swing.JMenu();
+        jMenu4 = new javax.swing.JMenu();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         menu_spfile = new javax.swing.JMenu();
@@ -36,10 +40,22 @@ public class Dashboard extends javax.swing.JFrame {
         menu_Process = new javax.swing.JMenu();
         menu_Instance = new javax.swing.JMenu();
         menu_Database = new javax.swing.JMenu();
+<<<<<<< HEAD
         menu_Session = new javax.swing.JMenu();
         menu_SoLuongSession = new javax.swing.JMenu();
         menu_KillSession = new javax.swing.JMenu();
         menu_ProcessSession = new javax.swing.JMenu();
+=======
+        jMenu5 = new javax.swing.JMenu();
+
+        jMenu2.setText("jMenu2");
+
+        jMenu3.setText("File");
+        jMenuBar2.add(jMenu3);
+
+        jMenu4.setText("Edit");
+        jMenuBar2.add(jMenu4);
+>>>>>>> d011f306db8b1288b24836bf11da3e5b32955b4e
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setFont(new java.awt.Font("#9Slide03 AllRoundGothic", 0, 14)); // NOI18N
@@ -121,6 +137,7 @@ public class Dashboard extends javax.swing.JFrame {
         });
         jMenu1.add(menu_Database);
 
+<<<<<<< HEAD
         menu_Session.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         menu_Session.setLabel("Session");
 
@@ -152,6 +169,15 @@ public class Dashboard extends javax.swing.JFrame {
         menu_Session.add(menu_ProcessSession);
 
         jMenu1.add(menu_Session);
+=======
+        jMenu5.setText("Tablespace");
+        jMenu5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu5MouseClicked(evt);
+            }
+        });
+        jMenu1.add(jMenu5);
+>>>>>>> d011f306db8b1288b24836bf11da3e5b32955b4e
 
         jMenuBar1.add(jMenu1);
 
@@ -170,18 +196,11 @@ public class Dashboard extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
-    // menu system
-    
-    private void menu_SGAMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menu_SGAMouseClicked
-        S_SGA ld = new S_SGA();
-        ld.setVisible(true);
-    }//GEN-LAST:event_menu_SGAMouseClicked
 
-    private void menu_PGAMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menu_PGAMouseClicked
-        S_PGA ld = new S_PGA();
-        ld.setVisible(true);
-    }//GEN-LAST:event_menu_PGAMouseClicked
+    private void menu_DatabaseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menu_DatabaseMouseClicked
+        S_Database t = new S_Database();
+        t.setVisible(true);
+    }//GEN-LAST:event_menu_DatabaseMouseClicked
 
     private void menu_InstanceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menu_InstanceMouseClicked
         S_Instance t = new S_Instance();
@@ -193,26 +212,24 @@ public class Dashboard extends javax.swing.JFrame {
         t.setVisible(true);
     }//GEN-LAST:event_menu_ProcessMouseClicked
 
-    private void menu_DatabaseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menu_DatabaseMouseClicked
-        S_Database t = new S_Database();
-        t.setVisible(true);
-    }//GEN-LAST:event_menu_DatabaseMouseClicked
+    private void menu_PGAMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menu_PGAMouseClicked
+        S_PGA ld = new S_PGA();
+        ld.setVisible(true);
+    }//GEN-LAST:event_menu_PGAMouseClicked
 
-    private void menu_spfileMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menu_spfileMouseClicked
-        S_SPFile t = new S_SPFile();
-        t.setVisible(true);
-    }//GEN-LAST:event_menu_spfileMouseClicked
-
-    private void menu_ControlFileMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menu_ControlFileMouseClicked
-        S_ControlFile t = new S_ControlFile();
-        t.setVisible(true);
-    }//GEN-LAST:event_menu_ControlFileMouseClicked
+    // menu system
+    
+    private void menu_SGAMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menu_SGAMouseClicked
+        S_SGA ld = new S_SGA();
+        ld.setVisible(true);
+    }//GEN-LAST:event_menu_SGAMouseClicked
 
     private void menu_dataFileMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menu_dataFileMouseClicked
         S_Datafile t = new S_Datafile();
         t.setVisible(true);
     }//GEN-LAST:event_menu_dataFileMouseClicked
 
+<<<<<<< HEAD
     private void menu_KillSessionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menu_KillSessionMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_menu_KillSessionMouseClicked
@@ -227,11 +244,36 @@ public class Dashboard extends javax.swing.JFrame {
         t.setVisible(true);
     }//GEN-LAST:event_menu_ProcessSessionMouseClicked
 
+=======
+    private void menu_ControlFileMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menu_ControlFileMouseClicked
+        S_ControlFile t = new S_ControlFile();
+        t.setVisible(true);
+    }//GEN-LAST:event_menu_ControlFileMouseClicked
+
+    private void menu_spfileMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menu_spfileMouseClicked
+        S_SPFile t = new S_SPFile();
+        t.setVisible(true);
+    }//GEN-LAST:event_menu_spfileMouseClicked
+
+    private void jMenu5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu5MouseClicked
+        // TODO add your handling code here:
+        S_Tablespaces t = new S_Tablespaces ();
+        t.showDataOnTable ();
+        t.setVisible (true);
+        
+    }//GEN-LAST:event_jMenu5MouseClicked
+    
+>>>>>>> d011f306db8b1288b24836bf11da3e5b32955b4e
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenu menu_ControlFile;
     private javax.swing.JMenu menu_Database;
     private javax.swing.JMenu menu_Instance;

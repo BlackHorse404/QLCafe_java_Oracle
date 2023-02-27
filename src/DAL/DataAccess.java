@@ -1,23 +1,54 @@
 package DAL;
 
 import java.sql.*;
+<<<<<<< HEAD
 import javax.swing.JOptionPane;
+=======
+import java.util.ArrayList;
+>>>>>>> d011f306db8b1288b24836bf11da3e5b32955b4e
 
 public class DataAccess {
     
     private static Connection conn = DBConfig.getConnectionString();
     private static Statement st = getStatement();
     private ResultSet rs = null;
-    
+
+    public DataAccess() {
+        
+    }
+   
+    public ArrayList QueryTable()
+    {
+        String[] ColumnNames;
+        Object[][] DataRows;
+        ColumnNames = QueryHeaderTable();
+        DataRows = QueryContentTable();
+        
+        ArrayList<Object> arr = new ArrayList();
+        arr.add(ColumnNames);
+        arr.add(DataRows);
+        return arr;
+    }
+    public Object returnValue()
+    {
+        Object[][] DataRows;
+        DataRows = QueryContentTable();
+        return DataRows[0][0];
+    }
     //contructor
     public DataAccess(String query)
     {
         try{
             rs = st.executeQuery(query);
+            
         }
         catch(Exception err){
+<<<<<<< HEAD
             System.out.print(err.getMessage());
             System.out.println("\n================\nerr in to DATACCESS\n================");
+=======
+            System.out.print(err.getMessage ()+query);
+>>>>>>> d011f306db8b1288b24836bf11da3e5b32955b4e
         }
     }
     
