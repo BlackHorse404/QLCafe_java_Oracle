@@ -13,29 +13,28 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author phatl
  */
-public class S_SPFile extends javax.swing.JFrame {
+public class S_SessionProcess extends javax.swing.JFrame {
 
     /**
-     * Creates new form S_SPFile
+     * Creates new form S_SessionProcess
      */
-    public S_SPFile() {
+    public S_SessionProcess() {
         initComponents();
         showDataOnTable();
     }
-
-    public void showDataOnTable()
-    {
-        GetData x = new GetData();
-        DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
-
-        ArrayList arr = x.showSPFile();
-
-        String[] columnNames = (String[])arr.get(0);
-        String[][] data = ConvertDataORCL.ConvertObject2DToString2D((Object[][])arr.get(1));
-
-        model.setDataVector(data, columnNames);
-    }
     
+    public void showDataOnTable()
+       {
+           GetData x = new GetData();
+           DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
+
+           ArrayList arr = x.showProcessOfSession();
+
+           String[] columnNames = (String[])arr.get(0);
+           String[][] data = ConvertDataORCL.ConvertObject2DToString2D((Object[][])arr.get(1));
+
+           model.setDataVector(data, columnNames);
+       }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -67,11 +66,11 @@ public class S_SPFile extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
         );
 
         pack();

@@ -1,6 +1,7 @@
 package DAL;
 
 import java.sql.*;
+import javax.swing.JOptionPane;
 
 public class DataAccess {
     
@@ -15,9 +16,11 @@ public class DataAccess {
             rs = st.executeQuery(query);
         }
         catch(Exception err){
-            System.out.print("err");
+            System.out.print(err.getMessage());
+            System.out.println("\n================\nerr in to DATACCESS\n================");
         }
     }
+    
     
     // khởi tạo lấy statement
     private static Statement getStatement()
@@ -31,6 +34,22 @@ public class DataAccess {
             System.err.print(err.getMessage());
         }
         return null;
+    }
+    
+    // Lấy kết quả câu lệnh thực thi không truy vấn
+    public static boolean ResultOfExecuteSql(String query) 
+    {
+        try{
+            st.executeQuery(query);
+            return true;
+        }
+        catch(SQLException err)
+        {
+            JOptionPane.showMessageDialog(null, err.getMessage(),"Thông Báo",JOptionPane.ERROR_MESSAGE);
+            System.out.print(err.getMessage());
+            System.out.println("\n================\nerr in to DATACCESS - ResultExecute\n================");
+            return false;
+        }
     }
     
     //phương thức dùng để truy vấn tên cột
@@ -71,7 +90,6 @@ public class DataAccess {
             rs.last();
             numRow = rs.getRow();
             rs.beforeFirst();
-            //System.out.println("Row:"+numRow + "- COL:" + numColumn);
             //show results of query
             Object[][] resultsQuery = new Object[numRow][numColumn];
 

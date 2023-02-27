@@ -146,8 +146,8 @@ public class Login extends javax.swing.JFrame {
         DBConfig.password = pass;
         Connection conn = DBConfig.getConnectionString();
         try{
-            JOptionPane.showMessageDialog(this, "Đăng nhập Thành Công !","Thông Báo",JOptionPane.INFORMATION_MESSAGE);
             conn.createStatement();
+            JOptionPane.showMessageDialog(this, "Đăng nhập Thành Công !","Thông Báo",JOptionPane.INFORMATION_MESSAGE);
             new Dashboard().setVisible(true);
             conn.close();
             //<editor-fold defaultstate="collapsed" desc=" Code Test ">

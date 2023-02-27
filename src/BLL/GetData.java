@@ -81,5 +81,22 @@ public class GetData {
         DataAccess da = new DataAccess("select * from v$controlfile");
         return QueryTable(da);
     }
+    
+    //<editor-fold defaultstate="collapsed" desc=" Session ">
+    //hiển thị thông tin các Session hiện hành
+    public ArrayList showSessionCurrent()
+    {
+        DataAccess da = new DataAccess("Select SADDR ,SID, SERIAL#, AUDSID, USER# ,USERNAME, STATUS, OSUSER,MACHINE, PORT, TERMINAL, PROGRAM, MODULE, TYPE, PREV_EXEC_START  from v$session where USERNAME is not NULL");
+        return QueryTable(da);
+    } 
+    
+    //hiển thị thông tin các Session hiện hành
+    public ArrayList showProcessOfSession()
+    {
+        DataAccess da = new DataAccess("select p.pname, s.username, p.username, s.serial#, s.machine, s.program from v$process p, v$session s where s.creator_addr = p.addr");
+        return QueryTable(da);
+    } 
+    //</editor-fold>
+    
     //</editor-fold>
 }
