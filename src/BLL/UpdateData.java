@@ -17,11 +17,15 @@ public class UpdateData {
        
     }
     //Tạo tablespace
-    public boolean createTablespace(String name)
+    public boolean createTablespace(String name,String path, String size)
     {
         try
         {
-            da = new DataAccess(String.format ("CREATE TABLESPACE %s" ,name));
+//            String chuoi="CREATE TABLESPACE " + name + " DATAFILE " + "'" + path + "'" + " size " + size + "m" ;
+            
+          da = new DataAccess(String.format ("CREATE TABLESPACE %s DATAFILE '%s' size %s M" ,name,path,size));
+//            da = new DataAccess(chuoi);
+
             return true;
         }
         catch(Exception ex)
@@ -51,16 +55,14 @@ public class UpdateData {
     {
         try
         {
-            da = new DataAccess(String.format ("Alter tablespace %s add datafile '%s' size %s M" ,name,path, size));
+            da = new DataAccess(String.format ("Alter tablespace %s add datafile '%s' size %s M" ,name,path,size));
             return true;
         }
         catch(Exception ex)
         {
             System.out.println (ex.getMessage ());
             return false;
-        }
-                
-        
+        }           
     }
     //Xóa datafile ra khỏi tablespace
     public boolean dropDataFileTablespace(String path)

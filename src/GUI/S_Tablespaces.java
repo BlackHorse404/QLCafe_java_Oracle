@@ -184,6 +184,11 @@ public class S_Tablespaces
                 jButton8MouseClicked(evt);
             }
         });
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
 
         jButton9.setText("Resize");
         jButton9.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -378,10 +383,15 @@ public class S_Tablespaces
         }
         else
         {
-            if(t.createTablespace (jTextField2.getText ()))
+            String ten =jTextField2.getText();
+            String path1=jTextField3.getText();
+            String kichco=jTextField1.getText();
+            if(t.createTablespace (ten,path1,kichco))
             {
                 JOptionPane.showMessageDialog(this, "Tạo thành công !","Thông Báo",JOptionPane.INFORMATION_MESSAGE);
                 jTextField2.setText ("");
+                jTextField3.setText ("");
+                jTextField1.setText ("");
             }
             else
             {
@@ -436,26 +446,28 @@ public class S_Tablespaces
     //Thêm datafile vào tablespace
     private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
         // TODO add your handling code here:
-        
-        if( absolutePath.isBlank () || absolutePath.isEmpty ())
+        String path1 = jTextField3.getText();
+        String ten =jTextField2.getText();
+        String kichco=jTextField1.getText();
+        if( path1.isBlank () || path1.isEmpty ())
         {
              
             JOptionPane.showMessageDialog(this, "Bạn chưa chọn file","Thông báo",JOptionPane.ERROR_MESSAGE);
         }
         else
         {
-            int row = jTable1.getSelectedRow ();
-            int col = jTable1.getSelectedColumn ();
-            if(t.addDataFileTablespace (jTable1.getValueAt (row,col).toString (),absolutePath,jTextField1.getText ()) || row == 0)
+            
+            if(t.addDataFileTablespace (ten,path1,kichco))
             {
                 JOptionPane.showMessageDialog(this, "Thêm data file thành công !","Thông Báo",JOptionPane.INFORMATION_MESSAGE);
                 jTextField2.setText("");
                 jTextField3.setText("");
+                jTextField1.setText("");
             }
             else
             {
                     JOptionPane.showMessageDialog(this, "Thất bại","Lỗi",JOptionPane.ERROR_MESSAGE);
-             }
+            }
                 
         }
     }//GEN-LAST:event_jButton4MouseClicked
@@ -492,15 +504,18 @@ public class S_Tablespaces
     //Thay đổi kích thuoc datafile
     private void jButton9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton9MouseClicked
         // TODO add your handling code here:
-         if(jTextField3.getText ().isEmpty ())
+         String path1 = jTextField3.getText();
+         String kichco = jTextField1.getText();
+         if(kichco.isEmpty ())
         {
             JOptionPane.showMessageDialog(this, "Lỗi kích thước nhé","Lỗi kích thước",JOptionPane.ERROR_MESSAGE);
         }else
          {
-              if(t.resizeDatafile (absolutePath,jTextField3.getText()))
+              if(t.resizeDatafile (path1,kichco))
               {
                  JOptionPane.showMessageDialog(this, "Thay đổi kích thước thành công !","Thông Báo",JOptionPane.INFORMATION_MESSAGE);
-                 jTextField2.setText ("");
+                 jTextField1.setText ("");
+                 jTextField3.setText("");
               }
               else
               {
@@ -512,8 +527,9 @@ public class S_Tablespaces
     //Xóa datafle
     private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
         // TODO add your handling code here:
-        
-            if(t.dropDataFileTablespace (absolutePath) || absolutePath.isBlank ()|| absolutePath.isEmpty ())
+            int row = jTable1.getSelectedRow ();
+            int col = jTable1.getSelectedColumn ();
+            if(t.dropDataFileTablespace (jTable1.getValueAt (row,col).toString ()))
             {
                  JOptionPane.showMessageDialog(this, "Xóa datafile thành công !","Thông Báo",JOptionPane.INFORMATION_MESSAGE);
             }
@@ -521,6 +537,10 @@ public class S_Tablespaces
                 JOptionPane.showMessageDialog(this, "Thất bại","Lỗi",JOptionPane.ERROR_MESSAGE);
         
     }//GEN-LAST:event_jButton5MouseClicked
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton8ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
