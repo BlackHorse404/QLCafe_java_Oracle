@@ -40,12 +40,10 @@ public class Dashboard extends javax.swing.JFrame {
         menu_Process = new javax.swing.JMenu();
         menu_Instance = new javax.swing.JMenu();
         menu_Database = new javax.swing.JMenu();
-<<<<<<< HEAD
         menu_Session = new javax.swing.JMenu();
         menu_SoLuongSession = new javax.swing.JMenu();
         menu_KillSession = new javax.swing.JMenu();
         menu_ProcessSession = new javax.swing.JMenu();
-=======
         jMenu5 = new javax.swing.JMenu();
 
         jMenu2.setText("jMenu2");
@@ -55,7 +53,6 @@ public class Dashboard extends javax.swing.JFrame {
 
         jMenu4.setText("Edit");
         jMenuBar2.add(jMenu4);
->>>>>>> d011f306db8b1288b24836bf11da3e5b32955b4e
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setFont(new java.awt.Font("#9Slide03 AllRoundGothic", 0, 14)); // NOI18N
@@ -93,7 +90,7 @@ public class Dashboard extends javax.swing.JFrame {
         jMenu1.add(menu_dataFile);
 
         menu_SGA.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        menu_SGA.setLabel("SGA");
+        menu_SGA.setText("SGA");
         menu_SGA.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 menu_SGAMouseClicked(evt);
@@ -129,7 +126,7 @@ public class Dashboard extends javax.swing.JFrame {
         jMenu1.add(menu_Instance);
 
         menu_Database.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        menu_Database.setLabel("Database");
+        menu_Database.setText("Database");
         menu_Database.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 menu_DatabaseMouseClicked(evt);
@@ -137,12 +134,11 @@ public class Dashboard extends javax.swing.JFrame {
         });
         jMenu1.add(menu_Database);
 
-<<<<<<< HEAD
         menu_Session.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        menu_Session.setLabel("Session");
+        menu_Session.setText("Session");
 
         menu_SoLuongSession.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        menu_SoLuongSession.setLabel("Số Lượng Session");
+        menu_SoLuongSession.setText("Số Lượng Session");
         menu_SoLuongSession.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 menu_SoLuongSessionMouseClicked(evt);
@@ -160,7 +156,7 @@ public class Dashboard extends javax.swing.JFrame {
         menu_Session.add(menu_KillSession);
 
         menu_ProcessSession.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        menu_ProcessSession.setLabel("Tiến Trình Session");
+        menu_ProcessSession.setText("Tiến Trình Session");
         menu_ProcessSession.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 menu_ProcessSessionMouseClicked(evt);
@@ -169,7 +165,6 @@ public class Dashboard extends javax.swing.JFrame {
         menu_Session.add(menu_ProcessSession);
 
         jMenu1.add(menu_Session);
-=======
         jMenu5.setText("Tablespace");
         jMenu5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -177,7 +172,6 @@ public class Dashboard extends javax.swing.JFrame {
             }
         });
         jMenu1.add(jMenu5);
->>>>>>> d011f306db8b1288b24836bf11da3e5b32955b4e
 
         jMenuBar1.add(jMenu1);
 
@@ -229,7 +223,6 @@ public class Dashboard extends javax.swing.JFrame {
         t.setVisible(true);
     }//GEN-LAST:event_menu_dataFileMouseClicked
 
-<<<<<<< HEAD
     private void menu_KillSessionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menu_KillSessionMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_menu_KillSessionMouseClicked
@@ -244,7 +237,6 @@ public class Dashboard extends javax.swing.JFrame {
         t.setVisible(true);
     }//GEN-LAST:event_menu_ProcessSessionMouseClicked
 
-=======
     private void menu_ControlFileMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menu_ControlFileMouseClicked
         S_ControlFile t = new S_ControlFile();
         t.setVisible(true);
@@ -262,8 +254,6 @@ public class Dashboard extends javax.swing.JFrame {
         t.setVisible (true);
         
     }//GEN-LAST:event_jMenu5MouseClicked
-    
->>>>>>> d011f306db8b1288b24836bf11da3e5b32955b4e
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -101,7 +101,7 @@ public class S_NumberOfSession extends javax.swing.JFrame {
         Refresh_Session.setBackground(new java.awt.Color(0, 204, 255));
         Refresh_Session.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         Refresh_Session.setForeground(new java.awt.Color(0, 0, 0));
-        Refresh_Session.setLabel("Làm Mới");
+        Refresh_Session.setText("Làm Mới");
         Refresh_Session.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 Refresh_SessionMouseClicked(evt);
@@ -110,7 +110,7 @@ public class S_NumberOfSession extends javax.swing.JFrame {
 
         Demo.setBackground(new java.awt.Color(102, 153, 255));
         Demo.setForeground(new java.awt.Color(0, 0, 0));
-        Demo.setLabel("Demo");
+        Demo.setText("Demo");
         Demo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 DemoMouseClicked(evt);

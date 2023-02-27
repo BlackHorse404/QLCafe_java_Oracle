@@ -5,10 +5,7 @@ import java.util.ArrayList;
 
 public class GetData {
     
-    //fields
    
-
-
     //<editor-fold defaultstate="collapsed" desc=" Method Show System Oracle ">
     // hiển thị SGA trong oracle
     public ArrayList showSGA()
@@ -94,14 +91,14 @@ public class GetData {
     public ArrayList showSessionCurrent()
     {
         DataAccess da = new DataAccess("Select SADDR ,SID, SERIAL#, AUDSID, USER# ,USERNAME, STATUS, OSUSER,MACHINE, PORT, TERMINAL, PROGRAM, MODULE, TYPE, PREV_EXEC_START  from v$session where USERNAME is not NULL");
-        return QueryTable(da);
+        return da.QueryTable();
     } 
     
     //hiển thị thông tin các Session hiện hành
     public ArrayList showProcessOfSession()
     {
         DataAccess da = new DataAccess("select p.pname, s.username, p.username, s.serial#, s.machine, s.program from v$process p, v$session s where s.creator_addr = p.addr");
-        return QueryTable(da);
+        return da.QueryTable();
     } 
     //</editor-fold>
     
