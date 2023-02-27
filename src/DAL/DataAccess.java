@@ -1,21 +1,45 @@
 package DAL;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class DataAccess {
     
     private static Connection conn = DBConfig.getConnectionString();
     private static Statement st = getStatement();
     private ResultSet rs = null;
-    
+
+    public DataAccess() {
+        
+    }
+   
+    public ArrayList QueryTable()
+    {
+        String[] ColumnNames;
+        Object[][] DataRows;
+        ColumnNames = QueryHeaderTable();
+        DataRows = QueryContentTable();
+        
+        ArrayList<Object> arr = new ArrayList();
+        arr.add(ColumnNames);
+        arr.add(DataRows);
+        return arr;
+    }
+    public Object returnValue()
+    {
+        Object[][] DataRows;
+        DataRows = QueryContentTable();
+        return DataRows[0][0];
+    }
     //contructor
     public DataAccess(String query)
     {
         try{
             rs = st.executeQuery(query);
+            
         }
         catch(Exception err){
-            System.out.print("err");
+            System.out.print(err.getMessage ()+query);
         }
     }
     
