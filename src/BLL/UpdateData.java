@@ -51,7 +51,7 @@ public class UpdateData {
     {
         try
         {
-            da = new DataAccess(String.format ("Alter tablespace %s add datafile '%s' size %s M" ,name,path, size));
+            da = new DataAccess(String.format ("Alter tablespace %s add datafile '%s' size %s"+ "M" ,name,path, size));
             return true;
         }
         catch(Exception ex)
@@ -114,7 +114,7 @@ public class UpdateData {
     {
         try
         {
-            da = new DataAccess(String.format ("Alter database datafile '%s' resize %s M" ,path, size));
+            da = new DataAccess(String.format ("Alter database datafile '%s' resize %s"+ "M" ,path, size));
             return true;
         }
         catch(Exception ex)

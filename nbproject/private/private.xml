@@ -2,6 +2,18 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/PC%20THAO/Downloads/QLCafe_java_Oracle/src/BLL/GetValue.java</file>
+            <file>file:/C:/Users/PC%20THAO/Downloads/QLCafe_java_Oracle/src/BLL/GetData.java</file>
+            <file>file:/C:/Users/PC%20THAO/Downloads/QLCafe_java_Oracle/src/Ultilities/ConvertData/ConvertDataORCL.java</file>
+            <file>file:/C:/Users/PC%20THAO/Downloads/QLCafe_java_Oracle/src/DAL/DataAccess.java</file>
+            <file>file:/C:/Users/PC%20THAO/Downloads/QLCafe_java_Oracle/src/BLL/UpdateData.java</file>
+            <file>file:/C:/Users/PC%20THAO/Downloads/QLCafe_java_Oracle/src/DAL/ConnectOrcl.java</file>
+            <file>file:/C:/Users/PC%20THAO/Downloads/QLCafe_java_Oracle/src/GUI/S_ControlFile.java</file>
+            <file>file:/C:/Users/PC%20THAO/Downloads/QLCafe_java_Oracle/src/GUI/Login.java</file>
+            <file>file:/C:/Users/PC%20THAO/Downloads/QLCafe_java_Oracle/src/DAL/DBConfig.java</file>
+            <file>file:/C:/Users/PC%20THAO/Downloads/QLCafe_java_Oracle/src/GUI/Dashboard.java</file>
+            <file>file:/C:/Users/PC%20THAO/Downloads/QLCafe_java_Oracle/src/GUI/S_Tablespaces.java</file>
+        </group>
     </open-files>
 </project-private>

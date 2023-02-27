@@ -178,7 +178,7 @@ public class S_Tablespaces
 
         jRadioButton2.setText("Tablespace");
 
-        jButton8.setText("Refesh");
+        jButton8.setText("Refresh");
         jButton8.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton8MouseClicked(evt);
