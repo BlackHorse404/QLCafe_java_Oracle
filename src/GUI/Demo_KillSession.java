@@ -22,7 +22,7 @@ public class Demo_KillSession extends javax.swing.JFrame {
         initComponents();
     }
 
-    private Connection conn = null;
+    private static Connection conn = null;
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -216,6 +216,11 @@ public class Demo_KillSession extends javax.swing.JFrame {
         
     }
     
+    private void login1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_login1MouseClicked
+        if(conn != null)
+            loadDataOnTable();
+    }//GEN-LAST:event_login1MouseClicked
+
     private void loginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginMouseClicked
         DBConfig.username = txt_username.getText();
         DBConfig.password = txt_password.getText();
@@ -228,6 +233,8 @@ public class Demo_KillSession extends javax.swing.JFrame {
             lb_err.setText("");
             lb_err.setForeground(Color.BLACK);
             JOptionPane.showMessageDialog(this, "Đăng nhập Thành Công !","Thông Báo",JOptionPane.INFORMATION_MESSAGE);
+            jLabel3.setText("Demo Session "+DBConfig.username);
+            login.setVisible(false);
         }
         catch(SQLException err)
         {
@@ -235,13 +242,8 @@ public class Demo_KillSession extends javax.swing.JFrame {
             lb_err.setText(err.getMessage());
             lb_err.setForeground(Color.red);
             JOptionPane.showMessageDialog(this, "Đăng nhập Thất Bại !","Thông Báo",JOptionPane.ERROR_MESSAGE);
-        }      
+        }
     }//GEN-LAST:event_loginMouseClicked
-
-    private void login1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_login1MouseClicked
-        if(conn != null)
-            loadDataOnTable();
-    }//GEN-LAST:event_login1MouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;

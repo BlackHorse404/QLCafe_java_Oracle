@@ -39,6 +39,10 @@ public class Dashboard extends javax.swing.JFrame {
         menu_Instance = new javax.swing.JMenu();
         menu_Database = new javax.swing.JMenu();
         jMenu5 = new javax.swing.JMenu();
+        jMenu4 = new javax.swing.JMenu();
+        menu_SoLuongSession = new javax.swing.JMenu();
+        menu_ProcessSession = new javax.swing.JMenu();
+        jMenu3 = new javax.swing.JMenu();
         menu_account = new javax.swing.JMenu();
         menu_settingAccount = new javax.swing.JMenu();
         menu_logout = new javax.swing.JMenu();
@@ -80,7 +84,7 @@ public class Dashboard extends javax.swing.JFrame {
         jMenu1.add(menu_dataFile);
 
         menu_SGA.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        menu_SGA.setLabel("SGA");
+        menu_SGA.setText("SGA");
         menu_SGA.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 menu_SGAMouseClicked(evt);
@@ -116,7 +120,7 @@ public class Dashboard extends javax.swing.JFrame {
         jMenu1.add(menu_Instance);
 
         menu_Database.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        menu_Database.setLabel("Database");
+        menu_Database.setText("Database");
         menu_Database.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 menu_DatabaseMouseClicked(evt);
@@ -125,12 +129,45 @@ public class Dashboard extends javax.swing.JFrame {
         jMenu1.add(menu_Database);
 
         jMenu5.setText("Tablespace");
+        jMenu5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jMenu5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jMenu5MouseClicked(evt);
             }
         });
         jMenu1.add(jMenu5);
+
+        jMenu4.setText("Session");
+        jMenu4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        menu_SoLuongSession.setText("Quản Lý Session");
+        menu_SoLuongSession.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        menu_SoLuongSession.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                menu_SoLuongSessionMouseClicked(evt);
+            }
+        });
+        jMenu4.add(menu_SoLuongSession);
+
+        menu_ProcessSession.setText("Tiến Trình Session");
+        menu_ProcessSession.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        menu_ProcessSession.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                menu_ProcessSessionMouseClicked(evt);
+            }
+        });
+        jMenu4.add(menu_ProcessSession);
+
+        jMenu1.add(jMenu4);
+
+        jMenu3.setText("Quản Lý Account");
+        jMenu3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jMenu3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu3MouseClicked(evt);
+            }
+        });
+        jMenu1.add(jMenu3);
 
         jMenuBar1.add(jMenu1);
 
@@ -209,10 +246,6 @@ public class Dashboard extends javax.swing.JFrame {
         t.setVisible(true);
     }//GEN-LAST:event_menu_dataFileMouseClicked
 
-    private void menu_KillSessionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menu_KillSessionMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_menu_KillSessionMouseClicked
-
     private void menu_SoLuongSessionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menu_SoLuongSessionMouseClicked
         S_NumberOfSession t = new S_NumberOfSession();
         t.setVisible(true);
@@ -260,11 +293,18 @@ public class Dashboard extends javax.swing.JFrame {
         ACC_Setting t = new ACC_Setting();
         t.setVisible(true);
     }//GEN-LAST:event_menu_settingAccountMouseClicked
+
+    private void jMenu3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu3MouseClicked
+        // SELECT USER_ID, username, EXPIRY_DATE, TEMPORARY_TABLESPACE, CREATED, PROFILE, INITIAL_RSRC_CONSUMER_GROUP, EXTERNAL_NAME, LAST_LOGIN FROM DBA_USERS where account_status = 'OPEN';
+
+    }//GEN-LAST:event_jMenu3MouseClicked
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu menu_ControlFile;
@@ -272,7 +312,9 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JMenu menu_Instance;
     private javax.swing.JMenu menu_PGA;
     private javax.swing.JMenu menu_Process;
+    private javax.swing.JMenu menu_ProcessSession;
     private javax.swing.JMenu menu_SGA;
+    private javax.swing.JMenu menu_SoLuongSession;
     private javax.swing.JMenu menu_account;
     private javax.swing.JMenu menu_dataFile;
     private javax.swing.JMenu menu_logout;
