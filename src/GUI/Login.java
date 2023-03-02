@@ -7,8 +7,10 @@ import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import Ultilities.ConvertData.*;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import org.apache.log4j.BasicConfigurator;
 
 public class Login extends javax.swing.JFrame {
 
@@ -18,6 +20,7 @@ public class Login extends javax.swing.JFrame {
     public Login() {
         initComponents();
         setBackground(new Color(0, 0, 0, 0));
+        BasicConfigurator.configure();
     }
 
     /**
@@ -36,6 +39,7 @@ public class Login extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         cmdLogin = new Ultilities.swing.Button();
         buttonCustom1 = new Ultilities.swing.buttonCustom();
+        Scan_QR = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -49,6 +53,11 @@ public class Login extends javax.swing.JFrame {
 
         txtPassword.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
         txtPassword.setHint("Password");
+        txtPassword.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtPasswordKeyPressed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("sansserif", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -73,6 +82,17 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
+        Scan_QR.setBackground(new java.awt.Color(255, 255, 255));
+        Scan_QR.setForeground(new java.awt.Color(255, 255, 255));
+        Scan_QR.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        Scan_QR.setText("Scan QR");
+        Scan_QR.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        Scan_QR.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Scan_QRMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelLayout = new javax.swing.GroupLayout(panel);
         panel.setLayout(panelLayout);
         panelLayout.setHorizontalGroup(
@@ -84,11 +104,13 @@ public class Login extends javax.swing.JFrame {
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelLayout.createSequentialGroup()
                         .addGap(60, 60, 60)
-                        .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                            .addComponent(cmdLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(buttonCustom1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(Scan_QR, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txtUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                                .addComponent(cmdLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(buttonCustom1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                 .addContainerGap(70, Short.MAX_VALUE))
         );
         panelLayout.setVerticalGroup(
@@ -100,7 +122,9 @@ public class Login extends javax.swing.JFrame {
                 .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Scan_QR)
+                .addGap(8, 8, 8)
                 .addComponent(cmdLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(buttonCustom1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -112,7 +136,7 @@ public class Login extends javax.swing.JFrame {
         backgroundLayout.setHorizontalGroup(
             backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(backgroundLayout.createSequentialGroup()
-                .addContainerGap(311, Short.MAX_VALUE)
+                .addContainerGap(231, Short.MAX_VALUE)
                 .addComponent(panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(311, Short.MAX_VALUE))
         );
@@ -121,7 +145,7 @@ public class Login extends javax.swing.JFrame {
             .addGroup(backgroundLayout.createSequentialGroup()
                 .addContainerGap(134, Short.MAX_VALUE)
                 .addComponent(panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(135, Short.MAX_VALUE))
+                .addContainerGap(133, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -139,14 +163,22 @@ public class Login extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+ 
     private void cmdLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdLoginActionPerformed
-        String user = txtUser.getText();
-        String pass = String.valueOf(txtPassword.getPassword());
+        String user  = txtUser.getText();
+        String pass  = String.valueOf(txtPassword.getPassword());
+        signinDB (user,
+                pass);
+        
+    }//GEN-LAST:event_cmdLoginActionPerformed
+    protected void signinDB(String user, String pass)
+    {
         DBConfig.username = user;
         DBConfig.password = pass;
         Connection conn = DBConfig.getConnectionString();
         try{
             JOptionPane.showMessageDialog(this, "Đăng nhập Thành Công !","Thông Báo",JOptionPane.INFORMATION_MESSAGE);
+            dispose ();
             conn.createStatement();
             new Dashboard().setVisible(true);
             conn.close();
@@ -172,11 +204,28 @@ public class Login extends javax.swing.JFrame {
         catch(Exception err){
             JOptionPane.showMessageDialog(this, "Đăng nhập thất bại !","Lỗi Đăng Nhập",JOptionPane.ERROR_MESSAGE);
         }
-    }//GEN-LAST:event_cmdLoginActionPerformed
-
+    }
     private void buttonCustom1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCustom1ActionPerformed
         System.exit(0);
     }//GEN-LAST:event_buttonCustom1ActionPerformed
+
+    private void Scan_QRMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Scan_QRMouseClicked
+        // TODO add your handling code here:
+        new Scan_QR ().setVisible (true);
+        
+    }//GEN-LAST:event_Scan_QRMouseClicked
+
+    private void txtPasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPasswordKeyPressed
+        // TODO add your handling code here:
+        String user  = txtUser.getText();
+        String pass  = String.valueOf(txtPassword.getPassword());
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER)
+        {
+            if( user !=null && pass!=null)
+            signinDB (user,
+                    pass);
+        }
+    }//GEN-LAST:event_txtPasswordKeyPressed
 
     /**
      * @param args the command line arguments
@@ -215,6 +264,7 @@ public class Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Scan_QR;
     private Ultilities.login.Background background;
     private Ultilities.swing.buttonCustom buttonCustom1;
     private Ultilities.swing.Button cmdLogin;
