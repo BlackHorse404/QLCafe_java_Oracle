@@ -4,6 +4,8 @@
  */
 package GUI;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author phatl
@@ -26,10 +28,6 @@ public class Dashboard extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jMenu2 = new javax.swing.JMenu();
-        jMenuBar2 = new javax.swing.JMenuBar();
-        jMenu3 = new javax.swing.JMenu();
-        jMenu4 = new javax.swing.JMenu();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         menu_spfile = new javax.swing.JMenu();
@@ -40,19 +38,11 @@ public class Dashboard extends javax.swing.JFrame {
         menu_Process = new javax.swing.JMenu();
         menu_Instance = new javax.swing.JMenu();
         menu_Database = new javax.swing.JMenu();
-        menu_Session = new javax.swing.JMenu();
-        menu_SoLuongSession = new javax.swing.JMenu();
-        menu_KillSession = new javax.swing.JMenu();
-        menu_ProcessSession = new javax.swing.JMenu();
         jMenu5 = new javax.swing.JMenu();
-
-        jMenu2.setText("jMenu2");
-
-        jMenu3.setText("File");
-        jMenuBar2.add(jMenu3);
-
-        jMenu4.setText("Edit");
-        jMenuBar2.add(jMenu4);
+        menu_account = new javax.swing.JMenu();
+        menu_settingAccount = new javax.swing.JMenu();
+        menu_logout = new javax.swing.JMenu();
+        jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setFont(new java.awt.Font("#9Slide03 AllRoundGothic", 0, 14)); // NOI18N
@@ -90,7 +80,7 @@ public class Dashboard extends javax.swing.JFrame {
         jMenu1.add(menu_dataFile);
 
         menu_SGA.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        menu_SGA.setText("SGA");
+        menu_SGA.setLabel("SGA");
         menu_SGA.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 menu_SGAMouseClicked(evt);
@@ -126,7 +116,7 @@ public class Dashboard extends javax.swing.JFrame {
         jMenu1.add(menu_Instance);
 
         menu_Database.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        menu_Database.setText("Database");
+        menu_Database.setLabel("Database");
         menu_Database.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 menu_DatabaseMouseClicked(evt);
@@ -134,37 +124,6 @@ public class Dashboard extends javax.swing.JFrame {
         });
         jMenu1.add(menu_Database);
 
-        menu_Session.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        menu_Session.setText("Session");
-
-        menu_SoLuongSession.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        menu_SoLuongSession.setText("Số Lượng Session");
-        menu_SoLuongSession.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                menu_SoLuongSessionMouseClicked(evt);
-            }
-        });
-        menu_Session.add(menu_SoLuongSession);
-
-        menu_KillSession.setText("Hủy Session");
-        menu_KillSession.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        menu_KillSession.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                menu_KillSessionMouseClicked(evt);
-            }
-        });
-        menu_Session.add(menu_KillSession);
-
-        menu_ProcessSession.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        menu_ProcessSession.setText("Tiến Trình Session");
-        menu_ProcessSession.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                menu_ProcessSessionMouseClicked(evt);
-            }
-        });
-        menu_Session.add(menu_ProcessSession);
-
-        jMenu1.add(menu_Session);
         jMenu5.setText("Tablespace");
         jMenu5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -175,17 +134,44 @@ public class Dashboard extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
+        menu_account.setText("Tài Khoản");
+        menu_account.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        menu_settingAccount.setText("Cài Đặt");
+        menu_settingAccount.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        menu_settingAccount.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                menu_settingAccountMouseClicked(evt);
+            }
+        });
+        menu_account.add(menu_settingAccount);
+
+        menu_logout.setText("Đăng Xuất");
+        menu_logout.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        menu_logout.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                menu_logoutMouseClicked(evt);
+            }
+        });
+        menu_account.add(menu_logout);
+
+        jMenu2.setText("Tạo Tài Khoản");
+        jMenu2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        menu_account.add(jMenu2);
+
+        jMenuBar1.add(menu_account);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 704, Short.MAX_VALUE)
+            .addGap(0, 461, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 507, Short.MAX_VALUE)
+            .addGap(0, 363, Short.MAX_VALUE)
         );
 
         pack();
@@ -254,27 +240,43 @@ public class Dashboard extends javax.swing.JFrame {
         t.setVisible (true);
         
     }//GEN-LAST:event_jMenu5MouseClicked
+
+    private void menu_logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menu_logoutMouseClicked
+        int a = JOptionPane.showConfirmDialog(this,
+                "Bạn chắc chắn muốn đăng xuất ?",
+                "Thông Báo",
+                JOptionPane.OK_CANCEL_OPTION,
+                JOptionPane.QUESTION_MESSAGE
+                );
+        // JOptionPane.setRootFrame(null);
+        if (a == JOptionPane.OK_OPTION) {
+            dispose();
+            Login obj = new Login();
+            obj.setVisible(true);
+        }
+    }//GEN-LAST:event_menu_logoutMouseClicked
+
+    private void menu_settingAccountMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menu_settingAccountMouseClicked
+        ACC_Setting t = new ACC_Setting();
+        t.setVisible(true);
+    }//GEN-LAST:event_menu_settingAccountMouseClicked
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenu menu_ControlFile;
     private javax.swing.JMenu menu_Database;
     private javax.swing.JMenu menu_Instance;
-    private javax.swing.JMenu menu_KillSession;
     private javax.swing.JMenu menu_PGA;
     private javax.swing.JMenu menu_Process;
-    private javax.swing.JMenu menu_ProcessSession;
     private javax.swing.JMenu menu_SGA;
-    private javax.swing.JMenu menu_Session;
-    private javax.swing.JMenu menu_SoLuongSession;
+    private javax.swing.JMenu menu_account;
     private javax.swing.JMenu menu_dataFile;
+    private javax.swing.JMenu menu_logout;
+    private javax.swing.JMenu menu_settingAccount;
     private javax.swing.JMenu menu_spfile;
     // End of variables declaration//GEN-END:variables
 }

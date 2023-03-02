@@ -19,6 +19,16 @@ public class Login extends javax.swing.JFrame {
         initComponents();
         setBackground(new Color(0, 0, 0, 0));
     }
+    
+    public void hideLogin()
+    {
+        this.setVisible(false);
+    }
+    
+    public void showLogin()
+    {
+        this.setVisible(true);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -53,10 +63,10 @@ public class Login extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("sansserif", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("SIGN IN");
+        jLabel1.setText("ĐĂNG NHẬP");
 
         cmdLogin.setForeground(new java.awt.Color(231, 231, 231));
-        cmdLogin.setText("SIGN IN");
+        cmdLogin.setText("LOGIN");
         cmdLogin.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         cmdLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -66,6 +76,9 @@ public class Login extends javax.swing.JFrame {
 
         buttonCustom1.setForeground(new java.awt.Color(255, 255, 255));
         buttonCustom1.setText("CANCEL");
+        buttonCustom1.setBorderColor(new java.awt.Color(255, 51, 51));
+        buttonCustom1.setColorClick(new java.awt.Color(255, 51, 51));
+        buttonCustom1.setColorOver(new java.awt.Color(255, 102, 102));
         buttonCustom1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         buttonCustom1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -78,33 +91,33 @@ public class Login extends javax.swing.JFrame {
         panelLayout.setHorizontalGroup(
             panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelLayout.createSequentialGroup()
+                .addGap(60, 60, 60)
                 .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(txtUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE))
                     .addGroup(panelLayout.createSequentialGroup()
-                        .addGap(82, 82, 82)
+                        .addGap(18, 18, 18)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelLayout.createSequentialGroup()
-                        .addGap(60, 60, 60)
-                        .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                            .addComponent(cmdLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(buttonCustom1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(cmdLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(buttonCustom1, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)))
                 .addContainerGap(70, Short.MAX_VALUE))
         );
         panelLayout.setVerticalGroup(
             panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelLayout.createSequentialGroup()
-                .addGap(69, 69, 69)
+                .addGap(58, 58, 58)
                 .addComponent(jLabel1)
                 .addGap(31, 31, 31)
                 .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
+                .addGap(29, 29, 29)
                 .addComponent(cmdLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(buttonCustom1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addComponent(buttonCustom1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout backgroundLayout = new javax.swing.GroupLayout(background);
@@ -142,35 +155,25 @@ public class Login extends javax.swing.JFrame {
     private void cmdLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdLoginActionPerformed
         String user = txtUser.getText();
         String pass = String.valueOf(txtPassword.getPassword());
-        DBConfig.username = user;
-        DBConfig.password = pass;
-        Connection conn = DBConfig.getConnectionString();
-        try{
-            conn.createStatement();
-            JOptionPane.showMessageDialog(this, "Đăng nhập Thành Công !","Thông Báo",JOptionPane.INFORMATION_MESSAGE);
-            new Dashboard().setVisible(true);
-            conn.close();
-            //<editor-fold defaultstate="collapsed" desc=" Code Test ">
-//            GetData x = new GetData();
-//            ArrayList l = x.showSGA();
-//            String[] ColumnNames = (String[])l.get(0);
-//            for(var e : ColumnNames){
-//                System.out.println((String)e.toString());
-//            }
-//            
-//            Object[][] content = (Object[][])l.get(1);
-//            for(int i = 0;i<content.length;i++)
-//            {
-//                for(int j =0;j<content[0].length;j++)
-//                {
-//                    System.out.print(ConvertDataORCL.ConvertDataToString(content[i][j]+", "));
-//                }
-//                System.out.println();
-//            }
-            //</editor-fold>
+        if(user.length() == 0 || pass.length() == 0)
+        {
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập đầy đủ thông tin !","Thông Báo",JOptionPane.WARNING_MESSAGE);
         }
-        catch(Exception err){
-            JOptionPane.showMessageDialog(this, "Đăng nhập thất bại !","Lỗi Đăng Nhập",JOptionPane.ERROR_MESSAGE);
+        else
+        {
+            DBConfig.username = user;
+            DBConfig.password = pass;
+            Connection conn = DBConfig.getConnectionString();
+            try{
+                conn.createStatement();
+                JOptionPane.showMessageDialog(this, "Đăng nhập Thành Công !","Thông Báo",JOptionPane.INFORMATION_MESSAGE);
+                new Dashboard().setVisible(true);
+                conn.close();
+                this.setVisible(false);
+            }
+            catch(Exception err){
+                JOptionPane.showMessageDialog(this, "Đăng nhập thất bại !","Lỗi Đăng Nhập",JOptionPane.ERROR_MESSAGE);
+            }
         }
     }//GEN-LAST:event_cmdLoginActionPerformed
 
