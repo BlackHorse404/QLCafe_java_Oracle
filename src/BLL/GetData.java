@@ -82,7 +82,7 @@ public class GetData {
     }
     public ArrayList showDataFileAndTablespace()
     {
-        DataAccess da = new DataAccess("SELECT tablespace_name, file_name, online_status, (bytes)\1024\1024 from dba_data_files ");
+        DataAccess da = new DataAccess("SELECT tablespace_name, file_name, online_status, (bytes)\1024\1024 from dba_data_files");
         return da.QueryTable ();
     }
     
