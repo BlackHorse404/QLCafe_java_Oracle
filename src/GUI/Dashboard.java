@@ -15,8 +15,11 @@ public class Dashboard extends javax.swing.JFrame {
     /**
      * Creates new form Dashboard
      */
-    public Dashboard() {
+    private Login loginForm = null;
+    public Dashboard(Login t) {
         initComponents();
+        setLocationRelativeTo (null);
+        loginForm = t;
     }
 
     /**
@@ -49,6 +52,7 @@ public class Dashboard extends javax.swing.JFrame {
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Trang chủ");
         setFont(new java.awt.Font("#9Slide03 AllRoundGothic", 0, 14)); // NOI18N
 
         jMenuBar1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -204,11 +208,11 @@ public class Dashboard extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 461, Short.MAX_VALUE)
+            .addGap(0, 1013, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 363, Short.MAX_VALUE)
+            .addGap(0, 558, Short.MAX_VALUE)
         );
 
         pack();
@@ -283,15 +287,15 @@ public class Dashboard extends javax.swing.JFrame {
                 );
         // JOptionPane.setRootFrame(null);
         if (a == JOptionPane.OK_OPTION) {
+            if(loginForm!=null)
+                loginForm.setVisible(true);
             dispose();
-            Login obj = new Login();
-            obj.setVisible(true);
+            
         }
     }//GEN-LAST:event_menu_logoutMouseClicked
 
     private void menu_settingAccountMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menu_settingAccountMouseClicked
         ACC_Setting t = new ACC_Setting();
-        t.setVisible(true);
     }//GEN-LAST:event_menu_settingAccountMouseClicked
 
     private void jMenu3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu3MouseClicked
