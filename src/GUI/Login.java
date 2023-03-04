@@ -8,6 +8,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import Ultilities.ConvertData.*;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 public class Login extends javax.swing.JFrame {
 
@@ -63,7 +64,9 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
+        buttonCustom1.setForeground(new java.awt.Color(255, 255, 255));
         buttonCustom1.setText("CANCEL");
+        buttonCustom1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         buttonCustom1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonCustom1ActionPerformed(evt);
@@ -143,14 +146,10 @@ public class Login extends javax.swing.JFrame {
         DBConfig.password = pass;
         Connection conn = DBConfig.getConnectionString();
         try{
-            
+            JOptionPane.showMessageDialog(this, "Đăng nhập Thành Công !","Thông Báo",JOptionPane.INFORMATION_MESSAGE);
             conn.createStatement();
-           
-            LoadData ld = new LoadData();
-            ld.setVisible(true);
-
-            //new Dashboard().setVisible(true);
-            
+            new Dashboard().setVisible(true);
+            conn.close();
             //<editor-fold defaultstate="collapsed" desc=" Code Test ">
 //            GetData x = new GetData();
 //            ArrayList l = x.showSGA();
@@ -171,14 +170,7 @@ public class Login extends javax.swing.JFrame {
             //</editor-fold>
         }
         catch(Exception err){
-            System.out.print(err.getMessage());
-        }
-        finally{
-            try {
-                conn.close();
-            } catch (SQLException ex) {
-                Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            JOptionPane.showMessageDialog(this, "Đăng nhập thất bại !","Lỗi Đăng Nhập",JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_cmdLoginActionPerformed
 
