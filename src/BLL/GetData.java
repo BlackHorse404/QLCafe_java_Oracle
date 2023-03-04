@@ -103,4 +103,33 @@ public class GetData {
     //</editor-fold>
     
     //</editor-fold>
+    
+    public ArrayList getAllAccount()
+    {
+        DataAccess da = new DataAccess("SELECT USER_ID, username, CREATED, EXPIRY_DATE, ACCOUNT_STATUS, cast(LAST_LOGIN as date), PROFILE, TEMPORARY_TABLESPACE, EXTERNAL_NAME FROM DBA_USERS where account_status = 'OPEN'");
+        return da.QueryTable ();
+    }
+    
+    public String getCurrentUser()
+    {
+        DataAccess da = new DataAccess("SELECT sys_context('USERENV', 'CURRENT_SCHEMA') FROM dual");
+        return da.QueryContentTable()[0][0].toString();
+    }
+    
+    public String getLastLogin()
+    {
+        String user = getCurrentUser();
+        DataAccess da = new DataAccess("SELECT cast(LAST_LOGIN as date) from sys.dba_users where account_status = 'OPEN' and username = '"+user+"'");
+        return da.QueryContentTable()[0][0].toString();
+    }
+    
+    public ArrayList getAllPoliciesInDB(){
+        DataAccess da = new DataAccess("select * from dba_policies");
+        return da.QueryTable();
+    }
+    
+    public ArrayList getAllRecordAutdit(){
+        DataAccess da = new DataAccess("select * from dba_fga_audit_trail");
+        return da.QueryTable();
+    }
 }

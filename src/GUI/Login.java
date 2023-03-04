@@ -10,6 +10,7 @@ import Ultilities.ConvertData.*;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import org.apache.log4j.BasicConfigurator;
 
 public class Login extends javax.swing.JFrame {
@@ -201,11 +202,13 @@ public class Login extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Đăng nhập Thành Công !","Thông Báo",JOptionPane.INFORMATION_MESSAGE);
             this.setVisible(false);
             new Dashboard(this).setVisible(true);
+
             conn.close();
             return true;
         }
         catch(Exception err){
             JOptionPane.showMessageDialog(this, "Đăng nhập thất bại !","Lỗi Đăng Nhập",JOptionPane.ERROR_MESSAGE);
+            this.setVisible(true);
             return false;
         }
     }

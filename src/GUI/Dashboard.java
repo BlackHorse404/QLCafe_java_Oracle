@@ -4,6 +4,7 @@
  */
 package GUI;
 
+import BLL.GetData;
 import javax.swing.JOptionPane;
 
 /**
@@ -19,6 +20,10 @@ public class Dashboard extends javax.swing.JFrame {
     public Dashboard(Login t) {
         initComponents();
         setLocationRelativeTo (null);
+        GetData x = new GetData();
+        String nameOfUser = x.getCurrentUser();
+        menu_account.setText("Tài Khoản: "+nameOfUser);
+        //lastLogin.setText(x.getLastLogin());
         loginForm = t;
     }
 
@@ -31,6 +36,7 @@ public class Dashboard extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        lastLogin = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         menu_spfile = new javax.swing.JMenu();
@@ -50,10 +56,17 @@ public class Dashboard extends javax.swing.JFrame {
         menu_settingAccount = new javax.swing.JMenu();
         menu_logout = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
+        jMenu6 = new javax.swing.JMenu();
+        PolicyAudit_HienCo = new javax.swing.JMenu();
+        XemKetQuaAudit = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Trang chủ");
         setFont(new java.awt.Font("#9Slide03 AllRoundGothic", 0, 14)); // NOI18N
+
+        lastLogin.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lastLogin.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lastLogin.setText("jLabel1");
 
         jMenuBar1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
@@ -88,7 +101,7 @@ public class Dashboard extends javax.swing.JFrame {
         jMenu1.add(menu_dataFile);
 
         menu_SGA.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        menu_SGA.setText("SGA");
+        menu_SGA.setLabel("SGA");
         menu_SGA.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 menu_SGAMouseClicked(evt);
@@ -124,7 +137,7 @@ public class Dashboard extends javax.swing.JFrame {
         jMenu1.add(menu_Instance);
 
         menu_Database.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        menu_Database.setText("Database");
+        menu_Database.setLabel("Database");
         menu_Database.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 menu_DatabaseMouseClicked(evt);
@@ -202,17 +215,48 @@ public class Dashboard extends javax.swing.JFrame {
 
         jMenuBar1.add(menu_account);
 
+        jMenu6.setText("Quản Lý Audit");
+
+        PolicyAudit_HienCo.setText("Các Policy Hiện Có");
+        PolicyAudit_HienCo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                PolicyAudit_HienCoMouseClicked(evt);
+            }
+        });
+        jMenu6.add(PolicyAudit_HienCo);
+
+        XemKetQuaAudit.setText("Xem Báo Cáo Audit");
+        XemKetQuaAudit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                XemKetQuaAuditMouseClicked(evt);
+            }
+        });
+        XemKetQuaAudit.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                XemKetQuaAuditKeyPressed(evt);
+            }
+        });
+        jMenu6.add(XemKetQuaAudit);
+
+        jMenuBar1.add(jMenu6);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1013, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(806, 806, 806)
+                .addComponent(lastLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 558, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(532, Short.MAX_VALUE)
+                .addComponent(lastLogin)
+                .addContainerGap())
         );
 
         pack();
@@ -296,21 +340,40 @@ public class Dashboard extends javax.swing.JFrame {
 
     private void menu_settingAccountMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menu_settingAccountMouseClicked
         ACC_Setting t = new ACC_Setting();
+        t.setVisible(true);
     }//GEN-LAST:event_menu_settingAccountMouseClicked
 
     private void jMenu3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu3MouseClicked
-        // SELECT USER_ID, username, EXPIRY_DATE, TEMPORARY_TABLESPACE, CREATED, PROFILE, INITIAL_RSRC_CONSUMER_GROUP, EXTERNAL_NAME, LAST_LOGIN FROM DBA_USERS where account_status = 'OPEN';
-
+        ACC_ManageAccount t = new ACC_ManageAccount();
+        t.setVisible(true);
     }//GEN-LAST:event_jMenu3MouseClicked
+
+    private void PolicyAudit_HienCoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PolicyAudit_HienCoMouseClicked
+        PolicyHienCo t = new PolicyHienCo();
+        t.setVisible(true);
+    }//GEN-LAST:event_PolicyAudit_HienCoMouseClicked
+
+    private void XemKetQuaAuditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_XemKetQuaAuditKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_XemKetQuaAuditKeyPressed
+
+    private void XemKetQuaAuditMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_XemKetQuaAuditMouseClicked
+        AuditRecord t = new AuditRecord();
+        t.setVisible(true);
+    }//GEN-LAST:event_XemKetQuaAuditMouseClicked
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu PolicyAudit_HienCo;
+    private javax.swing.JMenu XemKetQuaAudit;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
+    private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JLabel lastLogin;
     private javax.swing.JMenu menu_ControlFile;
     private javax.swing.JMenu menu_Database;
     private javax.swing.JMenu menu_Instance;
