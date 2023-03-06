@@ -22,11 +22,13 @@ public class Audit extends javax.swing.JFrame {
      */
     public Audit() {
         initComponents();
-        KhoiTaoComboBox();
+        LoadComboBoxObjectName();
+        LoadComboBoxObjectSchema();
     }
     private GetData x = new GetData();
     private ExecuteData y = new ExecuteData();
     ArrayList tableName = x.getTableName();
+    ArrayList objectSchema=x.getObjectSchema();
     String statement;
     /**
      * This method is called from within the constructor to initialize the form.
@@ -47,8 +49,10 @@ public class Audit extends javax.swing.JFrame {
         ckbUpdate = new javax.swing.JCheckBox();
         jLabel4 = new javax.swing.JLabel();
         cboObjectName = new javax.swing.JComboBox<>();
+        jLabel5 = new javax.swing.JLabel();
+        cboObjectSchema = new javax.swing.JComboBox<>();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setText("Thiết lập Audit Policy");
@@ -78,44 +82,56 @@ public class Audit extends javax.swing.JFrame {
             }
         });
 
+        jLabel5.setText("Chọn tên user:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnCreateAuditPolicy)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(8, 8, 8)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(ckbInsert, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(ckbDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(ckbUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(83, 83, 83)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 19, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel4)
-                                .addGap(18, 18, 18)
-                                .addComponent(cboObjectName, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(btnCreateAuditPolicy)
+                                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGap(8, 8, 8)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(ckbInsert, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(ckbDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(ckbUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(cboObjectName, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(74, 74, 74)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel5))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtPolicyName)))))
-                .addGap(61, 61, 61))
+                                .addComponent(cboObjectSchema, 0, 129, Short.MAX_VALUE)
+                                .addGap(8, 8, 8))
+                            .addComponent(txtPolicyName))))
+                .addGap(68, 68, 68))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(76, 76, 76))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(34, 34, 34)
+                .addContainerGap(47, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addGap(30, 30, 30)
+                .addGap(35, 35, 35)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel5)
+                    .addComponent(cboObjectSchema, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtPolicyName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
@@ -133,8 +149,10 @@ public class Audit extends javax.swing.JFrame {
                 .addComponent(ckbDelete)
                 .addGap(18, 18, 18)
                 .addComponent(btnCreateAuditPolicy)
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addGap(77, 77, 77))
         );
+
+        jLabel5.getAccessibleContext().setAccessibleName("Chọn tên user:");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -179,7 +197,8 @@ public class Audit extends javax.swing.JFrame {
                 String a=cboObjectName.getSelectedItem().toString();
                 String b=txtPolicyName.getText();
                 String c=statement;
-                y.CreateAuditPolicy(a,b,c);
+                String d=cboObjectSchema.getSelectedItem().toString();
+                y.CreateAuditPolicy(d,a,b,c);
                 JOptionPane.showMessageDialog(this, "Thiet lap audit policy thanh cong!","Thông Báo",JOptionPane.INFORMATION_MESSAGE);
             }
         }
@@ -189,11 +208,19 @@ public class Audit extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnCreateAuditPolicyActionPerformed
 
-    private void KhoiTaoComboBox()
+    private void LoadComboBoxObjectName()
     {
         for(var e:tableName)
         {
             cboObjectName.addItem(e.toString());
+        }
+    }
+    
+    private void LoadComboBoxObjectSchema()
+    {
+        for(var e:objectSchema)
+        {
+            cboObjectSchema.addItem(e.toString());
         }
     }
     
@@ -239,6 +266,7 @@ public class Audit extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCreateAuditPolicy;
     private javax.swing.JComboBox<String> cboObjectName;
+    private javax.swing.JComboBox<String> cboObjectSchema;
     private javax.swing.JCheckBox ckbDelete;
     private javax.swing.JCheckBox ckbInsert;
     private javax.swing.JCheckBox ckbUpdate;
@@ -246,6 +274,7 @@ public class Audit extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JTextField txtPolicyName;
     // End of variables declaration//GEN-END:variables
 }

@@ -133,10 +133,21 @@ public class GetData {
         return da.QueryTable();
     }
     
-    //lay ten table 
     public ArrayList getTableName()
     {
         DataAccess da = new DataAccess("select distinct table_name from dba_tables where table_name='KHACHHANG' or table_name='HOADON' or table_name='CHITIETHOADON' or table_name='KHUYENMAI' or table_name='THUCDON' or table_name='PHANLOAI'");
+        Object[][] t = da.QueryContentTable();
+        ArrayList<String> arr=new ArrayList<String>();
+        for(int i =0;i<t.length; i++)
+        {
+            arr.add(t[i][0].toString());
+        }
+        return arr;
+    }
+    
+    public ArrayList getObjectSchema()
+    {
+        DataAccess da = new DataAccess("select username from dba_users where account_status = 'OPEN' and default_tablespace = 'USERS'");
         Object[][] t = da.QueryContentTable();
         ArrayList<String> arr=new ArrayList<String>();
         for(int i =0;i<t.length; i++)

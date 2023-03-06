@@ -8,9 +8,9 @@ public class ExecuteData {
         return DataAccess.ResultOfExecuteSql(String.format("Alter system kill session '%s,%s'",SID,SerialID));
     }
     
-    public static boolean CreateAuditPolicy(String objectName, String policyName, String statement)
+    public static boolean CreateAuditPolicy(String objectSchema, String objectName, String policyName, String statement)
     {
-        String temp = String.format("BEGIN DBMS_FGA.ADD_POLICY(object_schema      => 'hr',object_name        => '%s',policy_name        => '%s',statement_types    => '%s');END;", objectName, policyName, statement);
+        String temp = String.format("BEGIN DBMS_FGA.ADD_POLICY(object_schema      => '%s',object_name        => '%s',policy_name        => '%s',statement_types    => '%s');END;",objectSchema, objectName, policyName, statement);
         return DataAccess.ResultOfExecuteSql(temp);
     }
 }
