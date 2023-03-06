@@ -45,15 +45,19 @@ public class ConvertDataORCL {
     public static String[][] ConvertObject2DToString2D(Object[][] obj2D)
     {
         int rowCount = obj2D.length;
-        int colCount = obj2D[0].length;
-        String[][] data = new String[rowCount][colCount];
-        for(int i = 0;i<rowCount;i++)
+        if(rowCount != 0)
         {
-            for(int j =0;j<colCount;j++)
-            {
-                data[i][j] = ConvertDataORCL.ConvertDataToString(obj2D[i][j]);
-            }
+           int colCount = obj2D[0].length;
+           String[][] data = new String[rowCount][colCount];
+           for(int i = 0;i<rowCount;i++)
+           {
+               for(int j =0;j<colCount;j++)
+               {
+                   data[i][j] = ConvertDataORCL.ConvertDataToString(obj2D[i][j]);
+               }
+           }
+           return data;
         }
-        return data;
+        return null;
     }
 }

@@ -1,6 +1,7 @@
 package DAL;
 
 import java.sql.*;
+import javax.swing.JOptionPane;
 import java.util.ArrayList;
 
 public class DataAccess {
@@ -9,29 +10,11 @@ public class DataAccess {
     private static Statement st = getStatement();
     private ResultSet rs = null;
 
+    //contructor
     public DataAccess() {
         
     }
    
-    public ArrayList QueryTable()
-    {
-        String[] ColumnNames;
-        Object[][] DataRows;
-        ColumnNames = QueryHeaderTable();
-        DataRows = QueryContentTable();
-        
-        ArrayList<Object> arr = new ArrayList();
-        arr.add(ColumnNames);
-        arr.add(DataRows);
-        return arr;
-    }
-    public Object returnValue()
-    {
-        Object[][] DataRows;
-        DataRows = QueryContentTable();
-        return DataRows[0][0];
-    }
-    //contructor
     public DataAccess(String query)
     {
         try{
@@ -39,8 +22,30 @@ public class DataAccess {
             
         }
         catch(Exception err){
+            System.out.print(err.getMessage());
+            System.out.println("\n================\nerr in to DATACCESS\n================");
             System.out.print(err.getMessage ()+query);
         }
+    }
+    
+    public ArrayList QueryTable()
+    {
+        String[] ColumnNames;
+        Object[][] DataRows;
+        ColumnNames = QueryHeaderTable();
+        DataRows = QueryContentTable();
+        
+        ArrayList<Object> arr = new ArrayList<>();
+        arr.add(ColumnNames);
+        arr.add(DataRows);
+        return arr;
+    }
+    
+    public Object returnValue()
+    {
+        Object[][] DataRows;
+        DataRows = QueryContentTable();
+        return DataRows[0][0];
     }
     
     // khởi tạo lấy statement
@@ -55,6 +60,22 @@ public class DataAccess {
             System.err.print(err.getMessage());
         }
         return null;
+    }
+    
+    // Lấy kết quả câu lệnh thực thi không truy vấn
+    public static boolean ResultOfExecuteSql(String query) 
+    {
+        try{
+            st.executeQuery(query);
+            return true;
+        }
+        catch(SQLException err)
+        {
+            JOptionPane.showMessageDialog(null, err.getMessage(),"Thông Báo",JOptionPane.ERROR_MESSAGE);
+            System.out.print(err.getMessage());
+            System.out.println("\n================\nerr in to DATACCESS - ResultExecute\n================");
+            return false;
+        }
     }
     
     //phương thức dùng để truy vấn tên cột
@@ -95,7 +116,6 @@ public class DataAccess {
             rs.last();
             numRow = rs.getRow();
             rs.beforeFirst();
-            //System.out.println("Row:"+numRow + "- COL:" + numColumn);
             //show results of query
             Object[][] resultsQuery = new Object[numRow][numColumn];
 

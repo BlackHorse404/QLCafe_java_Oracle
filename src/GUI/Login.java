@@ -7,8 +7,11 @@ import java.sql.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import Ultilities.ConvertData.*;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import org.apache.log4j.BasicConfigurator;
 
 public class Login extends javax.swing.JFrame {
 
@@ -18,6 +21,17 @@ public class Login extends javax.swing.JFrame {
     public Login() {
         initComponents();
         setBackground(new Color(0, 0, 0, 0));
+        BasicConfigurator.configure();
+    }
+    
+    public void hideLogin()
+    {
+        this.setVisible(false);
+    }
+    
+    public void showLogin()
+    {
+        this.setVisible(true);
     }
 
     /**
@@ -36,6 +50,7 @@ public class Login extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         cmdLogin = new Ultilities.swing.Button();
         buttonCustom1 = new Ultilities.swing.buttonCustom();
+        Scan_QR = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -49,14 +64,19 @@ public class Login extends javax.swing.JFrame {
 
         txtPassword.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
         txtPassword.setHint("Password");
+        txtPassword.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtPasswordKeyPressed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("sansserif", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("SIGN IN");
+        jLabel1.setText("ĐĂNG NHẬP");
 
         cmdLogin.setForeground(new java.awt.Color(231, 231, 231));
-        cmdLogin.setText("SIGN IN");
+        cmdLogin.setText("LOGIN");
         cmdLogin.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         cmdLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -66,10 +86,24 @@ public class Login extends javax.swing.JFrame {
 
         buttonCustom1.setForeground(new java.awt.Color(255, 255, 255));
         buttonCustom1.setText("CANCEL");
+        buttonCustom1.setBorderColor(new java.awt.Color(255, 51, 51));
+        buttonCustom1.setColorClick(new java.awt.Color(255, 51, 51));
+        buttonCustom1.setColorOver(new java.awt.Color(255, 102, 102));
         buttonCustom1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         buttonCustom1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonCustom1ActionPerformed(evt);
+            }
+        });
+
+        Scan_QR.setBackground(new java.awt.Color(255, 255, 255));
+        Scan_QR.setForeground(new java.awt.Color(255, 255, 255));
+        Scan_QR.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        Scan_QR.setText("Scan QR");
+        Scan_QR.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        Scan_QR.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Scan_QRMouseClicked(evt);
             }
         });
 
@@ -78,33 +112,36 @@ public class Login extends javax.swing.JFrame {
         panelLayout.setHorizontalGroup(
             panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelLayout.createSequentialGroup()
+                .addGap(60, 60, 60)
                 .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(txtUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE))
                     .addGroup(panelLayout.createSequentialGroup()
-                        .addGap(82, 82, 82)
+                        .addGap(18, 18, 18)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelLayout.createSequentialGroup()
-                        .addGap(60, 60, 60)
-                        .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                            .addComponent(cmdLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(buttonCustom1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(cmdLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(buttonCustom1, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                        .addComponent(Scan_QR, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(70, Short.MAX_VALUE))
         );
         panelLayout.setVerticalGroup(
             panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelLayout.createSequentialGroup()
-                .addGap(69, 69, 69)
+                .addGap(58, 58, 58)
                 .addComponent(jLabel1)
                 .addGap(31, 31, 31)
                 .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
+                .addGap(19, 19, 19)
+                .addComponent(Scan_QR)
+                .addGap(18, 18, 18)
                 .addComponent(cmdLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(buttonCustom1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addComponent(buttonCustom1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout backgroundLayout = new javax.swing.GroupLayout(background);
@@ -112,16 +149,16 @@ public class Login extends javax.swing.JFrame {
         backgroundLayout.setHorizontalGroup(
             backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(backgroundLayout.createSequentialGroup()
-                .addContainerGap(311, Short.MAX_VALUE)
+                .addGap(265, 265, 265)
                 .addComponent(panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(311, Short.MAX_VALUE))
+                .addContainerGap(277, Short.MAX_VALUE))
         );
         backgroundLayout.setVerticalGroup(
             backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(backgroundLayout.createSequentialGroup()
-                .addContainerGap(134, Short.MAX_VALUE)
+                .addGap(129, 129, 129)
                 .addComponent(panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(135, Short.MAX_VALUE))
+                .addContainerGap(138, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -139,82 +176,67 @@ public class Login extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+ 
     private void cmdLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdLoginActionPerformed
         String user = txtUser.getText();
         String pass = String.valueOf(txtPassword.getPassword());
+        if(user.length() == 0 || pass.length() == 0)
+        {
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập đầy đủ thông tin !","Thông Báo",JOptionPane.WARNING_MESSAGE);
+        }
+        else
+        {
+            signinDB (user,pass);            
+        }
+        
+        
+    }//GEN-LAST:event_cmdLoginActionPerformed
+    protected boolean signinDB(String user, String pass)
+    {    
+        this.setVisible(false);
         DBConfig.username = user;
         DBConfig.password = pass;
         Connection conn = DBConfig.getConnectionString();
         try{
-            JOptionPane.showMessageDialog(this, "Đăng nhập Thành Công !","Thông Báo",JOptionPane.INFORMATION_MESSAGE);
             conn.createStatement();
-            new Dashboard().setVisible(true);
+            JOptionPane.showMessageDialog(this, "Đăng nhập Thành Công !","Thông Báo",JOptionPane.INFORMATION_MESSAGE);
+            this.setVisible(false);
+            new Dashboard(this).setVisible(true);
+
             conn.close();
-            //<editor-fold defaultstate="collapsed" desc=" Code Test ">
-//            GetData x = new GetData();
-//            ArrayList l = x.showSGA();
-//            String[] ColumnNames = (String[])l.get(0);
-//            for(var e : ColumnNames){
-//                System.out.println((String)e.toString());
-//            }
-//            
-//            Object[][] content = (Object[][])l.get(1);
-//            for(int i = 0;i<content.length;i++)
-//            {
-//                for(int j =0;j<content[0].length;j++)
-//                {
-//                    System.out.print(ConvertDataORCL.ConvertDataToString(content[i][j]+", "));
-//                }
-//                System.out.println();
-//            }
-            //</editor-fold>
+            return true;
         }
         catch(Exception err){
             JOptionPane.showMessageDialog(this, "Đăng nhập thất bại !","Lỗi Đăng Nhập",JOptionPane.ERROR_MESSAGE);
+            this.setVisible(true);
+            return false;
         }
-    }//GEN-LAST:event_cmdLoginActionPerformed
-
+    }
+    
     private void buttonCustom1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCustom1ActionPerformed
         System.exit(0);
     }//GEN-LAST:event_buttonCustom1ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    private void Scan_QRMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Scan_QRMouseClicked
+        // TODO add your handling code here:
+        new Scan_QR (this).setVisible (true);
+        
+    }//GEN-LAST:event_Scan_QRMouseClicked
+
+    private void txtPasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPasswordKeyPressed
+        // TODO add your handling code here:
+        String user  = txtUser.getText();
+        String pass  = String.valueOf(txtPassword.getPassword());
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER)
+        {
+            if( user !=null && pass!=null)
+            signinDB (user,
+                    pass);
         }
-        //</editor-fold>
-        
-        
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Login().setVisible(true);
-            }
-        });
-    }
+    }//GEN-LAST:event_txtPasswordKeyPressed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Scan_QR;
     private Ultilities.login.Background background;
     private Ultilities.swing.buttonCustom buttonCustom1;
     private Ultilities.swing.Button cmdLogin;

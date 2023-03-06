@@ -25,18 +25,25 @@ public class S_Tablespaces
     private ArrayList arr;
     private GetData x ;
     private UpdateData t;
+    private GetValue y;
     /**
      * Creates new form S_Tablespaces
      */
     public S_Tablespaces() {
         initComponents ();
         x = new GetData();
-        GetValue y = new GetValue ();
-        jLabel4.setText (y.sumTablespaces());
-        jLabel5.setText (y.sumDataFile ());
+        y = new GetValue ();
         t = new UpdateData ();
+        initValue ();
+        setLocationRelativeTo (null);
+       
     }
-
+    private void initValue()
+    {
+        lbl_SumDatafile.setText (y.sumTablespaces());
+        lbl_SumTablespace.setText (y.sumDataFile ());
+    }
+   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -49,32 +56,46 @@ public class S_Tablespaces
 
         jButton6 = new javax.swing.JButton();
         jFrame1 = new javax.swing.JFrame();
-        jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        jRadioButtonMenuItem1 = new javax.swing.JRadioButtonMenuItem();
+        jRadioButtonMenuItem2 = new javax.swing.JRadioButtonMenuItem();
+        buttonGroup1 = new javax.swing.ButtonGroup();
+        jDesktopPane2 = new javax.swing.JDesktopPane();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        txt_Linkfile = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        txt_Size = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        btn_Resize = new javax.swing.JButton();
+        btn_openFile = new javax.swing.JButton();
+        btn_addDatafile = new javax.swing.JButton();
+        btn_removeDatafile = new javax.swing.JButton();
+        txt_Disk = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        rdo_existDatafile = new javax.swing.JRadioButton();
+        rdo_newDatafile = new javax.swing.JRadioButton();
+        jDesktopPane3 = new javax.swing.JDesktopPane();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        Table_Tablespace = new javax.swing.JTable();
+        jDesktopPane6 = new javax.swing.JDesktopPane();
+        jPanel3 = new javax.swing.JPanel();
+        btn_removetablespace = new javax.swing.JButton();
+        rdo_Tablespace = new javax.swing.JRadioButton();
+        rdo_tablespaceDatafile = new javax.swing.JRadioButton();
+        jDesktopPane7 = new javax.swing.JDesktopPane();
+        jPanel1 = new javax.swing.JPanel();
+        btn_create = new javax.swing.JButton();
+        btn_changeName = new javax.swing.JButton();
+        lbl_SumDatafile = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jButton7 = new javax.swing.JButton();
-        jLabel9 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jLabel11 = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jButton8 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
-        jLabel7 = new javax.swing.JLabel();
+        txt_Nametablespace = new javax.swing.JTextField();
+        lbl_SumTablespace = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        cbb_showTablespace = new javax.swing.JComboBox<>();
+        btn_ShowDatafile = new javax.swing.JButton();
 
         jButton6.setText("jButton6");
 
@@ -89,41 +110,95 @@ public class S_Tablespaces
             .addGap(0, 300, Short.MAX_VALUE)
         );
 
+        jRadioButtonMenuItem1.setSelected(true);
+        jRadioButtonMenuItem1.setText("jRadioButtonMenuItem1");
+
+        jRadioButtonMenuItem2.setSelected(true);
+        jRadioButtonMenuItem2.setText("jRadioButtonMenuItem2");
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("TABLESPACES");
+        jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setText("Tạo");
-        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel11.setText("Datafile");
+        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(8, 8, 77, 30));
+
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel9.setText("Đường dẫn");
+        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 90, 20));
+        jPanel2.add(txt_Linkfile, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, 340, 30));
+
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel8.setText("Size");
+        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 37, 20));
+        jPanel2.add(txt_Size, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 140, 120, 30));
+
+        jLabel7.setText("MB");
+        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 140, 37, 40));
+
+        btn_Resize.setText("Resize");
+        btn_Resize.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton1MouseClicked(evt);
+                btn_ResizeMouseClicked(evt);
             }
         });
+        jPanel2.add(btn_Resize, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 140, 89, 30));
 
-        jButton2.setText("Xóa");
-        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+        btn_openFile.setText("Open file");
+        btn_openFile.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton2MouseClicked(evt);
+                btn_openFileMouseClicked(evt);
             }
         });
+        jPanel2.add(btn_openFile, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 90, 89, 30));
 
-        jButton3.setText("Đổi tên");
-        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+        btn_addDatafile.setText("Thêm datafile");
+        btn_addDatafile.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton3MouseClicked(evt);
+                btn_addDatafileMouseClicked(evt);
             }
         });
+        jPanel2.add(btn_addDatafile, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 70, 131, 40));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hiển thị danh sách", "Hiển thị dung lượng còn trống", "Hiển thị tên và dung lượng" }));
-        jComboBox1.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                jComboBox1ItemStateChanged(evt);
+        btn_removeDatafile.setText("Xóa datafile");
+        btn_removeDatafile.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_removeDatafileMouseClicked(evt);
             }
         });
+        jPanel2.add(btn_removeDatafile, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 120, 131, 40));
+        jPanel2.add(txt_Disk, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 50, 90, 30));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel4.setText("Ổ đĩa");
+        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, -1));
+
+        rdo_existDatafile.setText("Datafile đã tồn tại");
+        jPanel2.add(rdo_existDatafile, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 100, 140, -1));
+
+        rdo_newDatafile.setText("Datafile mới");
+        jPanel2.add(rdo_newDatafile, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 140, -1, -1));
+
+        jDesktopPane2.setLayer(jPanel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout jDesktopPane2Layout = new javax.swing.GroupLayout(jDesktopPane2);
+        jDesktopPane2.setLayout(jDesktopPane2Layout);
+        jDesktopPane2Layout.setHorizontalGroup(
+            jDesktopPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDesktopPane2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 921, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jDesktopPane2Layout.setVerticalGroup(
+            jDesktopPane2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        Table_Tablespace.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -134,65 +209,204 @@ public class S_Tablespaces
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(Table_Tablespace);
 
-        jButton4.setText("Thêm datafile");
-        jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+        jDesktopPane3.setLayer(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout jDesktopPane3Layout = new javax.swing.GroupLayout(jDesktopPane3);
+        jDesktopPane3.setLayout(jDesktopPane3Layout);
+        jDesktopPane3Layout.setHorizontalGroup(
+            jDesktopPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDesktopPane3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 921, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jDesktopPane3Layout.setVerticalGroup(
+            jDesktopPane3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDesktopPane3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        btn_removetablespace.setText("Xóa");
+        btn_removetablespace.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton4MouseClicked(evt);
+                btn_removetablespaceMouseClicked(evt);
             }
         });
 
-        jButton5.setText("Xóa datafile");
-        jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
+        buttonGroup1.add(rdo_Tablespace);
+        rdo_Tablespace.setText("Tablespace");
+
+        buttonGroup1.add(rdo_tablespaceDatafile);
+        rdo_tablespaceDatafile.setText("Tablespace và datafile");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btn_removetablespace, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(rdo_tablespaceDatafile, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(rdo_Tablespace, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(153, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(rdo_Tablespace)
+                .addGap(18, 18, 18)
+                .addComponent(rdo_tablespaceDatafile)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                .addComponent(btn_removetablespace, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(16, 16, 16))
+        );
+
+        jDesktopPane6.setLayer(jPanel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout jDesktopPane6Layout = new javax.swing.GroupLayout(jDesktopPane6);
+        jDesktopPane6.setLayout(jDesktopPane6Layout);
+        jDesktopPane6Layout.setHorizontalGroup(
+            jDesktopPane6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDesktopPane6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jDesktopPane6Layout.setVerticalGroup(
+            jDesktopPane6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDesktopPane6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        btn_create.setBackground(new java.awt.Color(153, 255, 255));
+        btn_create.setText("Tạo");
+        btn_create.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton5MouseClicked(evt);
+                btn_createMouseClicked(evt);
             }
         });
 
-        jLabel4.setText(".");
+        btn_changeName.setBackground(new java.awt.Color(153, 255, 255));
+        btn_changeName.setText("Đổi tên");
+        btn_changeName.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_changeNameMouseClicked(evt);
+            }
+        });
 
-        jLabel5.setText(".");
+        lbl_SumDatafile.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lbl_SumDatafile.setText(".");
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel2.setText("Tổng dung lượng datafile:");
 
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel3.setText("Tổng dung lượng Tablespace:");
 
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel6.setText("Tên");
 
-        jLabel8.setText("Size");
+        lbl_SumTablespace.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lbl_SumTablespace.setText(".");
 
-        jButton7.setText("Open file");
-        jButton7.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton7MouseClicked(evt);
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txt_Nametablespace, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(btn_create, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(23, 23, 23)
+                                .addComponent(btn_changeName, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(43, 43, 43)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lbl_SumDatafile, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lbl_SumTablespace, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(94, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbl_SumDatafile, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(23, 23, 23)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbl_SumTablespace, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(13, 13, 13)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txt_Nametablespace, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_create, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_changeName, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(18, Short.MAX_VALUE))
+        );
+
+        jDesktopPane7.setLayer(jPanel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout jDesktopPane7Layout = new javax.swing.GroupLayout(jDesktopPane7);
+        jDesktopPane7.setLayout(jDesktopPane7Layout);
+        jDesktopPane7Layout.setHorizontalGroup(
+            jDesktopPane7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDesktopPane7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jDesktopPane7Layout.setVerticalGroup(
+            jDesktopPane7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jDesktopPane7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 48)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("TABLESPACES");
+
+        cbb_showTablespace.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hiển thị danh sách", "Hiển thị dung lượng còn trống", "Hiển thị tên và dung lượng" }));
+        cbb_showTablespace.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cbb_showTablespaceItemStateChanged(evt);
             }
         });
 
-        jLabel9.setText("Đường dẫn");
-
-        jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel11.setText("Datafile");
-
-        jRadioButton1.setText("Tablespace và datafile");
-
-        jRadioButton2.setText("Tablespace");
-
-        jButton8.setText("Refesh");
-        jButton8.addMouseListener(new java.awt.event.MouseAdapter() {
+        btn_ShowDatafile.setText("Refresh");
+        btn_ShowDatafile.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton8MouseClicked(evt);
+                btn_ShowDatafileMouseClicked(evt);
             }
         });
-
-        jButton9.setText("Resize");
-        jButton9.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jButton9MouseClicked(evt);
-            }
-        });
-
-        jLabel7.setText("MB");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -201,134 +415,41 @@ public class S_Tablespaces
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(168, 168, 168)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(58, 58, 58)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(55, 55, 55)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(58, 58, 58)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(60, 60, 60)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(178, 178, 178)
-                        .addComponent(jRadioButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(60, 60, 60)
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(493, 493, 493)
-                        .addComponent(jRadioButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(58, 58, 58)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(32, 32, 32)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(152, 152, 152)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(8, 8, 8)
-                                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(41, 41, 41)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(7, 7, 7)
+                        .addGap(16, 16, 16)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton7, javax.swing.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE))
-                        .addGap(47, 47, 47)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jDesktopPane7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jDesktopPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jDesktopPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(btn_ShowDatafile, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 750, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(18, 18, 18))
+                                .addComponent(cbb_showTablespace, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jDesktopPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(286, 286, 286)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(16, 16, 16)
+                .addGap(32, 32, 32)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(11, 11, 11)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(jRadioButton2)))
-                .addGap(14, 14, 14)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jLabel6))
-                    .addComponent(jRadioButton1))
-                .addGap(9, 9, 9)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(4, 4, 4)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(5, 5, 5)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(5, 5, 5)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbb_showTablespace, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_ShowDatafile, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(23, 23, 23)
-                .addComponent(jLabel11)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(10, 10, 10)
-                                .addComponent(jLabel9))
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(2, 2, 2)
-                                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(15, 15, 15)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(4, 4, 4)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel8)
-                                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(13, 13, 13)
-                        .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addComponent(jDesktopPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jDesktopPane7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jDesktopPane6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jDesktopPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(7, Short.MAX_VALUE))
         );
 
         pack();
@@ -336,7 +457,7 @@ public class S_Tablespaces
     //Hiện thị dữ liệu
     public void showDataOnTable()
         {
-            DefaultTableModel model = (DefaultTableModel)jTable1.getModel();
+            DefaultTableModel model = (DefaultTableModel)Table_Tablespace.getModel();
             if(arr == null)
             {
                  this.arr = x.showTablespaces();
@@ -347,17 +468,17 @@ public class S_Tablespaces
             model.setDataVector (data,columnNames);
         }
     //Hiển thị theo combobox
-    private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBox1ItemStateChanged
+    private void cbb_showTablespaceItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cbb_showTablespaceItemStateChanged
         // TODO add your handling code here:
         String cb1 = "Hiển thị dung lượng còn trống";
         String cb2 = "Hiển thị danh sách";
-        if(  jComboBox1.getSelectedItem().toString().equals (cb2))
+        if(  cbb_showTablespace.getSelectedItem().toString().equals (cb2))
         {
             arr = x.showTablespaces ();
         }
         else
         {
-            if(jComboBox1.getSelectedItem().toString().equals (cb1))
+            if(cbb_showTablespace.getSelectedItem().toString().equals (cb1))
             {
                 arr = x.showFreeSpace ();
             }
@@ -367,42 +488,50 @@ public class S_Tablespaces
             }
         }
         showDataOnTable();
-    }//GEN-LAST:event_jComboBox1ItemStateChanged
-    //Tạo tablespace
-    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+    }//GEN-LAST:event_cbb_showTablespaceItemStateChanged
+   
+    
+    
+    // <editor-fold defaultstate="collapsed" desc="Tạo tablespace">  //Tạo tablespace
+    private void btn_createMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_createMouseClicked
         // TODO add your handling code here:
-        if(jTextField2.getText ().isEmpty ())
+        if(txt_Nametablespace.getText ().isEmpty ()||txt_Linkfile.getText ().isEmpty () || txt_Size.getText ().isEmpty ())
         {
-             JOptionPane.showMessageDialog(this, "Lỗi tên đang bị trống! Bạn hãy đặt tên nhé","Lỗi tên",JOptionPane.ERROR_MESSAGE);
+             JOptionPane.showMessageDialog(this, "Bạn chưa cung cấp đủ thông tin! Bạn hãy đặt tên nhé","Lỗi tên",JOptionPane.ERROR_MESSAGE);
           
         }
         else
         {
-            if(t.createTablespace (jTextField2.getText ()))
+            if(t.createTablespace (txt_Nametablespace.getText (), txt_Linkfile.getText (), txt_Size.getText ()))
             {
-                JOptionPane.showMessageDialog(this, "Tạo thành công !","Thông Báo",JOptionPane.INFORMATION_MESSAGE);
-                jTextField2.setText ("");
+                JOptionPane.showMessageDialog(this, "Tạo tablespace thành công !","Thông Báo",JOptionPane.INFORMATION_MESSAGE);
+                txt_Nametablespace.setText ("");
+                txt_Linkfile.setText ("");
+                txt_Size.setText ("");
             }
             else
             {
                 JOptionPane.showMessageDialog(this, "Thất bại","Lỗi tạo",JOptionPane.ERROR_MESSAGE);
             }     
         }
-    }//GEN-LAST:event_jButton1MouseClicked
-    //Đổi tên tablespace
-    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+    }//GEN-LAST:event_btn_createMouseClicked
+    // </editor-fold>
+    
+    
+    // <editor-fold defaultstate="collapsed" desc="Đổi tên tablespace">  //
+    private void btn_changeNameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_changeNameMouseClicked
         // TODO add your handling code here:
-        int row = jTable1.getSelectedRow ();
-        int col = jTable1.getSelectedColumn ();
-         if(jTextField2.getText ().isEmpty ())
+        int row = Table_Tablespace.getSelectedRow ();
+        int col = Table_Tablespace.getSelectedColumn ();
+         if(txt_Nametablespace.getText ().isEmpty ())
         {
             JOptionPane.showMessageDialog(this, "Lỗi tên đang bị trống! Bạn hãy đặt tên nhé","Lỗi tên",JOptionPane.ERROR_MESSAGE);
         }else
          {
-              if(t.changeNameTablespace (jTable1.getValueAt (row,col).toString (),jTextField2.getText()))
+              if(t.changeNameTablespace (Table_Tablespace.getValueAt (row,col).toString (),txt_Nametablespace.getText()))
               {
                  JOptionPane.showMessageDialog(this, "Đổi tên thành công !","Thông Báo",JOptionPane.INFORMATION_MESSAGE);
-                 jTextField2.setText ("");
+                 txt_Nametablespace.setText ("");
               }
               else
               {
@@ -410,31 +539,46 @@ public class S_Tablespaces
               }
          }
 
-    }//GEN-LAST:event_jButton3MouseClicked
-    //Lấy đường dẫn datafile
+    }//GEN-LAST:event_btn_changeNameMouseClicked
+    // </editor-fold>  
+    
+
+    // <editor-fold defaultstate="collapsed" desc="Lấy đường dẫn datafile"> //Lấy đường dẫn datafile
     private JFileChooser openFileChooser;
     private String absolutePath = null;
+    // </editor-fold> 
     
-    private void jButton7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseClicked
+    // <editor-fold defaultstate="collapsed" desc="Open file">
+    private void btn_openFileMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_openFileMouseClicked
         // TODO add your handling code here:
-        openFileChooser = new JFileChooser(); 
-        openFileChooser.setCurrentDirectory (new File("C:\\"));
-        openFileChooser.setFileFilter (new FileNameExtensionFilter("",".dbf"));
-        int returnvalue = openFileChooser.showOpenDialog (this);
-        if(returnvalue == JFileChooser.APPROVE_OPTION)
+        if(txt_Disk.getText ().isEmpty ())
         {
-            File file = openFileChooser.getSelectedFile ();
-            absolutePath = file.getAbsolutePath();
-            jTextField3.setText (absolutePath);
+            JOptionPane.showMessageDialog(this, "Bạn vui lòng chọn ổ đĩa","Lỗi tên",JOptionPane.ERROR_MESSAGE);
         }
         else
         {
-            JOptionPane.showMessageDialog(this, "Bạn chưa chọn đường dẫn","Lỗi tạo",JOptionPane.ERROR_MESSAGE);
+            openFileChooser = new JFileChooser(); 
+            openFileChooser.setCurrentDirectory (new File(txt_Disk.getText () + ":\\"));
+            openFileChooser.setFileFilter (new FileNameExtensionFilter("",".dbf"));
+            int returnvalue = openFileChooser.showOpenDialog (this);
+            if(returnvalue == JFileChooser.APPROVE_OPTION)
+            {
+                File file = openFileChooser.getSelectedFile ();
+                absolutePath = file.getAbsolutePath();
+                txt_Linkfile.setText (absolutePath);
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(this, "Bạn chưa chọn đường dẫn","Lỗi tạo",JOptionPane.ERROR_MESSAGE);
 
+            }
         }
-    }//GEN-LAST:event_jButton7MouseClicked
-    //Thêm datafile vào tablespace
-    private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
+        
+    }//GEN-LAST:event_btn_openFileMouseClicked
+    // </editor-fold> 
+    
+    // <editor-fold defaultstate="collapsed" desc="Thêm datafile vào tablespace">//Thêm datafile  vào tablespace
+    private void btn_addDatafileMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_addDatafileMouseClicked
         // TODO add your handling code here:
         
         if( absolutePath.isBlank () || absolutePath.isEmpty ())
@@ -444,63 +588,69 @@ public class S_Tablespaces
         }
         else
         {
-            int row = jTable1.getSelectedRow ();
-            int col = jTable1.getSelectedColumn ();
-            if(t.addDataFileTablespace (jTable1.getValueAt (row,col).toString (),absolutePath,jTextField1.getText ()) || row == 0)
+            int row = Table_Tablespace.getSelectedRow ();
+            int col = Table_Tablespace.getSelectedColumn ();
+            if(rdo_existDatafile.isSelected ())
             {
-                JOptionPane.showMessageDialog(this, "Thêm data file thành công !","Thông Báo",JOptionPane.INFORMATION_MESSAGE);
-                jTextField2.setText("");
-                jTextField3.setText("");
+                if(t.addDataFileExistTablespace ( Table_Tablespace.getValueAt (row,col).toString (),absolutePath) || absolutePath.isBlank ()|| absolutePath.isEmpty ())
+                {
+                     JOptionPane.showMessageDialog(this, "Thêm datafile đã tồn tại thành công!","Thông Báo",JOptionPane.INFORMATION_MESSAGE);
+                }
+                else
+                    JOptionPane.showMessageDialog(this, "Thất bại","Lỗi",JOptionPane.ERROR_MESSAGE);
             }
             else
             {
+                 if(t.addDataFileTablespace (absolutePath, Table_Tablespace.getValueAt (row,col).toString (), txt_Size.getText ()) || absolutePath.isBlank ()|| absolutePath.isEmpty ())
+                {
+                     JOptionPane.showMessageDialog(this, "Xóa datafile thành công !","Thông Báo",JOptionPane.INFORMATION_MESSAGE);
+                }
+                else
                     JOptionPane.showMessageDialog(this, "Thất bại","Lỗi",JOptionPane.ERROR_MESSAGE);
-             }
+            }
                 
         }
-    }//GEN-LAST:event_jButton4MouseClicked
-        //Xóa tablespace và datafile
-    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+    }//GEN-LAST:event_btn_addDatafileMouseClicked
+    // </editor-fold> 
+    
+    //Xóa tablespace và datafile
+    private void btn_removetablespaceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_removetablespaceMouseClicked
         // TODO add your handling code here:
-        int row = jTable1.getSelectedRow ();
-        int col = jTable1.getSelectedColumn ();
-        if(jRadioButton1.isSelected ())
-        {
-            if(t.dropTablespace (jTable1.getValueAt (row,col).toString ()))
+        int row = Table_Tablespace.getSelectedRow ();
+        int col = Table_Tablespace.getSelectedColumn ();
+            if(t.dropTablespace (Table_Tablespace.getValueAt (row,col).toString ()))
             {
                  JOptionPane.showMessageDialog(this, "Xóa tablespace thành công !","Thông Báo",JOptionPane.INFORMATION_MESSAGE);
             }
             else
                 JOptionPane.showMessageDialog(this, "Thất bại","Lỗi",JOptionPane.ERROR_MESSAGE);
-        }
-        else
-        {
-            if(t.dropAllTablespace (jTable1.getValueAt (row,col).toString ()))
+        
+            if(t.dropAllTablespace (Table_Tablespace.getValueAt (row,col).toString ()))
             {
                  JOptionPane.showMessageDialog(this, "Xóa tablespace thành công !","Thông Báo",JOptionPane.INFORMATION_MESSAGE);
             }
             else
                 JOptionPane.showMessageDialog(this, "Thất bại","Lỗi",JOptionPane.ERROR_MESSAGE);
-        }
-    }//GEN-LAST:event_jButton2MouseClicked
+       
+    }//GEN-LAST:event_btn_removetablespaceMouseClicked
     //refesh
-    private void jButton8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton8MouseClicked
+    private void btn_ShowDatafileMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_ShowDatafileMouseClicked
         // TODO add your handling code here:
         arr = x.showDataFileAndTablespace ();
         showDataOnTable();
-    }//GEN-LAST:event_jButton8MouseClicked
+    }//GEN-LAST:event_btn_ShowDatafileMouseClicked
     //Thay đổi kích thuoc datafile
-    private void jButton9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton9MouseClicked
+    private void btn_ResizeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_ResizeMouseClicked
         // TODO add your handling code here:
-         if(jTextField3.getText ().isEmpty ())
+         if(txt_Linkfile.getText ().isEmpty ())
         {
             JOptionPane.showMessageDialog(this, "Lỗi kích thước nhé","Lỗi kích thước",JOptionPane.ERROR_MESSAGE);
         }else
          {
-              if(t.resizeDatafile (absolutePath,jTextField3.getText()))
+              if(t.resizeDatafile (absolutePath,txt_Linkfile.getText()))
               {
                  JOptionPane.showMessageDialog(this, "Thay đổi kích thước thành công !","Thông Báo",JOptionPane.INFORMATION_MESSAGE);
-                 jTextField2.setText ("");
+                 txt_Nametablespace.setText ("");
               }
               else
               {
@@ -508,49 +658,63 @@ public class S_Tablespaces
               }
          }
         
-    }//GEN-LAST:event_jButton9MouseClicked
+    }//GEN-LAST:event_btn_ResizeMouseClicked
     //Xóa datafle
-    private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
+    private void btn_removeDatafileMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_removeDatafileMouseClicked
         // TODO add your handling code here:
-        
-            if(t.dropDataFileTablespace (absolutePath) || absolutePath.isBlank ()|| absolutePath.isEmpty ())
+            int row = Table_Tablespace.getSelectedRow ();
+            int col = Table_Tablespace.getSelectedColumn ();
+            if(t.dropDataFileTablespace (absolutePath, Table_Tablespace.getValueAt (row,col).toString ()) || absolutePath.isBlank ()|| absolutePath.isEmpty ())
             {
-                 JOptionPane.showMessageDialog(this, "Xóa datafile thành công !","Thông Báo",JOptionPane.INFORMATION_MESSAGE);
-            }
+                JOptionPane.showMessageDialog(this, "Xóa datafile thành công !","Thông Báo",JOptionPane.INFORMATION_MESSAGE);
+             }
             else
                 JOptionPane.showMessageDialog(this, "Thất bại","Lỗi",JOptionPane.ERROR_MESSAGE);
-        
-    }//GEN-LAST:event_jButton5MouseClicked
+    }//GEN-LAST:event_btn_removeDatafileMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
+    private javax.swing.JTable Table_Tablespace;
+    private javax.swing.JButton btn_Resize;
+    private javax.swing.JButton btn_ShowDatafile;
+    private javax.swing.JButton btn_addDatafile;
+    private javax.swing.JButton btn_changeName;
+    private javax.swing.JButton btn_create;
+    private javax.swing.JButton btn_openFile;
+    private javax.swing.JButton btn_removeDatafile;
+    private javax.swing.JButton btn_removetablespace;
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JComboBox<String> cbb_showTablespace;
     private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JDesktopPane jDesktopPane2;
+    private javax.swing.JDesktopPane jDesktopPane3;
+    private javax.swing.JDesktopPane jDesktopPane6;
+    private javax.swing.JDesktopPane jDesktopPane7;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem1;
+    private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JLabel lbl_SumDatafile;
+    private javax.swing.JLabel lbl_SumTablespace;
+    private javax.swing.JRadioButton rdo_Tablespace;
+    private javax.swing.JRadioButton rdo_existDatafile;
+    private javax.swing.JRadioButton rdo_newDatafile;
+    private javax.swing.JRadioButton rdo_tablespaceDatafile;
+    private javax.swing.JTextField txt_Disk;
+    private javax.swing.JTextField txt_Linkfile;
+    private javax.swing.JTextField txt_Nametablespace;
+    private javax.swing.JTextField txt_Size;
     // End of variables declaration//GEN-END:variables
 }

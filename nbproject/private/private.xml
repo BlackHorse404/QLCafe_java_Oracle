@@ -3,11 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/Nam%203/Oracle/QLCafe_java_Oracle/src/DAL/DBConfig.java</file>
-            <file>file:/E:/Nam%203/Oracle/QLCafe_java_Oracle/src/BLL/GetData.java</file>
-            <file>file:/E:/Nam%203/Oracle/QLCafe_java_Oracle/src/GUI/Login.java</file>
-            <file>file:/E:/Nam%203/Oracle/QLCafe_java_Oracle/src/BLL/UpdateData.java</file>
-            <file>file:/E:/Nam%203/Oracle/QLCafe_java_Oracle/src/BLL/GetValue.java</file>
+            <file>file:/E:/Nam%203/Oracle/QLCafe_java_Oracle/src/BLL/ExecuteData.java</file>
+            <file>file:/E:/Nam%203/Oracle/QLCafe_java_Oracle/src/GUI/Audit.java</file>
         </group>
     </open-files>
 </project-private>

@@ -5,10 +5,7 @@ import java.util.ArrayList;
 
 public class GetData {
     
-    //fields
    
-
-
     //<editor-fold defaultstate="collapsed" desc=" Method Show System Oracle ">
     // hiển thị SGA trong oracle
     public ArrayList showSGA()
@@ -85,8 +82,67 @@ public class GetData {
     }
     public ArrayList showDataFileAndTablespace()
     {
-        DataAccess da = new DataAccess("SELECT tablespace_name, file_name, online_status, (bytes)\1024\1024 from dba_data_files ");
+        DataAccess da = new DataAccess("SELECT tablespace_name, file_name, online_status, (bytes)\1024\1024 from dba_data_files");
         return da.QueryTable ();
     }
+    
+    //<editor-fold defaultstate="collapsed" desc=" Session ">
+    //hiển thị thông tin các Session hiện hành
+    public ArrayList showSessionCurrent()
+    {
+        DataAccess da = new DataAccess("Select SADDR ,SID, SERIAL#, AUDSID, USER# ,USERNAME, STATUS, OSUSER,MACHINE, PORT, TERMINAL, PROGRAM, MODULE, TYPE, PREV_EXEC_START  from v$session where USERNAME is not NULL");
+        return da.QueryTable();
+    } 
+    
+    //hiển thị thông tin các Session hiện hành
+    public ArrayList showProcessOfSession()
+    {
+        DataAccess da = new DataAccess("select p.pname, s.username, p.username, s.serial#, s.machine, s.program from v$process p, v$session s where s.creator_addr = p.addr");
+        return da.QueryTable();
+    } 
     //</editor-fold>
+    
+    //</editor-fold>
+    
+    public ArrayList getAllAccount()
+    {
+        DataAccess da = new DataAccess("SELECT USER_ID, username, CREATED, EXPIRY_DATE, ACCOUNT_STATUS, cast(LAST_LOGIN as date), PROFILE, TEMPORARY_TABLESPACE, EXTERNAL_NAME FROM DBA_USERS where account_status = 'OPEN'");
+        return da.QueryTable ();
+    }
+    
+    public String getCurrentUser()
+    {
+        DataAccess da = new DataAccess("SELECT sys_context('USERENV', 'CURRENT_SCHEMA') FROM dual");
+        return da.QueryContentTable()[0][0].toString();
+    }
+    
+    public String getLastLogin()
+    {
+        String user = getCurrentUser();
+        DataAccess da = new DataAccess("SELECT cast(LAST_LOGIN as date) from sys.dba_users where account_status = 'OPEN' and username = '"+user+"'");
+        return da.QueryContentTable()[0][0].toString();
+    }
+    
+    public ArrayList getAllPoliciesInDB(){
+        DataAccess da = new DataAccess("select * from dba_policies");
+        return da.QueryTable();
+    }
+    
+    public ArrayList getAllRecordAutdit(){
+        DataAccess da = new DataAccess("select * from dba_fga_audit_trail");
+        return da.QueryTable();
+    }
+    
+    //lay ten table 
+    public ArrayList getTableName()
+    {
+        DataAccess da = new DataAccess("select distinct table_name from dba_tables where table_name='KHACHHANG' or table_name='HOADON' or table_name='CHITIETHOADON' or table_name='KHUYENMAI' or table_name='THUCDON' or table_name='PHANLOAI'");
+        Object[][] t = da.QueryContentTable();
+        ArrayList<String> arr=new ArrayList<String>();
+        for(int i =0;i<t.length; i++)
+        {
+            arr.add(t[i][0].toString());
+        }
+        return arr;
+    }
 }

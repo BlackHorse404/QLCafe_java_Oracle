@@ -74,6 +74,7 @@ public class PasswordField extends JPasswordField {
             }
 
             @Override
+            @SuppressWarnings("deprecation")
             public void removeUpdate(DocumentEvent e) {
                 if (getText().equals("")) {
                     stop();
