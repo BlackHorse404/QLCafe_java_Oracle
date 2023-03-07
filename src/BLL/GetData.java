@@ -135,7 +135,9 @@ public class GetData {
     
     public ArrayList getTableName()
     {
-        DataAccess da = new DataAccess("select distinct table_name from dba_tables where table_name='KHACHHANG' or table_name='HOADON' or table_name='CHITIETHOADON' or table_name='KHUYENMAI' or table_name='THUCDON' or table_name='PHANLOAI'");
+        //DataAccess da = new DataAccess("select distinct table_name from dba_tables where table_name='KHACHHANG' or table_name='HOADON' or table_name='CHITIETHOADON' or table_name='KHUYENMAI' or table_name='THUCDON' or table_name='PHANLOAI'");
+        DataAccess da = new DataAccess("select table_name from dba_tables where owner = 'SYS' and tablespace_name = 'USERS'");
+
         Object[][] t = da.QueryContentTable();
         ArrayList<String> arr=new ArrayList<String>();
         for(int i =0;i<t.length; i++)

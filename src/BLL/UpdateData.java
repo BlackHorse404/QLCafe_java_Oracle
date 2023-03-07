@@ -83,7 +83,7 @@ public class UpdateData {
     {
         try
         {
-            da = new DataAccess(String.format ("ALTER TABLESPACE %s DROP DATAFILE '%s';" ,name,path));
+            da = new DataAccess(String.format ("ALTER TABLESPACE %s DROP DATAFILE '%s'" ,name,path));
             return true;
         }
         catch(Exception ex)
