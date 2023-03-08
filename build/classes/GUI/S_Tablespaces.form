@@ -253,9 +253,6 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="X&#xf3;a datafile"/>
               </Properties>
-              <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btn_removeDatafileMouseClicked"/>
-              </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                   <AbsoluteConstraints x="770" y="120" width="131" height="40"/>
@@ -516,23 +513,23 @@
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jLabel2" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
+                          <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="lbl_SumDatafile" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="23" pref="23" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel3" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
                           <Component id="lbl_SumTablespace" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="13" pref="13" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
                       <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="txt_Nametablespace" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                           <Component id="btn_create" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                           <Component id="btn_changeName" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="18" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>

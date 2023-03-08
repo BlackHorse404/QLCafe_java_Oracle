@@ -5,6 +5,7 @@
 package BLL;
 
 import DAL.DataAccess;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -137,8 +138,47 @@ public class UpdateData {
         {
             System.out.println (ex.getMessage ());
             return false;
+        }              
+    }
+    //cập nhật hóa đơn
+    public  boolean  updateHD(String ngaylap,String hinhthuc,String khachhangmakhString,String khuyenmaimakmString,String nhanvienmanv,String mahd)
+    {
+        int updateCount = 0;
+        while (updateCount < 2)
+        {
+         try 
+            {
+                String chuoi ="UPDATE HoaDon SET NGAYLAP = '" + ngaylap + "', HINHTHUC = N'" + hinhthuc + "', KHACHHANGMAKH = '" + khachhangmakhString + "', KHUYENMAIMAKM = '" + khuyenmaimakmString + "', NHANVIENMANV = '" + nhanvienmanv + "' WHERE MAHD = '" + mahd + "'";
+//                da = new DataAccess(String.format ("UPDATE HoaDon Set NGAYLAP = '%s',HINHTHUC = N'%s',KHUYENMAIMAKM='%s',NHANVIENMANV='%s'" +"Where MAHD ='%s'" ,ngaylap,hinhthuc,khachhangmakhString,khuyenmaimakmString,nhanvienmanv,mahd ));           
+                da = new DataAccess(chuoi);
+                return true;
+            } 
+        catch (Exception ex) 
+            {
+            
+                System.out.println (ex.getMessage ());
+                return false;
+            }
         }
-                
-        
+        return false;
+    }
+//Thêm hóa đơn
+    public  boolean  insertHD(String ngaylap,String hinhthuc,String khachhangmakhString,String khuyenmaimakmString,String nhanvienmanv,String mahd)
+    {
+           
+         try 
+            {
+
+                String chuoi ="SET NLS_DATE_FORMAT 'DD-MM-YYYY'; "+"INSERT INTO HoaDon(MAHD,NGAYLAP,HINHTHUC,KHACHHANGMAKH,KHUYENMAIMAKM,NHANVIENMANV) VALUES "+"("+"'" + mahd +"'"+"," +"'"+ ngaylap + "'"+","+"'"+hinhthuc+"'"+","+"'"+khachhangmakhString+"'"+","+"'"+khuyenmaimakmString+"'"+","+"'"+nhanvienmanv+"'"+")";
+//                da = new DataAccess(String.format ("UPDATE HoaDon Set NGAYLAP = '%s',HINHTHUC = N'%s',KHUYENMAIMAKM='%s',NHANVIENMANV='%s'" +"Where MAHD ='%s'" ,ngaylap,hinhthuc,khachhangmakhString,khuyenmaimakmString,nhanvienmanv,mahd ));           
+                da = new DataAccess(chuoi);
+                return true;
+            } 
+        catch (Exception ex) 
+            {
+            
+                System.out.println (ex.getMessage ());
+                return false;
+            }
     }
 }

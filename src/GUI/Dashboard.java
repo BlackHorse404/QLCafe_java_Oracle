@@ -50,6 +50,7 @@ public class Dashboard extends javax.swing.JFrame {
         menu_settingAccount = new javax.swing.JMenu();
         menu_logout = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
+        jMenu6 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Trang chủ");
@@ -88,7 +89,7 @@ public class Dashboard extends javax.swing.JFrame {
         jMenu1.add(menu_dataFile);
 
         menu_SGA.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        menu_SGA.setText("SGA");
+        menu_SGA.setLabel("SGA");
         menu_SGA.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 menu_SGAMouseClicked(evt);
@@ -124,7 +125,7 @@ public class Dashboard extends javax.swing.JFrame {
         jMenu1.add(menu_Instance);
 
         menu_Database.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        menu_Database.setText("Database");
+        menu_Database.setLabel("Database");
         menu_Database.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 menu_DatabaseMouseClicked(evt);
@@ -201,6 +202,14 @@ public class Dashboard extends javax.swing.JFrame {
         menu_account.add(jMenu2);
 
         jMenuBar1.add(menu_account);
+
+        jMenu6.setText("Menu");
+        jMenu6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu6MouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(jMenu6);
 
         setJMenuBar(jMenuBar1);
 
@@ -302,6 +311,12 @@ public class Dashboard extends javax.swing.JFrame {
         // SELECT USER_ID, username, EXPIRY_DATE, TEMPORARY_TABLESPACE, CREATED, PROFILE, INITIAL_RSRC_CONSUMER_GROUP, EXTERNAL_NAME, LAST_LOGIN FROM DBA_USERS where account_status = 'OPEN';
 
     }//GEN-LAST:event_jMenu3MouseClicked
+
+    private void jMenu6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu6MouseClicked
+        // TODO add your handling code here:
+        Menu t = new Menu();
+        t.setVisible (true);
+    }//GEN-LAST:event_jMenu6MouseClicked
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -310,6 +325,7 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
+    private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu menu_ControlFile;
     private javax.swing.JMenu menu_Database;

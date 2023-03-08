@@ -21,7 +21,8 @@ import oracle.jdbc.driver.Message;
  * @author PC THAO
  */
 public class S_Tablespaces
-        extends javax.swing.JFrame {
+        extends javax.swing.JFrame 
+{
     private ArrayList arr;
     private GetData x ;
     private UpdateData t;
@@ -164,11 +165,6 @@ public class S_Tablespaces
         jPanel2.add(btn_addDatafile, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 70, 131, 40));
 
         btn_removeDatafile.setText("Xóa datafile");
-        btn_removeDatafile.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btn_removeDatafileMouseClicked(evt);
-            }
-        });
         jPanel2.add(btn_removeDatafile, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 120, 131, 40));
         jPanel2.add(txt_Disk, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 50, 90, 30));
 
@@ -355,7 +351,7 @@ public class S_Tablespaces
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2)
                     .addComponent(lbl_SumDatafile, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(23, 23, 23)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -368,7 +364,7 @@ public class S_Tablespaces
                     .addComponent(txt_Nametablespace, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_create, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_changeName, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addGap(18, 18, 18))
         );
 
         jDesktopPane7.setLayer(jPanel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -464,7 +460,6 @@ public class S_Tablespaces
             }
             Object[] columnNames = (Object[])this.arr.get(0);
             Object[][] data = (Object[][])this.arr.get(1);
-
             model.setDataVector (data,columnNames);
         }
     //Hiển thị theo combobox
@@ -659,18 +654,6 @@ public class S_Tablespaces
          }
         
     }//GEN-LAST:event_btn_ResizeMouseClicked
-    //Xóa datafle
-    private void btn_removeDatafileMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_removeDatafileMouseClicked
-        // TODO add your handling code here:
-            int row = Table_Tablespace.getSelectedRow ();
-            int col = Table_Tablespace.getSelectedColumn ();
-            if(t.dropDataFileTablespace (absolutePath, Table_Tablespace.getValueAt (row,col).toString ()) || absolutePath.isBlank ()|| absolutePath.isEmpty ())
-            {
-                JOptionPane.showMessageDialog(this, "Xóa datafile thành công !","Thông Báo",JOptionPane.INFORMATION_MESSAGE);
-             }
-            else
-                JOptionPane.showMessageDialog(this, "Thất bại","Lỗi",JOptionPane.ERROR_MESSAGE);
-    }//GEN-LAST:event_btn_removeDatafileMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

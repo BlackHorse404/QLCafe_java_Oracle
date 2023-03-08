@@ -85,6 +85,30 @@ public class GetData {
         DataAccess da = new DataAccess("SELECT tablespace_name, file_name, online_status, (bytes)\1024\1024 from dba_data_files");
         return da.QueryTable ();
     }
+    //Hiển Thị Thông Tin Hóa Đơn
+    public ArrayList showDataHoaDon()
+    {
+        DataAccess da = new DataAccess("Select * From HoaDon");
+        return  da.QueryTable();
+    }
+     //Hiển Thị Thông Tin Khách Hàng
+    public ArrayList showDataKhachHang()
+    {
+        DataAccess da = new DataAccess("Select * From KhachHang");
+        return  da.QueryTable();
+    }
+     //Hiển Thị Thông Tin Thuc Don
+    public ArrayList showDataThuDon()
+    {
+        DataAccess da = new DataAccess("Select * From ThucDon");
+        return  da.QueryTable();
+    }
+     //Hiển Thị Thông Tin Khuyen Mai
+    public ArrayList showDataKhuyenMai()
+    {
+        DataAccess da = new DataAccess("Select * From KhuyenMai");
+        return  da.QueryTable();
+    }
     
     //<editor-fold defaultstate="collapsed" desc=" Session ">
     //hiển thị thông tin các Session hiện hành
