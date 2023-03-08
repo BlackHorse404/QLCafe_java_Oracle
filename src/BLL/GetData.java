@@ -90,7 +90,7 @@ public class GetData {
     //hiển thị thông tin các Session hiện hành
     public ArrayList showSessionCurrent()
     {
-        DataAccess da = new DataAccess("Select SADDR ,SID, SERIAL#, AUDSID, USER# ,USERNAME, STATUS, OSUSER,MACHINE, PORT, TERMINAL, PROGRAM, MODULE, TYPE, PREV_EXEC_START  from v$session where USERNAME is not NULL");
+        DataAccess da = new DataAccess("Select SID, SERIAL#, USERNAME, STATUS, OSUSER, MACHINE, PORT, PROGRAM, PREV_EXEC_START  from v$session where USERNAME is not NULL");
         return da.QueryTable();
     } 
     
@@ -119,8 +119,18 @@ public class GetData {
     public String getLastLogin()
     {
         String user = getCurrentUser();
-        DataAccess da = new DataAccess("SELECT cast(LAST_LOGIN as date) from sys.dba_users where account_status = 'OPEN' and username = '"+user+"'");
-        return da.QueryContentTable()[0][0].toString();
+        String sid = new DataAccess("SELECT sys_context('USERENV', 'SID') SID FROM DUAL").QueryContentTable()[0][0].toString();
+        String query = String.format("select distinct * from hr.log_on where sid = %s and name = '%s' order by LOGON_TIME desc",sid, user);
+        DataAccess da = new DataAccess(query);
+        String kq = "null";
+        try{
+            kq = da.QueryContentTable()[1][2].toString();
+        }
+        catch(Exception err)
+        {
+            kq = "First Login";
+        }
+        return kq;
     }
     
     public ArrayList getAllPoliciesInDB(){

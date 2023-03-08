@@ -3,10 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/HUFI/Năm%203/HK2/Oracle/DoAn/QuanLyCafe/src/main.java</file>
-            <file>file:/E:/HUFI/Năm%203/HK2/Oracle/DoAn/QuanLyCafe/src/DAL/DBConfig.java</file>
-            <file>file:/E:/HUFI/Năm%203/HK2/Oracle/DoAn/QuanLyCafe/src/GUI/Scan_QR.java</file>
-            <file>file:/E:/HUFI/Năm%203/HK2/Oracle/DoAn/QuanLyCafe/src/GUI/S_Tablespaces.java</file>
+            <file>file:/E:/HUFI/Năm%203/HK2/Oracle/DoAn/QuanLyCafe/src/GUI/SystemForm.java</file>
+            <file>file:/E:/HUFI/Năm%203/HK2/Oracle/DoAn/QuanLyCafe/src/GUI/S_NumberOfSession.java</file>
+            <file>file:/E:/HUFI/Năm%203/HK2/Oracle/DoAn/QuanLyCafe/src/BLL/GetData.java</file>
+            <file>file:/E:/HUFI/Năm%203/HK2/Oracle/DoAn/QuanLyCafe/src/GUI/Dashboard.java</file>
         </group>
     </open-files>
 </project-private>

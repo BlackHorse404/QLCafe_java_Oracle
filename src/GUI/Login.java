@@ -64,11 +64,6 @@ public class Login extends javax.swing.JFrame {
 
         txtPassword.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
         txtPassword.setHint("Password");
-        txtPassword.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtPasswordKeyPressed(evt);
-            }
-        });
 
         jLabel1.setFont(new java.awt.Font("sansserif", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -178,6 +173,7 @@ public class Login extends javax.swing.JFrame {
 
  
     private void cmdLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdLoginActionPerformed
+        //new Dashboard().setVisible(true);
         String user = txtUser.getText();
         String pass = String.valueOf(txtPassword.getPassword());
         if(user.length() == 0 || pass.length() == 0)
@@ -198,12 +194,12 @@ public class Login extends javax.swing.JFrame {
         DBConfig.password = pass;
         Connection conn = DBConfig.getConnectionString();
         try{
-            conn.createStatement();
-            JOptionPane.showMessageDialog(this, "Đăng nhập Thành Công !","Thông Báo",JOptionPane.INFORMATION_MESSAGE);
+            DBConfig.Connect = conn;
+            //conn.createStatement();
             this.setVisible(false);
-            new Dashboard(this).setVisible(true);
-
-            conn.close();
+            new Dashboard(user).setVisible(true);
+            
+            JOptionPane.showMessageDialog(this, "Đăng nhập Thành Công !","Thông Báo",JOptionPane.INFORMATION_MESSAGE);
             return true;
         }
         catch(Exception err){
@@ -222,18 +218,6 @@ public class Login extends javax.swing.JFrame {
         new Scan_QR (this).setVisible (true);
         
     }//GEN-LAST:event_Scan_QRMouseClicked
-
-    private void txtPasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPasswordKeyPressed
-        // TODO add your handling code here:
-        String user  = txtUser.getText();
-        String pass  = String.valueOf(txtPassword.getPassword());
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER)
-        {
-            if( user !=null && pass!=null)
-            signinDB (user,
-                    pass);
-        }
-    }//GEN-LAST:event_txtPasswordKeyPressed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Scan_QR;

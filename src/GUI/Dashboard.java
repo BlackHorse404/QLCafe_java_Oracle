@@ -1,11 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package GUI;
 
+import event.EventMenuSelected;
+import java.awt.Color;
+import javax.swing.JComponent;
 import BLL.GetData;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -16,17 +14,42 @@ public class Dashboard extends javax.swing.JFrame {
     /**
      * Creates new form Dashboard
      */
-    private Login loginForm = null;
-    public Dashboard(Login t) {
+    GetData x = new GetData();
+    
+    public Dashboard(String user) {
         initComponents();
-        setLocationRelativeTo (null);
-        GetData x = new GetData();
-        String nameOfUser = x.getCurrentUser();
-        menu_account.setText("Tài Khoản: "+nameOfUser);
-        //lastLogin.setText(x.getLastLogin());
-        loginForm = t;
+        header.setUsername("Welcome: "+x.getCurrentUser());
+        header.setLastLogin(x.getLastLogin());
+        setBackground(new Color(0, 0, 0, 0));
+//        home = new Form_Home();
+//        form1 = new Form_1();
+//        form2 = new Form_2();
+//        form3 = new Form_3();
+        menu.initMoving(Dashboard.this);
+        menu.addEventMenuSelected(new EventMenuSelected() {
+            @Override
+            public void selected(int index) {
+                if (index == 0) {
+                    setForm(new StartForm());
+                } 
+                else if (index == 1) {
+                    setForm(new SystemForm());
+                }
+            }
+        });
+        //  set when system open start with home form
+        setForm(new StartForm());
     }
 
+    
+    
+    private void setForm(JComponent com) {
+        mainPanel.removeAll();
+        mainPanel.add(com);
+        mainPanel.repaint();
+        mainPanel.revalidate();
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -36,356 +59,70 @@ public class Dashboard extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lastLogin = new javax.swing.JLabel();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        menu_spfile = new javax.swing.JMenu();
-        menu_ControlFile = new javax.swing.JMenu();
-        menu_dataFile = new javax.swing.JMenu();
-        menu_SGA = new javax.swing.JMenu();
-        menu_PGA = new javax.swing.JMenu();
-        menu_Process = new javax.swing.JMenu();
-        menu_Instance = new javax.swing.JMenu();
-        menu_Database = new javax.swing.JMenu();
-        jMenu5 = new javax.swing.JMenu();
-        jMenu4 = new javax.swing.JMenu();
-        menu_SoLuongSession = new javax.swing.JMenu();
-        menu_ProcessSession = new javax.swing.JMenu();
-        jMenu3 = new javax.swing.JMenu();
-        menu_account = new javax.swing.JMenu();
-        menu_settingAccount = new javax.swing.JMenu();
-        menu_logout = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
-        jMenu6 = new javax.swing.JMenu();
-        PolicyAudit_HienCo = new javax.swing.JMenu();
-        XemKetQuaAudit = new javax.swing.JMenu();
+        panelBorder1 = new Ultilities.swing.PanelBorder();
+        menu = new Ultilities.component.Menu();
+        mainPanel = new javax.swing.JPanel();
+        header = new Ultilities.component.Header();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Trang chủ");
-        setFont(new java.awt.Font("#9Slide03 AllRoundGothic", 0, 14)); // NOI18N
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setUndecorated(true);
 
-        lastLogin.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        lastLogin.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lastLogin.setText("jLabel1");
+        mainPanel.setOpaque(false);
+        mainPanel.setLayout(new java.awt.BorderLayout());
 
-        jMenuBar1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-
-        jMenu1.setText("Hệ Thống");
-        jMenu1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-
-        menu_spfile.setText("PFile");
-        menu_spfile.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        menu_spfile.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                menu_spfileMouseClicked(evt);
-            }
-        });
-        jMenu1.add(menu_spfile);
-
-        menu_ControlFile.setText("Control file");
-        menu_ControlFile.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        menu_ControlFile.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                menu_ControlFileMouseClicked(evt);
-            }
-        });
-        jMenu1.add(menu_ControlFile);
-
-        menu_dataFile.setText("DataFile");
-        menu_dataFile.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        menu_dataFile.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                menu_dataFileMouseClicked(evt);
-            }
-        });
-        jMenu1.add(menu_dataFile);
-
-        menu_SGA.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        menu_SGA.setLabel("SGA");
-        menu_SGA.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                menu_SGAMouseClicked(evt);
-            }
-        });
-        jMenu1.add(menu_SGA);
-
-        menu_PGA.setText("PGA");
-        menu_PGA.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        menu_PGA.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                menu_PGAMouseClicked(evt);
-            }
-        });
-        jMenu1.add(menu_PGA);
-
-        menu_Process.setText("Process");
-        menu_Process.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        menu_Process.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                menu_ProcessMouseClicked(evt);
-            }
-        });
-        jMenu1.add(menu_Process);
-
-        menu_Instance.setText("Instance");
-        menu_Instance.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        menu_Instance.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                menu_InstanceMouseClicked(evt);
-            }
-        });
-        jMenu1.add(menu_Instance);
-
-        menu_Database.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        menu_Database.setLabel("Database");
-        menu_Database.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                menu_DatabaseMouseClicked(evt);
-            }
-        });
-        jMenu1.add(menu_Database);
-
-        jMenu5.setText("Tablespace");
-        jMenu5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jMenu5.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenu5MouseClicked(evt);
-            }
-        });
-        jMenu1.add(jMenu5);
-
-        jMenu4.setText("Session");
-        jMenu4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-
-        menu_SoLuongSession.setText("Quản Lý Session");
-        menu_SoLuongSession.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        menu_SoLuongSession.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                menu_SoLuongSessionMouseClicked(evt);
-            }
-        });
-        jMenu4.add(menu_SoLuongSession);
-
-        menu_ProcessSession.setText("Tiến Trình Session");
-        menu_ProcessSession.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        menu_ProcessSession.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                menu_ProcessSessionMouseClicked(evt);
-            }
-        });
-        jMenu4.add(menu_ProcessSession);
-
-        jMenu1.add(jMenu4);
-
-        jMenu3.setText("Quản Lý Account");
-        jMenu3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jMenu3.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenu3MouseClicked(evt);
-            }
-        });
-        jMenu1.add(jMenu3);
-
-        jMenuBar1.add(jMenu1);
-
-        menu_account.setText("Tài Khoản");
-        menu_account.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-
-        menu_settingAccount.setText("Cài Đặt");
-        menu_settingAccount.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        menu_settingAccount.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                menu_settingAccountMouseClicked(evt);
-            }
-        });
-        menu_account.add(menu_settingAccount);
-
-        menu_logout.setText("Đăng Xuất");
-        menu_logout.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        menu_logout.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                menu_logoutMouseClicked(evt);
-            }
-        });
-        menu_account.add(menu_logout);
-
-        jMenu2.setText("Tạo Tài Khoản");
-        jMenu2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        menu_account.add(jMenu2);
-
-        jMenuBar1.add(menu_account);
-
-        jMenu6.setText("Quản Lý Audit");
-
-        PolicyAudit_HienCo.setText("Các Policy Hiện Có");
-        PolicyAudit_HienCo.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                PolicyAudit_HienCoMouseClicked(evt);
-            }
-        });
-        jMenu6.add(PolicyAudit_HienCo);
-
-        XemKetQuaAudit.setText("Xem Báo Cáo Audit");
-        XemKetQuaAudit.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                XemKetQuaAuditMouseClicked(evt);
-            }
-        });
-        XemKetQuaAudit.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                XemKetQuaAuditKeyPressed(evt);
-            }
-        });
-        jMenu6.add(XemKetQuaAudit);
-
-        jMenuBar1.add(jMenu6);
-
-        setJMenuBar(jMenuBar1);
+        javax.swing.GroupLayout panelBorder1Layout = new javax.swing.GroupLayout(panelBorder1);
+        panelBorder1.setLayout(panelBorder1Layout);
+        panelBorder1Layout.setHorizontalGroup(
+            panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelBorder1Layout.createSequentialGroup()
+                .addComponent(menu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addGroup(panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelBorder1Layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(header, javax.swing.GroupLayout.DEFAULT_SIZE, 790, Short.MAX_VALUE)))
+        );
+        panelBorder1Layout.setVerticalGroup(
+            panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(menu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(panelBorder1Layout.createSequentialGroup()
+                .addComponent(header, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(2, 2, 2)
+                .addComponent(mainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 610, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(806, 806, 806)
-                .addComponent(lastLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
-                .addContainerGap())
+            .addGap(0, 1019, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(panelBorder1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(532, Short.MAX_VALUE)
-                .addComponent(lastLogin)
-                .addContainerGap())
+            .addGap(0, 673, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(panelBorder1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void menu_DatabaseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menu_DatabaseMouseClicked
-        S_Database t = new S_Database();
-        t.setVisible(true);
-    }//GEN-LAST:event_menu_DatabaseMouseClicked
 
-    private void menu_InstanceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menu_InstanceMouseClicked
-        S_Instance t = new S_Instance();
-        t.setVisible(true);
-    }//GEN-LAST:event_menu_InstanceMouseClicked
-
-    private void menu_ProcessMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menu_ProcessMouseClicked
-        S_Process t = new S_Process();
-        t.setVisible(true);
-    }//GEN-LAST:event_menu_ProcessMouseClicked
-
-    private void menu_PGAMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menu_PGAMouseClicked
-        S_PGA ld = new S_PGA();
-        ld.setVisible(true);
-    }//GEN-LAST:event_menu_PGAMouseClicked
-
-    // menu system
-    
-    private void menu_SGAMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menu_SGAMouseClicked
-        S_SGA ld = new S_SGA();
-        ld.setVisible(true);
-    }//GEN-LAST:event_menu_SGAMouseClicked
-
-    private void menu_dataFileMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menu_dataFileMouseClicked
-        S_Datafile t = new S_Datafile();
-        t.setVisible(true);
-    }//GEN-LAST:event_menu_dataFileMouseClicked
-
-    private void menu_SoLuongSessionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menu_SoLuongSessionMouseClicked
-        S_NumberOfSession t = new S_NumberOfSession();
-        t.setVisible(true);
-    }//GEN-LAST:event_menu_SoLuongSessionMouseClicked
-
-    private void menu_ProcessSessionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menu_ProcessSessionMouseClicked
-        S_SessionProcess t = new S_SessionProcess();
-        t.setVisible(true);
-    }//GEN-LAST:event_menu_ProcessSessionMouseClicked
-
-    private void menu_ControlFileMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menu_ControlFileMouseClicked
-        S_ControlFile t = new S_ControlFile();
-        t.setVisible(true);
-    }//GEN-LAST:event_menu_ControlFileMouseClicked
-
-    private void menu_spfileMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menu_spfileMouseClicked
-        S_SPFile t = new S_SPFile();
-        t.setVisible(true);
-    }//GEN-LAST:event_menu_spfileMouseClicked
-
-    private void jMenu5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu5MouseClicked
-        // TODO add your handling code here:
-        S_Tablespaces t = new S_Tablespaces ();
-        t.showDataOnTable ();
-        t.setVisible (true);
-        
-    }//GEN-LAST:event_jMenu5MouseClicked
-
-    private void menu_logoutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menu_logoutMouseClicked
-        int a = JOptionPane.showConfirmDialog(this,
-                "Bạn chắc chắn muốn đăng xuất ?",
-                "Thông Báo",
-                JOptionPane.OK_CANCEL_OPTION,
-                JOptionPane.QUESTION_MESSAGE
-                );
-        // JOptionPane.setRootFrame(null);
-        if (a == JOptionPane.OK_OPTION) {
-            if(loginForm!=null)
-                loginForm.setVisible(true);
-            dispose();
-            
-        }
-    }//GEN-LAST:event_menu_logoutMouseClicked
-
-    private void menu_settingAccountMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menu_settingAccountMouseClicked
-        ACC_Setting t = new ACC_Setting();
-        t.setVisible(true);
-    }//GEN-LAST:event_menu_settingAccountMouseClicked
-
-    private void jMenu3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu3MouseClicked
-        ACC_ManageAccount t = new ACC_ManageAccount();
-        t.setVisible(true);
-    }//GEN-LAST:event_jMenu3MouseClicked
-
-    private void PolicyAudit_HienCoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PolicyAudit_HienCoMouseClicked
-        PolicyHienCo t = new PolicyHienCo();
-        t.setVisible(true);
-    }//GEN-LAST:event_PolicyAudit_HienCoMouseClicked
-
-    private void XemKetQuaAuditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_XemKetQuaAuditKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_XemKetQuaAuditKeyPressed
-
-    private void XemKetQuaAuditMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_XemKetQuaAuditMouseClicked
-        AuditRecord t = new AuditRecord();
-        t.setVisible(true);
-    }//GEN-LAST:event_XemKetQuaAuditMouseClicked
-    
-    
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu PolicyAudit_HienCo;
-    private javax.swing.JMenu XemKetQuaAudit;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenu jMenu5;
-    private javax.swing.JMenu jMenu6;
-    private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JLabel lastLogin;
-    private javax.swing.JMenu menu_ControlFile;
-    private javax.swing.JMenu menu_Database;
-    private javax.swing.JMenu menu_Instance;
-    private javax.swing.JMenu menu_PGA;
-    private javax.swing.JMenu menu_Process;
-    private javax.swing.JMenu menu_ProcessSession;
-    private javax.swing.JMenu menu_SGA;
-    private javax.swing.JMenu menu_SoLuongSession;
-    private javax.swing.JMenu menu_account;
-    private javax.swing.JMenu menu_dataFile;
-    private javax.swing.JMenu menu_logout;
-    private javax.swing.JMenu menu_settingAccount;
-    private javax.swing.JMenu menu_spfile;
+    private Ultilities.component.Header header;
+    private javax.swing.JPanel mainPanel;
+    private Ultilities.component.Menu menu;
+    private Ultilities.swing.PanelBorder panelBorder1;
     // End of variables declaration//GEN-END:variables
 }

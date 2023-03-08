@@ -49,6 +49,10 @@ public class Background extends JComponent {
         image = new ImageIcon(getClass().getResource("/Ultilities/login/img_3.jpg"));
     }
 
+    public Background(String path) {
+        image = new ImageIcon(getClass().getResource(path));
+    }
+    
     private void createImage() {
         if (image != null) {
             int width = getWidth();

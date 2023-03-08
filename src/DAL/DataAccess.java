@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class DataAccess {
     
-    private static Connection conn = DBConfig.getConnectionString();
+    private static Connection conn = DBConfig.Connect;
     private static Statement st = getStatement();
     private ResultSet rs = null;
 

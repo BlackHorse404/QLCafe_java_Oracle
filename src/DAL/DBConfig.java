@@ -14,6 +14,7 @@ public class DBConfig {
     private static String SID = "orcl";
     public static String username;
     public static String password;
+    public static Connection Connect = null;
     
     public static Connection getConnectionString()
     {
