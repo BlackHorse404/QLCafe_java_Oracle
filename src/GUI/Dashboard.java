@@ -32,7 +32,7 @@ public class Dashboard extends javax.swing.JFrame {
                 if (index == 0) {
                     setForm(new StartForm());
                 } 
-                else if (index == 1) {
+                else if (index == 5) {
                     setForm(new SystemForm());
                 }
             }
