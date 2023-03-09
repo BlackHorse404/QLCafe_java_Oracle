@@ -22,6 +22,7 @@ public class Login extends javax.swing.JFrame {
         initComponents();
         setBackground(new Color(0, 0, 0, 0));
         BasicConfigurator.configure();
+        chk_showHidePass.setBackground(new Color(0, 0, 0, 0));
     }
     
     public void hideLogin()
@@ -51,17 +52,23 @@ public class Login extends javax.swing.JFrame {
         cmdLogin = new Ultilities.swing.Button();
         buttonCustom1 = new Ultilities.swing.buttonCustom();
         Scan_QR = new javax.swing.JLabel();
+        chk_showHidePass = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
 
         background.setBlur(panel);
 
+        panel.setBackground(new java.awt.Color(0, 0, 0));
         panel.setOpaque(false);
 
+        txtUser.setCaretColor(new java.awt.Color(255, 255, 255));
         txtUser.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
         txtUser.setHint("User Name");
 
+        txtPassword.setForeground(new java.awt.Color(0, 0, 0));
+        txtPassword.setCaretColor(new java.awt.Color(255, 255, 255));
+        txtPassword.setDragEnabled(true);
         txtPassword.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
         txtPassword.setHint("Password");
 
@@ -79,11 +86,14 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
+        buttonCustom1.setBorder(null);
         buttonCustom1.setForeground(new java.awt.Color(255, 255, 255));
         buttonCustom1.setText("CANCEL");
         buttonCustom1.setBorderColor(new java.awt.Color(255, 51, 51));
         buttonCustom1.setColorClick(new java.awt.Color(255, 51, 51));
         buttonCustom1.setColorOver(new java.awt.Color(255, 102, 102));
+        buttonCustom1.setFocusPainted(false);
+        buttonCustom1.setFocusable(false);
         buttonCustom1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         buttonCustom1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -93,7 +103,7 @@ public class Login extends javax.swing.JFrame {
 
         Scan_QR.setBackground(new java.awt.Color(255, 255, 255));
         Scan_QR.setForeground(new java.awt.Color(255, 255, 255));
-        Scan_QR.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        Scan_QR.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         Scan_QR.setText("Scan QR");
         Scan_QR.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         Scan_QR.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -102,56 +112,78 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
+        chk_showHidePass.setBackground(new java.awt.Color(255, 0, 204));
+        chk_showHidePass.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        chk_showHidePass.setForeground(new java.awt.Color(255, 255, 255));
+        chk_showHidePass.setText("Show");
+        chk_showHidePass.setFocusPainted(false);
+        chk_showHidePass.setFocusable(false);
+        chk_showHidePass.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        chk_showHidePass.setOpaque(true);
+        chk_showHidePass.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                chk_showHidePassItemStateChanged(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelLayout = new javax.swing.GroupLayout(panel);
         panel.setLayout(panelLayout);
         panelLayout.setHorizontalGroup(
             panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(96, 96, 96))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelLayout.createSequentialGroup()
+                .addContainerGap(84, Short.MAX_VALUE)
+                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(cmdLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(buttonCustom1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(74, 74, 74))
             .addGroup(panelLayout.createSequentialGroup()
                 .addGap(60, 60, 60)
-                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(txtUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE))
+                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(panelLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(cmdLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(buttonCustom1, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                        .addComponent(Scan_QR, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(70, Short.MAX_VALUE))
+                        .addComponent(Scan_QR, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 125, Short.MAX_VALUE)
+                        .addComponent(chk_showHidePass))
+                    .addComponent(txtUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtPassword, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelLayout.setVerticalGroup(
             panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelLayout.createSequentialGroup()
-                .addGap(58, 58, 58)
+                .addGap(57, 57, 57)
                 .addComponent(jLabel1)
-                .addGap(31, 31, 31)
+                .addGap(32, 32, 32)
                 .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(19, 19, 19)
-                .addComponent(Scan_QR)
                 .addGap(18, 18, 18)
+                .addGroup(panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Scan_QR)
+                    .addComponent(chk_showHidePass))
+                .addGap(17, 17, 17)
                 .addComponent(cmdLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(buttonCustom1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout backgroundLayout = new javax.swing.GroupLayout(background);
         background.setLayout(backgroundLayout);
         backgroundLayout.setHorizontalGroup(
             backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(backgroundLayout.createSequentialGroup()
-                .addGap(265, 265, 265)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, backgroundLayout.createSequentialGroup()
+                .addContainerGap(324, Short.MAX_VALUE)
                 .addComponent(panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(277, Short.MAX_VALUE))
+                .addGap(292, 292, 292))
         );
         backgroundLayout.setVerticalGroup(
             backgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(backgroundLayout.createSequentialGroup()
-                .addGap(129, 129, 129)
+                .addGap(131, 131, 131)
                 .addComponent(panel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(138, Short.MAX_VALUE))
         );
@@ -164,7 +196,9 @@ public class Login extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(background, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(background, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -219,10 +253,22 @@ public class Login extends javax.swing.JFrame {
         
     }//GEN-LAST:event_Scan_QRMouseClicked
 
+    private void chk_showHidePassItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_chk_showHidePassItemStateChanged
+        if(evt.getStateChange() == 1)
+        {
+            txtPassword.setEchoChar((char)0);
+        }
+        else
+        {
+            txtPassword.setEchoChar('•');
+        }
+    }//GEN-LAST:event_chk_showHidePassItemStateChanged
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Scan_QR;
     private Ultilities.login.Background background;
     private Ultilities.swing.buttonCustom buttonCustom1;
+    private javax.swing.JCheckBox chk_showHidePass;
     private Ultilities.swing.Button cmdLogin;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel panel;

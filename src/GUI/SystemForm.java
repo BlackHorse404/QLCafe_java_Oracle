@@ -28,9 +28,9 @@ public class SystemForm extends javax.swing.JPanel {
     /**
      * Creates new form SystemForm
      */
-    
     private GetData x = new GetData();
     
+    @SuppressWarnings("unchecked")
     public SystemForm() {
         initComponents();
 

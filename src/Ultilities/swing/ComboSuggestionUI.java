@@ -82,6 +82,7 @@ public class ComboSuggestionUI extends BasicComboBoxUI {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     protected ListCellRenderer createRenderer() {
         return new ListCellRenderer() {
             @Override
@@ -109,7 +110,7 @@ public class ComboSuggestionUI extends BasicComboBoxUI {
     }
 
     private class ComboSuggestionPopup extends BasicComboPopup {
-
+        @SuppressWarnings("unchecked")
         public ComboSuggestionPopup(JComboBox combo) {
             super(combo);
             setBorder(new Border(1));
