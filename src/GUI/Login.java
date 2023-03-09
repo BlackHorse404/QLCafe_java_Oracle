@@ -66,7 +66,6 @@ public class Login extends javax.swing.JFrame {
         txtUser.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
         txtUser.setHint("User Name");
 
-        txtPassword.setForeground(new java.awt.Color(0, 0, 0));
         txtPassword.setCaretColor(new java.awt.Color(255, 255, 255));
         txtPassword.setDragEnabled(true);
         txtPassword.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N

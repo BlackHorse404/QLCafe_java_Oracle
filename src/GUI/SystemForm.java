@@ -85,6 +85,7 @@ public class SystemForm extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         table1 = new Ultilities.swing.Table();
         countRecord = new javax.swing.JLabel();
+        buttonGradient1 = new Ultilities.swing.ButtonGradient();
         jPanel4 = new javax.swing.JPanel();
         btnRefresh = new Ultilities.swing.ButtonGradient();
         btnDemo = new Ultilities.swing.ButtonGradient();
@@ -153,13 +154,24 @@ public class SystemForm extends javax.swing.JPanel {
         countRecord.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         countRecord.setText("jLabel2");
 
+        buttonGradient1.setText("Quản Lý Tablespace");
+        buttonGradient1.setColor2(new java.awt.Color(0, 255, 153));
+        buttonGradient1.setSizeSpeed(5.0F);
+        buttonGradient1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonGradient1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 715, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(buttonGradient1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(countRecord, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27))
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -171,9 +183,11 @@ public class SystemForm extends javax.swing.JPanel {
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap(88, Short.MAX_VALUE)
-                .addComponent(countRecord, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addContainerGap(82, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(countRecord, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(buttonGradient1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel3Layout.createSequentialGroup()
@@ -354,10 +368,16 @@ public class SystemForm extends javax.swing.JPanel {
         numRecord_tab2.setText("Số lượng Session: "+table_tab2.getRowCount());
     }//GEN-LAST:event_btnRefreshActionPerformed
 
+    private void buttonGradient1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGradient1ActionPerformed
+        S_Tablespaces t = new S_Tablespaces();
+        t.setVisible(true);
+    }//GEN-LAST:event_buttonGradient1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private Ultilities.swing.ButtonGradient btnDemo;
     private Ultilities.swing.ButtonGradient btnRefresh;
+    private Ultilities.swing.ButtonGradient buttonGradient1;
     private Ultilities.swing.ComboBoxSuggestion comboBoxSuggestion;
     private javax.swing.JLabel countRecord;
     private javax.swing.JLabel jLabel1;
