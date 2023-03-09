@@ -51,6 +51,7 @@ public class Dashboard extends javax.swing.JFrame {
         menu_logout = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
         jMenu6 = new javax.swing.JMenu();
+        jMenu7 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Trang chủ");
@@ -211,6 +212,14 @@ public class Dashboard extends javax.swing.JFrame {
         });
         jMenuBar1.add(jMenu6);
 
+        jMenu7.setText("User");
+        jMenu7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu7MouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(jMenu7);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -317,6 +326,12 @@ public class Dashboard extends javax.swing.JFrame {
         Menu t = new Menu();
         t.setVisible (true);
     }//GEN-LAST:event_jMenu6MouseClicked
+
+    private void jMenu7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu7MouseClicked
+        // TODO add your handling code here:
+        User t = new User();
+        t.setVisible(true);
+    }//GEN-LAST:event_jMenu7MouseClicked
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -326,6 +341,7 @@ public class Dashboard extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
+    private javax.swing.JMenu jMenu7;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu menu_ControlFile;
     private javax.swing.JMenu menu_Database;

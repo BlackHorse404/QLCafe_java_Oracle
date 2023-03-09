@@ -109,7 +109,12 @@ public class GetData {
         DataAccess da = new DataAccess("Select * From KhuyenMai");
         return  da.QueryTable();
     }
-    
+    //Hiển Thị Danh sách người dùng hiển thị với người dùng hiện tại
+    public ArrayList showDataALL_User()
+    {
+        DataAccess da = new DataAccess("SELECT * FROM all_users");
+        return  da.QueryTable();
+    }
     //<editor-fold defaultstate="collapsed" desc=" Session ">
     //hiển thị thông tin các Session hiện hành
     public ArrayList showSessionCurrent()

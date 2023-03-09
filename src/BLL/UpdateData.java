@@ -319,5 +319,21 @@ public class UpdateData {
                 return false;
             }
     }
+    // Tạo User
+    public  boolean  createUser(String name , String pass)
+    {
+        try 
+            {
+                String chuoi ="create user "+name+" identified by "+pass;     
+                da = new DataAccess(chuoi);
+                return true;
+            } 
+        catch (Exception ex) 
+            {
+            
+                System.out.println (ex.getMessage ());
+                return false;
+            }
+    }
 }
 
