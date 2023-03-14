@@ -12,10 +12,12 @@ import DAL.DataAccess;
  */
 public class UpdateData {
      private DataAccess da;
-
+     private String user;
     public UpdateData() {
-       
+       da = new DataAccess ("select  distinct owner from DBA_TABLES where owner like (select owner from DBA_TABLES where table_name ='HOADON')");
+       user = da.returnValue ().toString ();
     }
+    // <editor-fold defaultstate="collapsed" desc="Tablespace">  
     //Tạo tablespace
     public boolean createTablespace(String name, String path, String size)
     {
@@ -141,4 +143,53 @@ public class UpdateData {
                 
         
     }
+    //</editor-fold>                        
+    // <editor-fold defaultstate="collapsed" desc="Role">  
+   
+    public boolean createRoleWithPass(String name, String pass)
+    {
+         da = new DataAccess(String.format ("CREATE ROLE %s identified by %s " ,name, pass));
+         return true;
+    }
+    public boolean createRoleWithNotPass(String name)
+    {
+         da = new DataAccess(String.format ("CREATE ROLE %s " ,name));
+         return true;
+    }
+    public boolean dropRole(String name)
+    {
+         da = new DataAccess(String.format ("DROP ROLE %s " ,name));
+         return true;
+    }
+    public boolean grantPrivToRole(String priv, String name, String object)
+    {
+         da = new DataAccess(String.format ("grant %s on %s.%s to %s" ,priv,user,object, name));
+         return true;
+    }
+    public boolean grantAllToRole( String name, String object)
+    {
+         da = new DataAccess(String.format ("grant insert, update, select, delete on %s.%s to %s" ,user,object, name));
+         return true;
+    }
+    public boolean revokeAllToRole( String name, String object)
+    {
+         da = new DataAccess(String.format ("revoke all  on %s to %s" ,object, name));
+         return true;
+    }
+    public boolean revokeRole(String priv, String name, String object)
+    {
+         da = new DataAccess(String.format ("revoke %s on %s.%s from %s" ,priv,user,object, name));
+         return true;
+    }
+    public boolean alterRoleWithPass( String name, String pass)
+    {
+         da = new DataAccess(String.format (" alter role %s IDENTIFIED by" ,name, pass));
+         return true;
+    }
+    public boolean alterRoleWithNotPass( String name)
+    {
+         da = new DataAccess(String.format (" alter role %s not IDENTIFIED" ,name));
+         return true;
+    }
+    // </editor-fold>  
 }

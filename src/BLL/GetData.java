@@ -145,7 +145,10 @@ public class GetData {
     
      public ArrayList getTableName()
     {
-        DataAccess da = new DataAccess("select distinct table_name from dba_tables where table_name='KHACHHANG' or table_name='HOADON' or table_name='CHITIETHOADON' or table_name='KHUYENMAI' or table_name='THUCDON' or table_name='PHANLOAI'");
+        //DataAccess da = new DataAccess("select distinct table_name from dba_tables where table_name='KHACHHANG' or table_name='HOADON' or table_name='CHITIETHOADON' or table_name='KHUYENMAI' or table_name='THUCDON' or table_name='PHANLOAI'");
+ 
+        DataAccess da = new DataAccess("select table_name  from DBA_TABLES where owner like (select owner from DBA_TABLES where table_name ='HOADON')");
+
         Object[][] t = da.QueryContentTable();
         ArrayList<String> arr=new ArrayList<String>();
         for(int i =0;i<t.length; i++)
@@ -157,7 +160,40 @@ public class GetData {
     
     public ArrayList getObjectSchema()
     {
-        DataAccess da = new DataAccess("select username from dba_users where account_status = 'OPEN' and default_tablespace = 'USERS'");
+        DataAccess da = new DataAccess("select username from dba_users where account_status = 'OPEN' and last_login  not like 'null'");
+        Object[][] t = da.QueryContentTable();
+        ArrayList<String> arr=new ArrayList<String>();
+        for(int i =0;i<t.length; i++)
+        {
+            arr.add(t[i][0].toString());
+        }
+        return arr;
+    }
+    public ArrayList getDataAudit()
+    {
+        DataAccess da = new DataAccess("select Object_schema, object_name, policy_owner , policy_name, ins, upd, del from dba_audit_policies");
+        return da.QueryTable ();
+    }
+    public ArrayList getDataAuditPolicy()
+    {
+        DataAccess da = new DataAccess("select session_id, DB_user, object_name, object_schema, policy_name, timestamp,sql_text  from dba_fga_audit_trail");
+        return da.QueryTable ();
+    }
+    public ArrayList getUsername()
+    {
+        DataAccess da = new DataAccess("select tablename from dba_users where account_status = 'OPEN' and last_login  not like 'null'");
+        Object[][] t = da.QueryContentTable();
+        ArrayList<String> arr=new ArrayList<String>();
+        for(int i =0;i<t.length; i++)
+        {
+            arr.add(t[i][0].toString());
+        }
+        return arr;
+    }
+    
+    public ArrayList getPrivRole(String name_role)
+    {
+        DataAccess da = new DataAccess( String.format ("select owner, table_name, privilege from role_tab_privs where role='%s'",name_role));
         Object[][] t = da.QueryContentTable();
         ArrayList<String> arr=new ArrayList<String>();
         for(int i =0;i<t.length; i++)
