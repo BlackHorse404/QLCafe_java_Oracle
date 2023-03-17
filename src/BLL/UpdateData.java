@@ -173,7 +173,7 @@ public class UpdateData {
     }
     public boolean revokeAllToRole( String name, String object)
     {
-         da = new DataAccess(String.format ("revoke all  on %s to %s" ,object, name));
+         da = new DataAccess(String.format ("revoke all  on %s.%s to %s" ,user,object, name));
          return true;
     }
     public boolean revokeRole(String priv, String name, String object)
@@ -183,7 +183,7 @@ public class UpdateData {
     }
     public boolean alterRoleWithPass( String name, String pass)
     {
-         da = new DataAccess(String.format (" alter role %s IDENTIFIED by" ,name, pass));
+         da = new DataAccess(String.format (" alter role %s IDENTIFIED by %s" ,name, pass));
          return true;
     }
     public boolean alterRoleWithNotPass( String name)

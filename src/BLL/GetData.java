@@ -191,9 +191,9 @@ public class GetData {
         return arr;
     }
     
-    public ArrayList getPrivRole(String name_role)
+    public ArrayList getPrivRole(String name_role, String table_name)
     {
-        DataAccess da = new DataAccess( String.format ("select owner, table_name, privilege from role_tab_privs where role='%s'",name_role));
+        DataAccess da = new DataAccess( String.format ("select privilege from role_tab_privs where role='%s'  and table_name = '%s'",name_role, table_name));
         Object[][] t = da.QueryContentTable();
         ArrayList<String> arr=new ArrayList<String>();
         for(int i =0;i<t.length; i++)
@@ -201,5 +201,10 @@ public class GetData {
             arr.add(t[i][0].toString());
         }
         return arr;
+    }
+     public ArrayList getDataRole()
+    {
+        DataAccess da = new DataAccess("SELECT ROLE, PASSWORD_REQUIRED,AUTHENTICATION_TYPE, ORACLE_MAINTAINED FROM  DBA_ROLES");
+        return da.QueryTable ();
     }
 }

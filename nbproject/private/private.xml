@@ -3,19 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/PC%20THAO/Downloads/QLCafe_java_Oracle/src/BLL/GetValue.java</file>
-            <file>file:/C:/Users/PC%20THAO/Downloads/QLCafe_java_Oracle/src/GUI/Demo_KillSession.java</file>
-            <file>file:/C:/Users/PC%20THAO/Downloads/QLCafe_java_Oracle/src/GUI/Scan_QR.java</file>
-            <file>file:/C:/Users/PC%20THAO/Downloads/QLCafe_java_Oracle/src/BLL/ExecuteData.java</file>
-            <file>file:/C:/Users/PC%20THAO/Downloads/QLCafe_java_Oracle/src/BLL/UpdateData.java</file>
-            <file>file:/C:/Users/PC%20THAO/Downloads/QLCafe_java_Oracle/src/GUI/Login.java</file>
-            <file>file:/C:/Users/PC%20THAO/Downloads/QLCafe_java_Oracle/src/main.java</file>
             <file>file:/C:/Users/PC%20THAO/Downloads/QLCafe_java_Oracle/src/BLL/GetData.java</file>
+            <file>file:/C:/Users/PC%20THAO/Downloads/QLCafe_java_Oracle/src/GUI/ShowAudit.java</file>
+            <file>file:/C:/Users/PC%20THAO/Downloads/QLCafe_java_Oracle/src/BLL/ExecuteData.java</file>
             <file>file:/C:/Users/PC%20THAO/Downloads/QLCafe_java_Oracle/src/GUI/AuditRecord.java</file>
-            <file>file:/C:/Users/PC%20THAO/Downloads/QLCafe_java_Oracle/src/DAL/DBConfig.java</file>
-            <file>file:/C:/Users/PC%20THAO/Downloads/QLCafe_java_Oracle/src/GUI/ACC_Setting.java</file>
-            <file>file:/C:/Users/PC%20THAO/Downloads/QLCafe_java_Oracle/src/GUI/Dashboard.java</file>
-            <file>file:/C:/Users/PC%20THAO/Downloads/QLCafe_java_Oracle/src/GUI/S_Tablespaces.java</file>
+            <file>file:/C:/Users/PC%20THAO/Downloads/QLCafe_java_Oracle/src/GUI/ShowAuditPolicy.java</file>
+            <file>file:/C:/Users/PC%20THAO/Downloads/QLCafe_java_Oracle/src/GUI/SystemForm.java</file>
+            <file>file:/C:/Users/PC%20THAO/Downloads/QLCafe_java_Oracle/src/GUI/ACC_ManageAccount.java</file>
+            <file>file:/C:/Users/PC%20THAO/Downloads/QLCafe_java_Oracle/src/GUI/Role.java</file>
         </group>
     </open-files>
 </project-private>
