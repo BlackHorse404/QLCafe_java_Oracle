@@ -11,7 +11,7 @@ import java.sql.*;
 public class DBConfig {
     private static String servername = "@localhost";
     private static String port = "1521";
-    private static String SID = "orcl";
+    private static String SID = "dbtest";
     public static String username;
     public static String password;
     public static Connection Connect = null;

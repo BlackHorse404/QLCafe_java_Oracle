@@ -4,6 +4,14 @@ import event.EventMenuSelected;
 import java.awt.Color;
 import javax.swing.JComponent;
 import BLL.GetData;
+import GUI.Dashboard;
+import java.io.File;
+import java.sql.*;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -14,26 +22,29 @@ public class Dashboard extends javax.swing.JFrame {
     /**
      * Creates new form Dashboard
      */
+    public static Connection conn = null; 
+    public static Login loginForm = null;
     GetData x = new GetData();
     
     public Dashboard(String user) {
         initComponents();
-        header.setUsername("Welcome: "+x.getCurrentUser());
+        header.setUsername(x.getCurrentUser());
         header.setLastLogin(x.getLastLogin());
         setBackground(new Color(0, 0, 0, 0));
-//        home = new Form_Home();
-//        form1 = new Form_1();
-//        form2 = new Form_2();
-//        form3 = new Form_3();
+
         menu.initMoving(Dashboard.this);
         menu.addEventMenuSelected(new EventMenuSelected() {
             @Override
             public void selected(int index) {
+                System.out.print(index);
                 if (index == 0) {
                     setForm(new StartForm());
                 } 
                 else if (index == 5) {
                     setForm(new SystemForm());
+                }
+                else if (index == 7) {
+                    Logout();
                 }
             }
         });
@@ -41,7 +52,24 @@ public class Dashboard extends javax.swing.JFrame {
         setForm(new StartForm());
     }
 
-    
+    private void Logout(){
+        final String javaBin = System.getProperty("java.home") + File.separator + "bin" + File.separator + "java";
+        //final File currentJar = new File("dist/QuanLyCafe.jar");
+        /* Build command: java -jar application.jar */
+        final ArrayList<String> command = new ArrayList<String>();
+        command.add(javaBin);
+        command.add("-jar");
+        //System.out.println("path:" +currentJar.getAbsolutePath());
+        command.add(new File("dist\\QuanLyCafe.jar").getAbsolutePath());
+
+        final ProcessBuilder builder = new ProcessBuilder(command);
+        try {
+            builder.start();
+        } catch (IOException ex) {
+            Logger.getLogger(Dashboard.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        System.exit(0);
+    }
     
     private void setForm(JComponent com) {
         mainPanel.removeAll();
@@ -79,10 +107,11 @@ public class Dashboard extends javax.swing.JFrame {
                 .addComponent(menu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addGroup(panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(header, javax.swing.GroupLayout.DEFAULT_SIZE, 790, Short.MAX_VALUE)
                     .addGroup(panelBorder1Layout.createSequentialGroup()
                         .addGap(6, 6, 6)
-                        .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(header, javax.swing.GroupLayout.DEFAULT_SIZE, 790, Short.MAX_VALUE)))
+                        .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())))
         );
         panelBorder1Layout.setVerticalGroup(
             panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

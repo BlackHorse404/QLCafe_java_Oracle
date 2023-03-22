@@ -203,7 +203,6 @@ public class Login extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
  
     private void cmdLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdLoginActionPerformed
         //new Dashboard().setVisible(true);
@@ -228,9 +227,13 @@ public class Login extends javax.swing.JFrame {
         Connection conn = DBConfig.getConnectionString();
         try{
             DBConfig.Connect = conn;
-            //conn.createStatement();
+            conn.createStatement();
+            
             this.setVisible(false);
-            new Dashboard(user).setVisible(true);
+            Dashboard dash = new Dashboard(user);
+            dash.setVisible(true);
+            Dashboard.conn = conn;
+            Dashboard.loginForm = this;
             
             JOptionPane.showMessageDialog(this, "Đăng nhập Thành Công !","Thông Báo",JOptionPane.INFORMATION_MESSAGE);
             return true;

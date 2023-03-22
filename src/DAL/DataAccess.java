@@ -43,9 +43,14 @@ public class DataAccess {
     
     public Object returnValue()
     {
-        Object[][] DataRows;
-        DataRows = QueryContentTable();
-        return DataRows[0][0];
+        try{
+            Object[][] DataRows;
+            DataRows = QueryContentTable();
+            return DataRows[0][0];
+        }catch(Exception err){
+            System.out.print(err.getMessage() + " return Value");
+            return null;
+        }
     }
     
     // khởi tạo lấy statement
