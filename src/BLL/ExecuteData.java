@@ -22,4 +22,18 @@ public class ExecuteData {
         String temp = String.format("ALTER USER %s IDENTIFIED BY %s",username, newPass);
         return DataAccess.ResultOfExecuteSql(temp);
     }
+    
+    public static boolean DeleteProfile(String profilename){
+        String temp = String.format("DROP PROFILE %s CASCADE",profilename);
+        return DataAccess.ResultOfExecuteSql(temp);
+    }
+    
+    public static boolean CreateProfile(String profilename, String sessionPer, String failLoginAttempts, String passLifetime, String IdleTime){
+        String temp = String.format("CREATE PROFILE %s LIMIT\n" +
+                            " SESSIONS_PER_USER %s\n" +
+                            " FAILED_LOGIN_ATTEMPTS %s\n" +
+                            " PASSWORD_LIFE_TIME %s\n" +
+                            " IDLE_TIME %s\n",profilename, sessionPer, failLoginAttempts, passLifetime, IdleTime);
+        return DataAccess.ResultOfExecuteSql(temp);
+    }
 }

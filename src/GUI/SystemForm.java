@@ -151,13 +151,14 @@ public class SystemForm extends javax.swing.JPanel {
         jPanel10 = new javax.swing.JPanel();
         jPanel11 = new javax.swing.JPanel();
         buttonGradient3 = new Ultilities.swing.ButtonGradient();
-        buttonGradient4 = new Ultilities.swing.ButtonGradient();
-        buttonGradient2 = new Ultilities.swing.ButtonGradient();
+        btn_CapNhat = new Ultilities.swing.ButtonGradient();
+        btn_XoaProfile = new Ultilities.swing.ButtonGradient();
         cb_ListProfile = new javax.swing.JComboBox<>();
         jLabel9 = new javax.swing.JLabel();
         lb_slProfile = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
         table_Profile = new Ultilities.swing.Table();
+        lb_slProfile1 = new javax.swing.JLabel();
 
         jTabbedPane1.setBackground(new java.awt.Color(255, 255, 255));
         jTabbedPane1.setToolTipText("");
@@ -735,30 +736,51 @@ public class SystemForm extends javax.swing.JPanel {
 
         jTabbedPane1.addTab("Role", Control_ROLE);
 
-        jPanel11.setLayout(new java.awt.GridLayout(1, 3));
+        jPanel11.setLayout(new java.awt.GridLayout(1, 3, 5, 0));
 
         buttonGradient3.setForeground(new java.awt.Color(0, 0, 0));
         buttonGradient3.setText("Tạo mới");
         buttonGradient3.setColor1(new java.awt.Color(51, 255, 204));
         buttonGradient3.setColor2(new java.awt.Color(0, 204, 204));
+        buttonGradient3.setFocusPainted(false);
+        buttonGradient3.setFocusable(false);
         buttonGradient3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         buttonGradient3.setSizeSpeed(5.0F);
+        buttonGradient3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonGradient3ActionPerformed(evt);
+            }
+        });
         jPanel11.add(buttonGradient3);
 
-        buttonGradient4.setForeground(new java.awt.Color(0, 0, 0));
-        buttonGradient4.setText("Cập nhật");
-        buttonGradient4.setColor1(new java.awt.Color(255, 255, 0));
-        buttonGradient4.setColor2(new java.awt.Color(255, 255, 153));
-        buttonGradient4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        buttonGradient4.setSizeSpeed(5.0F);
-        jPanel11.add(buttonGradient4);
+        btn_CapNhat.setForeground(new java.awt.Color(0, 0, 0));
+        btn_CapNhat.setText("Cập nhật");
+        btn_CapNhat.setColor1(new java.awt.Color(255, 255, 0));
+        btn_CapNhat.setColor2(new java.awt.Color(255, 255, 153));
+        btn_CapNhat.setFocusPainted(false);
+        btn_CapNhat.setFocusable(false);
+        btn_CapNhat.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btn_CapNhat.setSizeSpeed(5.0F);
+        btn_CapNhat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_CapNhatActionPerformed(evt);
+            }
+        });
+        jPanel11.add(btn_CapNhat);
 
-        buttonGradient2.setText("Xóa");
-        buttonGradient2.setColor1(new java.awt.Color(255, 0, 102));
-        buttonGradient2.setColor2(new java.awt.Color(255, 102, 102));
-        buttonGradient2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        buttonGradient2.setSizeSpeed(5.0F);
-        jPanel11.add(buttonGradient2);
+        btn_XoaProfile.setText("Xóa");
+        btn_XoaProfile.setColor1(new java.awt.Color(255, 0, 102));
+        btn_XoaProfile.setColor2(new java.awt.Color(255, 102, 102));
+        btn_XoaProfile.setFocusPainted(false);
+        btn_XoaProfile.setFocusable(false);
+        btn_XoaProfile.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btn_XoaProfile.setSizeSpeed(5.0F);
+        btn_XoaProfile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_XoaProfileActionPerformed(evt);
+            }
+        });
+        jPanel11.add(btn_XoaProfile);
 
         cb_ListProfile.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         cb_ListProfile.addItemListener(new java.awt.event.ItemListener() {
@@ -786,38 +808,45 @@ public class SystemForm extends javax.swing.JPanel {
         ));
         jScrollPane4.setViewportView(table_Profile);
 
+        lb_slProfile1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lb_slProfile1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lb_slProfile1.setText("Quản Lý Profile");
+        lb_slProfile1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
         jPanel10Layout.setHorizontalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel11, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel10Layout.createSequentialGroup()
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lb_slProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel10Layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(cb_ListProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
             .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 785, Short.MAX_VALUE)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(cb_ListProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lb_slProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+            .addComponent(lb_slProfile1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
-                .addGap(43, 43, 43)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lb_slProfile1)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cb_ListProfile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9))
-                .addGap(4, 4, 4)
-                .addComponent(lb_slProfile)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lb_slProfile)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
-                .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout ProfileLayout = new javax.swing.GroupLayout(Profile);
@@ -828,7 +857,9 @@ public class SystemForm extends javax.swing.JPanel {
         );
         ProfileLayout.setVerticalGroup(
             ProfileLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel10, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(ProfileLayout.createSequentialGroup()
+                .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(0, 0, 0))
         );
 
         jTabbedPane1.addTab("Profile", Profile);
@@ -1107,7 +1138,7 @@ public class SystemForm extends javax.swing.JPanel {
 
     //tab profile
     
-    private void loadDataProfile(){
+    public void loadDataProfile(){
         //load combobox list name profile
         cb_ListProfile.removeAllItems();
         Object[][] nameProfiles = x.getAllProfileName();
@@ -1128,6 +1159,29 @@ public class SystemForm extends javax.swing.JPanel {
     private void jTabbedPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane1MouseClicked
         loadDataProfile();
     }//GEN-LAST:event_jTabbedPane1MouseClicked
+
+    private void btn_XoaProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_XoaProfileActionPerformed
+        String nameProfile = cb_ListProfile.getSelectedItem().toString();
+        if(JOptionPane.showConfirmDialog(this, "Bạn chắc chắn xóa Profile: "+nameProfile) == JOptionPane.YES_OPTION)
+            if(ExecuteData.DeleteProfile(nameProfile)){
+                JOptionPane.showMessageDialog(this, "Xóa Profile '"+ nameProfile +"' thành công !");
+                loadDataProfile();
+            }
+            else
+                JOptionPane.showMessageDialog(this, "Xóa Profile '"+ nameProfile +"' thất bại !");
+    }//GEN-LAST:event_btn_XoaProfileActionPerformed
+
+    CreateProfile fCrePro = null;
+    private void buttonGradient3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGradient3ActionPerformed
+        if(fCrePro == null)
+            fCrePro = new CreateProfile();
+        fCrePro.setVisible(true);
+        fCrePro.root = this;
+    }//GEN-LAST:event_buttonGradient3ActionPerformed
+
+    private void btn_CapNhatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CapNhatActionPerformed
+        loadDataProfile();
+    }//GEN-LAST:event_btn_CapNhatActionPerformed
 
     //tab 2 - manager session
     
@@ -1231,16 +1285,16 @@ public class SystemForm extends javax.swing.JPanel {
     private javax.swing.JButton btnCreateAuditPolicy;
     private Ultilities.swing.ButtonGradient btnDemo;
     private Ultilities.swing.ButtonGradient btnRefresh;
+    private Ultilities.swing.ButtonGradient btn_CapNhat;
     private javax.swing.JButton btn_Create;
     private javax.swing.JButton btn_InsertPriv;
     private javax.swing.JButton btn_Revoke;
     private javax.swing.JButton btn_XemTT;
+    private Ultilities.swing.ButtonGradient btn_XoaProfile;
     private javax.swing.JButton btn_showaudit;
     private javax.swing.JButton btn_updaterole;
     private Ultilities.swing.ButtonGradient buttonGradient1;
-    private Ultilities.swing.ButtonGradient buttonGradient2;
     private Ultilities.swing.ButtonGradient buttonGradient3;
-    private Ultilities.swing.ButtonGradient buttonGradient4;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> cb_ListProfile;
     private javax.swing.JCheckBox cbk_update;
@@ -1276,6 +1330,7 @@ public class SystemForm extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel lb_slProfile;
+    private javax.swing.JLabel lb_slProfile1;
     private javax.swing.JLabel lbl_Pass;
     private javax.swing.JLabel numRecord_tab2;
     private javax.swing.JRadioButton rdo_NotPass;
