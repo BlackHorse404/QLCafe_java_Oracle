@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class GetData {
     
-   
+    
     //<editor-fold defaultstate="collapsed" desc=" Method Show System Oracle ">
     // hiển thị SGA trong oracle
     public ArrayList showSGA()
@@ -179,6 +179,7 @@ public class GetData {
         DataAccess da = new DataAccess("select session_id, DB_user, object_name, object_schema, policy_name, timestamp,sql_text  from dba_fga_audit_trail");
         return da.QueryTable ();
     }
+    
     public ArrayList getUsername()
     {
         DataAccess da = new DataAccess("select tablename from dba_users where account_status = 'OPEN' and last_login  not like 'null'");
@@ -207,4 +208,22 @@ public class GetData {
         DataAccess da = new DataAccess("SELECT ROLE, PASSWORD_REQUIRED,AUTHENTICATION_TYPE, ORACLE_MAINTAINED FROM  DBA_ROLES");
         return da.QueryTable ();
     }
+     
+    public Object[][] getInfoAccount(){
+        DataAccess da = new DataAccess(String.format("select * from scott.nhanvien where TAIKHOAN = '%s'",getCurrentUser().toLowerCase()));
+        return da.QueryContentTable();
+    }
+    
+    //<editor-fold defaultstate="collapsed" desc=" Method Show System Oracle ">
+    public Object[][] getAllProfileName(){
+        DataAccess da = new DataAccess("SELECT distinct PROFILE from dba_profiles");
+        return da.QueryContentTable();
+    }
+    
+    public ArrayList getDetailsProfile(String nameProfile){
+        DataAccess da = new DataAccess(String.format("select * from dba_profiles where PROFILE = '%s'", nameProfile));
+        return da.QueryTable();
+    }
+    //</editor-fold>
+    
 }

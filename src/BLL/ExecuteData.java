@@ -18,4 +18,8 @@ public class ExecuteData {
         return DataAccess.ResultOfExecuteSql(temp);
     }
    
+    public static boolean ChangePassword(String username, String newPass){
+        String temp = String.format("ALTER USER %s IDENTIFIED BY %s",username, newPass);
+        return DataAccess.ResultOfExecuteSql(temp);
+    }
 }

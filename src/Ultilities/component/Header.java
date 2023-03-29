@@ -14,8 +14,7 @@ public class Header extends javax.swing.JPanel {
         //lb_icon.setIcon(new ImageIcon("E:\\HUFI\\Năm 3\\HK2\\Oracle\\DoAn\\QuanLyCafe\\src\\Ultilities\\icon\\coffee_bg.jpg"));
     }
 
-    public void setUsername(String user)
-    {
+    public void setUsername(String user){
         username.setText(user);
     }
     public void setLastLogin(String lastLogin){
@@ -105,10 +104,11 @@ public class Header extends javax.swing.JPanel {
                 .addGap(0, 0, 0))
         );
     }// </editor-fold>//GEN-END:initComponents
-
+    ACC_Setting accInfo = null;
     private void settingAccountMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_settingAccountMouseClicked
-        ACC_Setting t = new ACC_Setting();
-        t.setVisible(true);
+        if(accInfo == null)
+            accInfo = new ACC_Setting();
+        accInfo.setVisible(true);
     }//GEN-LAST:event_settingAccountMouseClicked
 
     @Override
