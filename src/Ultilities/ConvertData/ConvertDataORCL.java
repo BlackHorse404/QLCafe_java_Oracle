@@ -31,7 +31,7 @@ public class ConvertDataORCL {
             //System.out.print("null, ");
             res ="null";
         }
-        else
+        else if(obj instanceof Timestamp)
         {
             //Date date1=(Date) new SimpleDateFormat("yyyy-MMM-dd HH:mm:ss").parse(obj.toString());  
             Timestamp ts=new Timestamp(System.currentTimeMillis());  
@@ -39,6 +39,8 @@ public class ConvertDataORCL {
             //System.out.print(date+", "); 
             res = date.toString();
         }
+        else
+            res = "null";
         return res;
     }
     

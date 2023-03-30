@@ -41,4 +41,18 @@ public class ExecuteData {
         String temp = String.format("ALTER PROFILE %s LIMIT %s %s",profileName, resourceName, value);
         return DataAccess.ResultOfExecuteSql(temp);
     }
+    
+    public static boolean EditProfileOfUser(String user, String profileNew){
+        String temp = String.format("ALTER USER %s PROFILE %s",user, profileNew);
+        return DataAccess.ResultOfExecuteSql(temp);
+    }
+    public static boolean DropUser(String user){
+        String temp = String.format("DROP USER %s CASCADE",user);
+        return DataAccess.ResultOfExecuteSql(temp);
+    }
+    
+    public static boolean createUser(String user, String pass){
+        String temp = String.format("create user %s identified by %s",user,pass);
+        return DataAccess.ResultOfExecuteSql(temp);
+    }
 }

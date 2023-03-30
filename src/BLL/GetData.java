@@ -104,6 +104,12 @@ public class GetData {
     
     //</editor-fold>
     
+    //get User
+    public ArrayList getAllUserAndProfile(){
+        DataAccess da = new DataAccess("SELECT USER_ID, USERNAME, ACCOUNT_STATUS, LOCK_DATE, EXPIRY_DATE, CREATED, PROFILE FROM dba_users");
+        return da.QueryTable();
+    }
+    
     public ArrayList getAllAccount()
     {
         DataAccess da = new DataAccess("SELECT USER_ID, username, CREATED, EXPIRY_DATE, ACCOUNT_STATUS, cast(LAST_LOGIN as date), PROFILE, TEMPORARY_TABLESPACE, EXTERNAL_NAME FROM DBA_USERS where account_status = 'OPEN'");
@@ -120,7 +126,7 @@ public class GetData {
     {
         String user = getCurrentUser();
         String sid = new DataAccess("SELECT sys_context('USERENV', 'SID') SID FROM DUAL").QueryContentTable()[0][0].toString();
-        String query = String.format("select distinct * from hr.log_on where sid = %s and name = '%s' order by LOGON_TIME desc",sid, user);
+        String query = String.format("select distinct * from sec.log_on where sid = %s and name = '%s' order by LOGON_TIME desc",sid, user);
         DataAccess da = new DataAccess(query);
         String kq = "null";
         try{
