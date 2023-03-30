@@ -36,4 +36,9 @@ public class ExecuteData {
                             " IDLE_TIME %s\n",profilename, sessionPer, failLoginAttempts, passLifetime, IdleTime);
         return DataAccess.ResultOfExecuteSql(temp);
     }
+    
+    public static boolean UpdateProfile(String profileName, String resourceName,String value){
+        String temp = String.format("ALTER PROFILE %s LIMIT %s %s",profileName, resourceName, value);
+        return DataAccess.ResultOfExecuteSql(temp);
+    }
 }

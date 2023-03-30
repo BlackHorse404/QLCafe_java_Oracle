@@ -214,7 +214,7 @@ public class GetData {
         return da.QueryContentTable();
     }
     
-    //<editor-fold defaultstate="collapsed" desc=" Method Show System Oracle ">
+    //<editor-fold defaultstate="collapsed" desc=" Profile Config ">
     public Object[][] getAllProfileName(){
         DataAccess da = new DataAccess("SELECT distinct PROFILE from dba_profiles");
         return da.QueryContentTable();
@@ -223,6 +223,11 @@ public class GetData {
     public ArrayList getDetailsProfile(String nameProfile){
         DataAccess da = new DataAccess(String.format("select * from dba_profiles where PROFILE = '%s'", nameProfile));
         return da.QueryTable();
+    }
+    
+    public Object[][] getAllResourceOfProfile(){
+        DataAccess da = new DataAccess("select RESOURCE_NAME from dba_profiles where PROFILE = 'DEFAULT'");
+        return da.QueryContentTable();
     }
     //</editor-fold>
     

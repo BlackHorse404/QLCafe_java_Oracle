@@ -23,6 +23,7 @@ public class Login extends javax.swing.JFrame {
         setBackground(new Color(0, 0, 0, 0));
         BasicConfigurator.configure();
         chk_showHidePass.setBackground(new Color(0, 0, 0, 0));
+        this.getRootPane().setDefaultButton(cmdLogin);
     }
     
     public void hideLogin()

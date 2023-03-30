@@ -43,7 +43,8 @@ public class ChangePassword extends javax.swing.JFrame {
         txt_passNew1 = new javax.swing.JPasswordField();
         txt_passNew2 = new javax.swing.JPasswordField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -63,6 +64,7 @@ public class ChangePassword extends javax.swing.JFrame {
 
         btn_XacNhan.setForeground(new java.awt.Color(0, 0, 0));
         btn_XacNhan.setText("Xác Nhận");
+        btn_XacNhan.setColor1(new java.awt.Color(102, 255, 204));
         btn_XacNhan.setColor2(new java.awt.Color(0, 255, 204));
         btn_XacNhan.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btn_XacNhan.addActionListener(new java.awt.event.ActionListener() {
@@ -71,6 +73,7 @@ public class ChangePassword extends javax.swing.JFrame {
             }
         });
 
+        buttonCustom1.setBorder(null);
         buttonCustom1.setForeground(new java.awt.Color(0, 0, 0));
         buttonCustom1.setText("Resend");
         buttonCustom1.setBorderColor(new java.awt.Color(102, 255, 255));
@@ -107,15 +110,15 @@ public class ChangePassword extends javax.swing.JFrame {
                                 .addComponent(btn_XacNhan, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(txt_passNew2, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(buttonCustom1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(txt_passNew1, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addGap(0, 42, Short.MAX_VALUE))))
+                                .addComponent(buttonCustom1, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jTextField3)
+                            .addComponent(txt_passNew2)
+                            .addComponent(txt_passNew1))
+                        .addGap(0, 49, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

@@ -170,6 +170,10 @@ public class SystemForm extends javax.swing.JPanel {
             }
         });
 
+        TTHT.setBackground(new java.awt.Color(255, 255, 255));
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel1.setText("Hiển Thị Thông Tin");
 
@@ -260,6 +264,13 @@ public class SystemForm extends javax.swing.JPanel {
 
         jTabbedPane1.addTab("Thông tin hệ thống", TTHT);
 
+        SESSION.setBackground(new java.awt.Color(255, 255, 255));
+        SESSION.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                SESSIONComponentShown(evt);
+            }
+        });
+
         btnRefresh.setText("Làm Mới");
         btnRefresh.setBorderPainted(false);
         btnRefresh.setColor2(new java.awt.Color(51, 51, 255));
@@ -337,6 +348,8 @@ public class SystemForm extends javax.swing.JPanel {
         );
 
         jTabbedPane1.addTab("Quản lý session", SESSION);
+
+        AUDIT.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -465,6 +478,8 @@ public class SystemForm extends javax.swing.JPanel {
         );
 
         jTabbedPane1.addTab("Quản Lý Audit", AUDIT);
+
+        QL_ROLE.setBackground(new java.awt.Color(255, 255, 255));
 
         jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Thông tin role", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14))); // NOI18N
 
@@ -614,6 +629,8 @@ public class SystemForm extends javax.swing.JPanel {
 
         jTabbedPane1.addTab("Quản lý role", QL_ROLE);
 
+        Control_ROLE.setBackground(new java.awt.Color(255, 255, 255));
+
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Thiệt lập role", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 14))); // NOI18N
         jPanel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
@@ -735,6 +752,15 @@ public class SystemForm extends javax.swing.JPanel {
         );
 
         jTabbedPane1.addTab("Role", Control_ROLE);
+
+        Profile.setBackground(new java.awt.Color(255, 255, 255));
+        Profile.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                ProfileComponentShown(evt);
+            }
+        });
+
+        jPanel10.setBackground(new java.awt.Color(255, 255, 255));
 
         jPanel11.setLayout(new java.awt.GridLayout(1, 3, 5, 0));
 
@@ -1157,7 +1183,7 @@ public class SystemForm extends javax.swing.JPanel {
     }//GEN-LAST:event_cb_ListProfileItemStateChanged
 
     private void jTabbedPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane1MouseClicked
-        loadDataProfile();
+        
     }//GEN-LAST:event_jTabbedPane1MouseClicked
 
     private void btn_XoaProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_XoaProfileActionPerformed
@@ -1180,8 +1206,20 @@ public class SystemForm extends javax.swing.JPanel {
     }//GEN-LAST:event_buttonGradient3ActionPerformed
 
     private void btn_CapNhatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CapNhatActionPerformed
-        loadDataProfile();
+        UpdateProfile f = new UpdateProfile();
+        f.nameProfile = cb_ListProfile.getSelectedItem().toString();
+        f.root = this;
+        f.setVisible(true);
     }//GEN-LAST:event_btn_CapNhatActionPerformed
+
+    private void SESSIONComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_SESSIONComponentShown
+        showDataOnTable(table_tab2, x.showSessionCurrent());
+        numRecord_tab2.setText("Số lượng Session: "+table_tab2.getRowCount());
+    }//GEN-LAST:event_SESSIONComponentShown
+
+    private void ProfileComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_ProfileComponentShown
+        loadDataProfile();
+    }//GEN-LAST:event_ProfileComponentShown
 
     //tab 2 - manager session
     
