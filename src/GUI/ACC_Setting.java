@@ -76,7 +76,7 @@ public class ACC_Setting extends javax.swing.JFrame {
         txt_username = new javax.swing.JTextField();
         txt_chucVu = new javax.swing.JTextField();
         txt_maNV = new javax.swing.JLabel();
-        btn_ChangePassword = new Ultilities.swing.ButtonGradient();
+        btn_ChangePassword = new Ultilities.swing.Controls.ButtonGradient();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -211,7 +211,7 @@ public class ACC_Setting extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private Ultilities.login.Background bg_avatar;
-    private Ultilities.swing.ButtonGradient btn_ChangePassword;
+    private Ultilities.swing.Controls.ButtonGradient btn_ChangePassword;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

@@ -28,7 +28,7 @@ public class EditUser extends javax.swing.JFrame {
     }
 
     
-    
+    @SuppressWarnings("unchecked")
     private void loadProfile(){
         //load combobox list name profile
         GetData x = new GetData();
@@ -53,9 +53,9 @@ public class EditUser extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        cb_Profile = new Ultilities.swing.ComboBoxSuggestion();
-        btn_Luu = new Ultilities.swing.ButtonGradient();
-        btn_Huy = new Ultilities.swing.ButtonGradient();
+        cb_Profile = new Ultilities.swing.Controls.ComboBoxSuggestion();
+        btn_Luu = new Ultilities.swing.Controls.ButtonGradient();
+        btn_Huy = new Ultilities.swing.Controls.ButtonGradient();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -149,9 +149,9 @@ public class EditUser extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_HuyActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private Ultilities.swing.ButtonGradient btn_Huy;
-    private Ultilities.swing.ButtonGradient btn_Luu;
-    private Ultilities.swing.ComboBoxSuggestion cb_Profile;
+    private Ultilities.swing.Controls.ButtonGradient btn_Huy;
+    private Ultilities.swing.Controls.ButtonGradient btn_Luu;
+    private Ultilities.swing.Controls.ComboBoxSuggestion cb_Profile;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

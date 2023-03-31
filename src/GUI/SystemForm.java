@@ -12,7 +12,7 @@ import BLL.GetData;
 import BLL.UpdateData;
 import GUI.UserUI.CreateUser;
 import Ultilities.ConvertData.ConvertDataORCL;
-import Ultilities.swing.ButtonColumn;
+import Ultilities.swing.Controls.ButtonColumn;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.event.ActionEvent;
@@ -67,7 +67,7 @@ public class SystemForm extends javax.swing.JPanel {
         
     }
 
-    public void showDataOnTable(Ultilities.swing.Table table,ArrayList arr)
+    public void showDataOnTable(Ultilities.swing.Controls.Table table,ArrayList arr)
     {
         DefaultTableModel model = (DefaultTableModel)table.getModel();
         String[] columnNames = (String[])arr.get(0);
@@ -75,7 +75,7 @@ public class SystemForm extends javax.swing.JPanel {
         model.setDataVector(data, columnNames);
         countRecord.setText("Số dòng: "+data.length);
     }
-    public void showDataOnTable_1(Ultilities.swing.Table table , ArrayList arr)
+    public void showDataOnTable_1(Ultilities.swing.Controls.Table table , ArrayList arr)
     {
         DefaultTableModel model = (DefaultTableModel)table.getModel();
         String[] columnNames = (String[])arr.get(0);
@@ -101,16 +101,16 @@ public class SystemForm extends javax.swing.JPanel {
         TTHT = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        comboBoxSuggestion = new Ultilities.swing.ComboBoxSuggestion();
+        comboBoxSuggestion = new Ultilities.swing.Controls.ComboBoxSuggestion();
         jScrollPane1 = new javax.swing.JScrollPane();
-        table1 = new Ultilities.swing.Table();
+        table1 = new Ultilities.swing.Controls.Table();
         countRecord = new javax.swing.JLabel();
-        buttonGradient1 = new Ultilities.swing.ButtonGradient();
+        buttonGradient1 = new Ultilities.swing.Controls.ButtonGradient();
         SESSION = new javax.swing.JPanel();
-        btnRefresh = new Ultilities.swing.ButtonGradient();
-        btnDemo = new Ultilities.swing.ButtonGradient();
+        btnRefresh = new Ultilities.swing.Controls.ButtonGradient();
+        btnDemo = new Ultilities.swing.Controls.ButtonGradient();
         jScrollPane2 = new javax.swing.JScrollPane();
-        table_tab2 = new Ultilities.swing.Table();
+        table_tab2 = new Ultilities.swing.Controls.Table();
         numRecord_tab2 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         AUDIT = new javax.swing.JPanel();
@@ -129,7 +129,7 @@ public class SystemForm extends javax.swing.JPanel {
         QL_ROLE = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        table2 = new Ultilities.swing.Table();
+        table2 = new Ultilities.swing.Controls.Table();
         Panel2 = new javax.swing.JPanel();
         cbo_objectname = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
@@ -154,23 +154,23 @@ public class SystemForm extends javax.swing.JPanel {
         PROFILE = new javax.swing.JPanel();
         jPanel10 = new javax.swing.JPanel();
         jPanel11 = new javax.swing.JPanel();
-        buttonGradient3 = new Ultilities.swing.ButtonGradient();
-        btn_CapNhat = new Ultilities.swing.ButtonGradient();
-        btn_XoaProfile = new Ultilities.swing.ButtonGradient();
-        cb_ListProfile = new javax.swing.JComboBox<>();
+        buttonGradient3 = new Ultilities.swing.Controls.ButtonGradient();
+        btn_CapNhat = new Ultilities.swing.Controls.ButtonGradient();
+        btn_XoaProfile = new Ultilities.swing.Controls.ButtonGradient();
         jLabel9 = new javax.swing.JLabel();
         lb_slProfile = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        table_Profile = new Ultilities.swing.Table();
+        table_Profile = new Ultilities.swing.Controls.Table();
         lb_slProfile1 = new javax.swing.JLabel();
+        cb_ListProfile = new Ultilities.swing.Controls.ComboBoxSuggestion();
         USER = new javax.swing.JPanel();
         jPanel12 = new javax.swing.JPanel();
         jPanel13 = new javax.swing.JPanel();
-        btn_CreateUser = new Ultilities.swing.ButtonGradient();
-        btn_RemoveUser = new Ultilities.swing.ButtonGradient();
+        btn_CreateUser = new Ultilities.swing.Controls.ButtonGradient();
+        btn_RemoveUser = new Ultilities.swing.Controls.ButtonGradient();
         lb_slUser = new javax.swing.JLabel();
         jScrollPane5 = new javax.swing.JScrollPane();
-        table_User = new Ultilities.swing.Table();
+        table_User = new Ultilities.swing.Controls.Table();
         lb_slProfile3 = new javax.swing.JLabel();
 
         jTabbedPane1.setBackground(new java.awt.Color(255, 255, 255));
@@ -262,7 +262,7 @@ public class SystemForm extends javax.swing.JPanel {
             .addGroup(TTHTLayout.createSequentialGroup()
                 .addGap(38, 38, 38)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
                 .addGroup(TTHTLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonGradient1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(countRecord, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -346,7 +346,7 @@ public class SystemForm extends javax.swing.JPanel {
             SESSIONLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SESSIONLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
+                .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(SESSIONLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnDemo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -483,7 +483,7 @@ public class SystemForm extends javax.swing.JPanel {
                 .addGroup(AUDITLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_showaudit, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCreateAuditPolicy, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(220, Short.MAX_VALUE))
+                .addContainerGap(224, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Quản Lý Audit", AUDIT);
@@ -757,7 +757,7 @@ public class SystemForm extends javax.swing.JPanel {
                 .addComponent(jLabel8)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(302, Short.MAX_VALUE))
+                .addContainerGap(306, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Role", Control_ROLE);
@@ -817,13 +817,6 @@ public class SystemForm extends javax.swing.JPanel {
         });
         jPanel11.add(btn_XoaProfile);
 
-        cb_ListProfile.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        cb_ListProfile.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                cb_ListProfileItemStateChanged(evt);
-            }
-        });
-
         jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel9.setText("Thông Tin Profile");
 
@@ -857,8 +850,8 @@ public class SystemForm extends javax.swing.JPanel {
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addGap(29, 29, 29)
                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(cb_ListProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cb_ListProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -873,8 +866,8 @@ public class SystemForm extends javax.swing.JPanel {
                 .addComponent(lb_slProfile1)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cb_ListProfile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9))
+                    .addComponent(jLabel9)
+                    .addComponent(cb_ListProfile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lb_slProfile)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -979,7 +972,7 @@ public class SystemForm extends javax.swing.JPanel {
                 .addComponent(lb_slProfile3)
                 .addGap(18, 18, 18)
                 .addComponent(lb_slUser)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1376,12 +1369,6 @@ public class SystemForm extends javax.swing.JPanel {
         loadUserData();
     }//GEN-LAST:event_USERComponentShown
 
-    private void cb_ListProfileItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cb_ListProfileItemStateChanged
-        ArrayList temp = x.getDetailsProfile(evt.getItem().toString());
-        DefaultTableModel model = (DefaultTableModel)table_Profile.getModel();
-        model.setDataVector((Object[][])temp.get(1), (Object[])temp.get(0));
-    }//GEN-LAST:event_cb_ListProfileItemStateChanged
-
     //tab 2 - manager session
     
     Action kill = new AbstractAction()
@@ -1484,22 +1471,22 @@ public class SystemForm extends javax.swing.JPanel {
     private javax.swing.JPanel TTHT;
     private javax.swing.JPanel USER;
     private javax.swing.JButton btnCreateAuditPolicy;
-    private Ultilities.swing.ButtonGradient btnDemo;
-    private Ultilities.swing.ButtonGradient btnRefresh;
-    private Ultilities.swing.ButtonGradient btn_CapNhat;
+    private Ultilities.swing.Controls.ButtonGradient btnDemo;
+    private Ultilities.swing.Controls.ButtonGradient btnRefresh;
+    private Ultilities.swing.Controls.ButtonGradient btn_CapNhat;
     private javax.swing.JButton btn_Create;
-    private Ultilities.swing.ButtonGradient btn_CreateUser;
+    private Ultilities.swing.Controls.ButtonGradient btn_CreateUser;
     private javax.swing.JButton btn_InsertPriv;
-    private Ultilities.swing.ButtonGradient btn_RemoveUser;
+    private Ultilities.swing.Controls.ButtonGradient btn_RemoveUser;
     private javax.swing.JButton btn_Revoke;
     private javax.swing.JButton btn_XemTT;
-    private Ultilities.swing.ButtonGradient btn_XoaProfile;
+    private Ultilities.swing.Controls.ButtonGradient btn_XoaProfile;
     private javax.swing.JButton btn_showaudit;
     private javax.swing.JButton btn_updaterole;
-    private Ultilities.swing.ButtonGradient buttonGradient1;
-    private Ultilities.swing.ButtonGradient buttonGradient3;
+    private Ultilities.swing.Controls.ButtonGradient buttonGradient1;
+    private Ultilities.swing.Controls.ButtonGradient buttonGradient3;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JComboBox<String> cb_ListProfile;
+    private Ultilities.swing.Controls.ComboBoxSuggestion cb_ListProfile;
     private javax.swing.JCheckBox cbk_update;
     private javax.swing.JComboBox<String> cboObjectName;
     private javax.swing.JComboBox<String> cbo_objectname;
@@ -1510,7 +1497,7 @@ public class SystemForm extends javax.swing.JPanel {
     private javax.swing.JCheckBox ckb_delete;
     private javax.swing.JCheckBox ckb_insert;
     private javax.swing.JCheckBox ckb_select;
-    private Ultilities.swing.ComboBoxSuggestion comboBoxSuggestion;
+    private Ultilities.swing.Controls.ComboBoxSuggestion comboBoxSuggestion;
     private javax.swing.JLabel countRecord;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -1543,11 +1530,11 @@ public class SystemForm extends javax.swing.JPanel {
     private javax.swing.JLabel numRecord_tab2;
     private javax.swing.JRadioButton rdo_NotPass;
     private javax.swing.JRadioButton rdo_Pass;
-    private Ultilities.swing.Table table1;
-    private Ultilities.swing.Table table2;
-    private Ultilities.swing.Table table_Profile;
-    private Ultilities.swing.Table table_User;
-    private Ultilities.swing.Table table_tab2;
+    private Ultilities.swing.Controls.Table table1;
+    private Ultilities.swing.Controls.Table table2;
+    private Ultilities.swing.Controls.Table table_Profile;
+    private Ultilities.swing.Controls.Table table_User;
+    private Ultilities.swing.Controls.Table table_tab2;
     private javax.swing.JTextField txtPolicyName;
     private javax.swing.JTextField txt_Pass;
     private javax.swing.JTextField txt_role_name;

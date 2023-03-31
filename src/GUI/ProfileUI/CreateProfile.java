@@ -77,8 +77,8 @@ public class CreateProfile extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         cb_IdelTime = new javax.swing.JComboBox<>();
         txt_IdelTime = new javax.swing.JTextField();
-        btn_Tao = new Ultilities.swing.ButtonGradient();
-        btn_Huy = new Ultilities.swing.ButtonGradient();
+        btn_Tao = new Ultilities.swing.Controls.ButtonGradient();
+        btn_Huy = new Ultilities.swing.Controls.ButtonGradient();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -278,8 +278,8 @@ public class CreateProfile extends javax.swing.JFrame {
     }//GEN-LAST:event_cb_IdelTimeItemStateChanged
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private Ultilities.swing.ButtonGradient btn_Huy;
-    private Ultilities.swing.ButtonGradient btn_Tao;
+    private Ultilities.swing.Controls.ButtonGradient btn_Huy;
+    private Ultilities.swing.Controls.ButtonGradient btn_Tao;
     private javax.swing.JComboBox<String> cb_IdelTime;
     private javax.swing.JComboBox<String> cb_LoginAttempts;
     private javax.swing.JComboBox<String> cb_PassLifeTime;

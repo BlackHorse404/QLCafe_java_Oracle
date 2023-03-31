@@ -252,7 +252,7 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="Ultilities.swing.ButtonGradient" name="btn_Tao">
+        <Component class="Ultilities.swing.Controls.ButtonGradient" name="btn_Tao">
           <Properties>
             <Property name="text" type="java.lang.String" value="X&#xe1;c Nh&#x1ead;n"/>
             <Property name="color2" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -267,7 +267,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_TaoActionPerformed"/>
           </Events>
         </Component>
-        <Component class="Ultilities.swing.ButtonGradient" name="btn_Huy">
+        <Component class="Ultilities.swing.Controls.ButtonGradient" name="btn_Huy">
           <Properties>
             <Property name="text" type="java.lang.String" value="H&#x1ee7;y"/>
             <Property name="color1" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">

@@ -2,7 +2,7 @@
 
 <Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <NonVisualComponents>
-    <Component class="Ultilities.swing.ComboSuggestionUI" name="comboSuggestionUI1">
+    <Component class="Ultilities.swing.Controls.ComboSuggestionUI" name="comboSuggestionUI1">
     </Component>
   </NonVisualComponents>
   <Properties>
@@ -120,7 +120,7 @@
                 <Property name="rows" type="int" value="1"/>
               </Layout>
               <SubComponents>
-                <Component class="Ultilities.swing.ComboBoxSuggestion" name="cb_resourceName">
+                <Component class="Ultilities.swing.Controls.ComboBoxSuggestion" name="cb_resourceName">
                   <Properties>
                     <Property name="toolTipText" type="java.lang.String" value="Resource Name"/>
                   </Properties>
@@ -136,7 +136,7 @@
                 <Property name="verticalGap" type="int" value="20"/>
               </Layout>
               <SubComponents>
-                <Component class="Ultilities.swing.ComboBoxSuggestion" name="cb_State">
+                <Component class="Ultilities.swing.Controls.ComboBoxSuggestion" name="cb_State">
                   <Events>
                     <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="cb_StateItemStateChanged"/>
                   </Events>
@@ -150,7 +150,7 @@
             </Container>
           </SubComponents>
         </Container>
-        <Component class="Ultilities.swing.ButtonGradient" name="btn_Luu">
+        <Component class="Ultilities.swing.Controls.ButtonGradient" name="btn_Luu">
           <Properties>
             <Property name="text" type="java.lang.String" value="L&#x1b0;u"/>
             <Property name="color2" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -165,7 +165,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_LuuActionPerformed"/>
           </Events>
         </Component>
-        <Component class="Ultilities.swing.ButtonGradient" name="btn_Huy">
+        <Component class="Ultilities.swing.Controls.ButtonGradient" name="btn_Huy">
           <Properties>
             <Property name="text" type="java.lang.String" value="H&#x1ee7;y"/>
             <Property name="color1" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">

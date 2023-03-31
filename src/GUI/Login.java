@@ -47,11 +47,11 @@ public class Login extends javax.swing.JFrame {
 
         background = new Ultilities.login.Background();
         panel = new javax.swing.JPanel();
-        txtUser = new Ultilities.swing.TextField();
-        txtPassword = new Ultilities.swing.PasswordField();
+        txtUser = new Ultilities.swing.Controls.TextField();
+        txtPassword = new Ultilities.swing.Controls.PasswordField();
         jLabel1 = new javax.swing.JLabel();
-        cmdLogin = new Ultilities.swing.Button();
-        buttonCustom1 = new Ultilities.swing.buttonCustom();
+        cmdLogin = new Ultilities.swing.Controls.Button();
+        buttonCustom1 = new Ultilities.swing.Controls.buttonCustom();
         Scan_QR = new javax.swing.JLabel();
         chk_showHidePass = new javax.swing.JCheckBox();
 
@@ -270,12 +270,12 @@ public class Login extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Scan_QR;
     private Ultilities.login.Background background;
-    private Ultilities.swing.buttonCustom buttonCustom1;
+    private Ultilities.swing.Controls.buttonCustom buttonCustom1;
     private javax.swing.JCheckBox chk_showHidePass;
-    private Ultilities.swing.Button cmdLogin;
+    private Ultilities.swing.Controls.Button cmdLogin;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel panel;
-    private Ultilities.swing.PasswordField txtPassword;
-    private Ultilities.swing.TextField txtUser;
+    private Ultilities.swing.Controls.PasswordField txtPassword;
+    private Ultilities.swing.Controls.TextField txtUser;
     // End of variables declaration//GEN-END:variables
 }

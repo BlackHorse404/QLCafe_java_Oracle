@@ -95,11 +95,11 @@
                 <Property name="horizontalTextPosition" type="int" value="0"/>
               </Properties>
             </Component>
-            <Component class="Ultilities.swing.ComboBoxSuggestion" name="cb_Profile">
+            <Component class="Ultilities.swing.Controls.ComboBoxSuggestion" name="cb_Profile">
             </Component>
           </SubComponents>
         </Container>
-        <Component class="Ultilities.swing.ButtonGradient" name="btn_Luu">
+        <Component class="Ultilities.swing.Controls.ButtonGradient" name="btn_Luu">
           <Properties>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="0" green="0" red="0" type="rgb"/>
@@ -119,7 +119,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_LuuActionPerformed"/>
           </Events>
         </Component>
-        <Component class="Ultilities.swing.ButtonGradient" name="btn_Huy">
+        <Component class="Ultilities.swing.Controls.ButtonGradient" name="btn_Huy">
           <Properties>
             <Property name="text" type="java.lang.String" value="H&#x1ee7;y"/>
             <Property name="color1" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">

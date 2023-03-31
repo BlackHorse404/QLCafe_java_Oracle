@@ -36,8 +36,8 @@ public class ChangePassword extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        btn_XacNhan = new Ultilities.swing.ButtonGradient();
-        buttonCustom1 = new Ultilities.swing.buttonCustom();
+        btn_XacNhan = new Ultilities.swing.Controls.ButtonGradient();
+        buttonCustom1 = new Ultilities.swing.Controls.buttonCustom();
         jTextField3 = new javax.swing.JTextField();
         jTextField4 = new javax.swing.JTextField();
         txt_passNew1 = new javax.swing.JPasswordField();
@@ -169,8 +169,8 @@ public class ChangePassword extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_XacNhanActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private Ultilities.swing.ButtonGradient btn_XacNhan;
-    private Ultilities.swing.buttonCustom buttonCustom1;
+    private Ultilities.swing.Controls.ButtonGradient btn_XacNhan;
+    private Ultilities.swing.Controls.buttonCustom buttonCustom1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

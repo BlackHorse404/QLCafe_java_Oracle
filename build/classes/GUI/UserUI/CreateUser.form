@@ -143,7 +143,7 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="Ultilities.swing.ButtonGradient" name="btn_XacNhan">
+        <Component class="Ultilities.swing.Controls.ButtonGradient" name="btn_XacNhan">
           <Properties>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="0" green="0" red="0" type="rgb"/>
@@ -164,7 +164,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_XacNhanActionPerformed"/>
           </Events>
         </Component>
-        <Component class="Ultilities.swing.ButtonGradient" name="btn_Huy">
+        <Component class="Ultilities.swing.Controls.ButtonGradient" name="btn_Huy">
           <Properties>
             <Property name="text" type="java.lang.String" value="H&#x1ee7;y"/>
             <Property name="color1" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
