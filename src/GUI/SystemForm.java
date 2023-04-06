@@ -10,20 +10,28 @@ import GUI.ProfileUI.CreateProfile;
 import BLL.ExecuteData;
 import BLL.GetData;
 import BLL.UpdateData;
+import DTO.ImportExport;
 import GUI.UserUI.CreateUser;
 import Ultilities.ConvertData.ConvertDataORCL;
 import Ultilities.swing.Controls.ButtonColumn;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.event.ActionEvent;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
+import static javax.swing.DefaultButtonModel.SELECTED;
 import javax.swing.JCheckBox;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -96,7 +104,7 @@ public class SystemForm extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroup1 = new javax.swing.ButtonGroup();
+        grRadio_Type = new javax.swing.ButtonGroup();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         TTHT = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
@@ -172,11 +180,33 @@ public class SystemForm extends javax.swing.JPanel {
         jScrollPane5 = new javax.swing.JScrollPane();
         table_User = new Ultilities.swing.Controls.Table();
         lb_slProfile3 = new javax.swing.JLabel();
+        import_export = new javax.swing.JPanel();
+        jPanel14 = new javax.swing.JPanel();
+        lb_slProfile4 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        cb_TableName_IE = new Ultilities.swing.Controls.ComboBoxSuggestion();
+        rad_sqlcl = new javax.swing.JRadioButton();
+        rad_datapump = new javax.swing.JRadioButton();
+        lb_IE = new javax.swing.JLabel();
+        txt_pathFile = new javax.swing.JTextField();
+        btn_browse = new Ultilities.swing.Controls.buttonCustom();
+        cb_Dir = new Ultilities.swing.Controls.ComboBoxSuggestion();
+        jPanel2 = new javax.swing.JPanel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        table_ImEx = new Ultilities.swing.Controls.Table();
+        jPanel3 = new javax.swing.JPanel();
+        btn_import = new Ultilities.swing.Controls.buttonCustom();
+        btn_Export = new Ultilities.swing.Controls.buttonCustom();
 
         jTabbedPane1.setBackground(new java.awt.Color(255, 255, 255));
         jTabbedPane1.setToolTipText("");
         jTabbedPane1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jTabbedPane1.setVerifyInputWhenFocusTarget(false);
+        jTabbedPane1.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                jTabbedPane1ComponentShown(evt);
+            }
+        });
 
         TTHT.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -646,7 +676,6 @@ public class SystemForm extends javax.swing.JPanel {
         lbl_Pass.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         lbl_Pass.setText("Mật khẩu");
 
-        buttonGroup1.add(rdo_Pass);
         rdo_Pass.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         rdo_Pass.setText("Mật khẩu");
         rdo_Pass.addActionListener(new java.awt.event.ActionListener() {
@@ -655,7 +684,6 @@ public class SystemForm extends javax.swing.JPanel {
             }
         });
 
-        buttonGroup1.add(rdo_NotPass);
         rdo_NotPass.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         rdo_NotPass.setText("Không mật khẩu");
         rdo_NotPass.addActionListener(new java.awt.event.ActionListener() {
@@ -841,6 +869,12 @@ public class SystemForm extends javax.swing.JPanel {
         lb_slProfile1.setText("QUẢN LÝ PROFILE");
         lb_slProfile1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
+        cb_ListProfile.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cb_ListProfileItemStateChanged(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
         jPanel10Layout.setHorizontalGroup(
@@ -993,6 +1027,221 @@ public class SystemForm extends javax.swing.JPanel {
         );
 
         jTabbedPane1.addTab("User", USER);
+
+        import_export.setBackground(new java.awt.Color(255, 255, 255));
+        import_export.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                import_exportComponentShown(evt);
+            }
+        });
+
+        jPanel14.setBackground(new java.awt.Color(255, 255, 255));
+
+        lb_slProfile4.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lb_slProfile4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lb_slProfile4.setText("IMPORT AND EXPORT DATA");
+        lb_slProfile4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel11.setText("Bảng Dữ Liệu");
+
+        cb_TableName_IE.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cb_TableName_IEItemStateChanged(evt);
+            }
+        });
+
+        rad_sqlcl.setBackground(new java.awt.Color(255, 255, 255));
+        grRadio_Type.add(rad_sqlcl);
+        rad_sqlcl.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        rad_sqlcl.setText("SQLCL");
+
+        rad_datapump.setBackground(new java.awt.Color(255, 255, 255));
+        grRadio_Type.add(rad_datapump);
+        rad_datapump.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        rad_datapump.setText("DATAPUMP");
+        rad_datapump.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                rad_datapumpItemStateChanged(evt);
+            }
+        });
+
+        lb_IE.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lb_IE.setText("File Export");
+
+        txt_pathFile.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        btn_browse.setBackground(new java.awt.Color(102, 153, 255));
+        btn_browse.setForeground(new java.awt.Color(0, 0, 0));
+        btn_browse.setText("browse");
+        btn_browse.setBorderColor(new java.awt.Color(102, 153, 255));
+        btn_browse.setColor(new java.awt.Color(102, 153, 255));
+        btn_browse.setColorClick(new java.awt.Color(204, 204, 255));
+        btn_browse.setColorOver(new java.awt.Color(102, 153, 255));
+        btn_browse.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_browseActionPerformed(evt);
+            }
+        });
+
+        cb_Dir.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cb_DirItemStateChanged(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
+        jPanel14.setLayout(jPanel14Layout);
+        jPanel14Layout.setHorizontalGroup(
+            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lb_slProfile4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel14Layout.createSequentialGroup()
+                .addGap(55, 55, 55)
+                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel14Layout.createSequentialGroup()
+                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cb_TableName_IE, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel14Layout.createSequentialGroup()
+                        .addComponent(lb_IE, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cb_Dir, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
+                        .addComponent(txt_pathFile, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(12, 12, 12)
+                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(rad_datapump, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(rad_sqlcl, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btn_browse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+        jPanel14Layout.setVerticalGroup(
+            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel14Layout.createSequentialGroup()
+                .addComponent(lb_slProfile4, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel14Layout.createSequentialGroup()
+                        .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cb_TableName_IE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel14Layout.createSequentialGroup()
+                                .addGap(28, 28, 28)
+                                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(cb_Dir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lb_IE, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel14Layout.createSequentialGroup()
+                                .addGap(36, 36, 36)
+                                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(txt_pathFile, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btn_browse, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(jPanel14Layout.createSequentialGroup()
+                        .addComponent(rad_sqlcl)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(rad_datapump)))
+                .addGap(0, 2, Short.MAX_VALUE))
+        );
+
+        table_ImEx.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane6.setViewportView(table_ImEx);
+
+        btn_import.setBackground(new java.awt.Color(102, 255, 153));
+        btn_import.setForeground(new java.awt.Color(0, 0, 0));
+        btn_import.setText("IMPORT");
+        btn_import.setBorderColor(new java.awt.Color(255, 255, 255));
+        btn_import.setColor(new java.awt.Color(102, 255, 153));
+        btn_import.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btn_import.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_importActionPerformed(evt);
+            }
+        });
+
+        btn_Export.setBackground(new java.awt.Color(102, 204, 255));
+        btn_Export.setForeground(new java.awt.Color(0, 0, 0));
+        btn_Export.setText("EXPORT");
+        btn_Export.setBorderColor(new java.awt.Color(102, 255, 255));
+        btn_Export.setColor(new java.awt.Color(102, 204, 255));
+        btn_Export.setColorClick(new java.awt.Color(153, 204, 255));
+        btn_Export.setColorOver(new java.awt.Color(204, 255, 255));
+        btn_Export.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btn_Export.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_ExportActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(129, 129, 129)
+                .addComponent(btn_import, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btn_Export, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(92, 92, 92))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(btn_import, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_Export, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane6)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 7, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout import_exportLayout = new javax.swing.GroupLayout(import_export);
+        import_export.setLayout(import_exportLayout);
+        import_exportLayout.setHorizontalGroup(
+            import_exportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, import_exportLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        import_exportLayout.setVerticalGroup(
+            import_exportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(import_exportLayout.createSequentialGroup()
+                .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Import/Export", import_export);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -1369,6 +1618,159 @@ public class SystemForm extends javax.swing.JPanel {
         loadUserData();
     }//GEN-LAST:event_USERComponentShown
 
+    private void cb_ListProfileItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cb_ListProfileItemStateChanged
+        ArrayList temp = x.getDetailsProfile(evt.getItem().toString());
+        DefaultTableModel model = (DefaultTableModel)table_Profile.getModel();
+        model.setDataVector((Object[][])temp.get(1), (Object[])temp.get(0));
+    }//GEN-LAST:event_cb_ListProfileItemStateChanged
+
+    Object[][] AllDir= x.getAllDirectory(); 
+    private void import_exportComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_import_exportComponentShown
+        loadCombobox_IETable();
+        rad_sqlcl.setSelected(true);
+        cb_Dir.setEnabled(false);
+    
+        cb_Dir.removeAllItems();
+        for(int i = 0;i<AllDir.length;i++)
+        {
+            cb_Dir.addItem(AllDir[i][1].toString());
+        }
+    }//GEN-LAST:event_import_exportComponentShown
+
+    private void loadCombobox_IETable(){
+        ArrayList t = x.getTableName();
+        cb_TableName_IE.removeAllItems();
+        t.forEach((e) -> cb_TableName_IE.addItem(e));
+        cb_TableName_IE.addItem("All");
+    }
+    
+    private void btn_ExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ExportActionPerformed
+        String tableName = cb_TableName_IE.getSelectedItem().toString();
+        
+        if(tableName != "All"){
+            if(rad_datapump.isSelected() == true)
+            {
+                String path = cb_Dir.getSelectedItem().toString();
+                if(ImportExport.ExportDataPump("expdp datacaphe/datacaphe tables="+tableName+" directory="+path+" dumpfile = exp_data_"+tableName+".dmp logfile= exp_data.log"))
+                {
+                    JOptionPane.showMessageDialog(this, "Export Datapump hoàn thành !");
+                }
+                else
+                    JOptionPane.showMessageDialog(this, "Export Datapump thất bại !");
+            }
+            else
+            {
+                String path = txt_pathFile.getText();
+                if(ImportExport.ExportDataSqlcl(path, tableName))
+                {
+                    JOptionPane.showMessageDialog(this, "Export hoàn thành ! ("+path+")");
+                }
+                else
+                    JOptionPane.showMessageDialog(this, "Export thất bại !");
+                    
+            }
+        }
+        else
+        {
+            if(rad_datapump.isSelected() == true)
+            {
+                String path = cb_Dir.getSelectedItem().toString();
+                if(ImportExport.ExportDataPump("expdp datacaphe/datacaphe full=y directory="+path+" dumpfile = exp_data_"+tableName+".dmp logfile= exp_data.log"))
+                {
+                    JOptionPane.showMessageDialog(this, "Export Datapump hoàn thành !");
+                }
+                else
+                    JOptionPane.showMessageDialog(this, "Export Datapump thất bại !");
+            }
+        }
+    }//GEN-LAST:event_btn_ExportActionPerformed
+
+    private void btn_browseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_browseActionPerformed
+
+        JFileChooser openFileChooser = new JFileChooser(); 
+        //openFileChooser.setCurrentDirectory (new File(txt_pathFile.getText () + ":\\"));
+        openFileChooser.setFileFilter (new FileNameExtensionFilter("",".csv"));
+        int returnvalue = openFileChooser.showOpenDialog(this);
+        if(returnvalue == JFileChooser.APPROVE_OPTION)
+        {
+            try {
+                File file = openFileChooser.getSelectedFile ();
+                if(!file.exists())
+                    file.createNewFile();
+                String absolutePath = file.getAbsolutePath();
+
+                txt_pathFile.setText(absolutePath);
+            } catch (IOException ex) {
+                Logger.getLogger(SystemForm.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(this, "Bạn chưa chọn đường dẫn","Lỗi tạo",JOptionPane.ERROR_MESSAGE);
+
+        }
+        
+    }//GEN-LAST:event_btn_browseActionPerformed
+
+    private void cb_TableName_IEItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cb_TableName_IEItemStateChanged
+        table_ImEx.removeAll();
+        String tableName = evt.getItem().toString();
+        ArrayList temp = x.getDataTableByName(tableName);
+        DefaultTableModel model = (DefaultTableModel)table_ImEx.getModel();
+        model.setDataVector((Object[][])temp.get(1), (Object[])temp.get(0));
+    }//GEN-LAST:event_cb_TableName_IEItemStateChanged
+
+    private void rad_datapumpItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_rad_datapumpItemStateChanged
+        if(evt.getStateChange() == SELECTED)
+        {
+            lb_IE.setText("File Export");
+            cb_Dir.setEnabled(false);
+            btn_browse.setVisible(true);
+            txt_pathFile.setText("");
+        }
+        else
+        {   
+            btn_browse.setVisible(false);
+            lb_IE.setText("Dir Export");
+            cb_Dir.setEnabled(true);
+            txt_pathFile.setText("");
+        }
+    }//GEN-LAST:event_rad_datapumpItemStateChanged
+
+    private void jTabbedPane1ComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jTabbedPane1ComponentShown
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTabbedPane1ComponentShown
+
+    private void cb_DirItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cb_DirItemStateChanged
+        int index=cb_Dir.getSelectedIndex();
+        txt_pathFile.setText(AllDir[index][2].toString());
+    }//GEN-LAST:event_cb_DirItemStateChanged
+
+    private void btn_importActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_importActionPerformed
+        String tableName = cb_TableName_IE.getSelectedItem().toString();
+        if(rad_datapump.isSelected() == true)
+            {
+                String path = cb_Dir.getSelectedItem().toString();
+                if(ImportExport.ExportDataPump("impdp datacaphe/datacaphe tables="+tableName+" directory="+path+" dumpfile = exp_data_"+tableName+".dmp logfile= exp_data.log TABLE_EXISTS_ACTION=APPEND"))
+                {
+                    JOptionPane.showMessageDialog(this, "Export Datapump hoàn thành !");
+                }
+                else
+                    JOptionPane.showMessageDialog(this, "Export Datapump thất bại !");
+            }
+            else//sqlcl
+            {
+                String path = txt_pathFile.getText();
+                if(ImportExport.ImportDataSqlcl(path, tableName))
+                {
+                    JOptionPane.showMessageDialog(this, "Import xong ! ("+path+")");
+                }
+                else
+                    JOptionPane.showMessageDialog(this, "Export thất bại !");
+                    
+            }
+    }//GEN-LAST:event_btn_importActionPerformed
+
     //tab 2 - manager session
     
     Action kill = new AbstractAction()
@@ -1476,17 +1878,21 @@ public class SystemForm extends javax.swing.JPanel {
     private Ultilities.swing.Controls.ButtonGradient btn_CapNhat;
     private javax.swing.JButton btn_Create;
     private Ultilities.swing.Controls.ButtonGradient btn_CreateUser;
+    private Ultilities.swing.Controls.buttonCustom btn_Export;
     private javax.swing.JButton btn_InsertPriv;
     private Ultilities.swing.Controls.ButtonGradient btn_RemoveUser;
     private javax.swing.JButton btn_Revoke;
     private javax.swing.JButton btn_XemTT;
     private Ultilities.swing.Controls.ButtonGradient btn_XoaProfile;
+    private Ultilities.swing.Controls.buttonCustom btn_browse;
+    private Ultilities.swing.Controls.buttonCustom btn_import;
     private javax.swing.JButton btn_showaudit;
     private javax.swing.JButton btn_updaterole;
     private Ultilities.swing.Controls.ButtonGradient buttonGradient1;
     private Ultilities.swing.Controls.ButtonGradient buttonGradient3;
-    private javax.swing.ButtonGroup buttonGroup1;
+    private Ultilities.swing.Controls.ComboBoxSuggestion cb_Dir;
     private Ultilities.swing.Controls.ComboBoxSuggestion cb_ListProfile;
+    private Ultilities.swing.Controls.ComboBoxSuggestion cb_TableName_IE;
     private javax.swing.JCheckBox cbk_update;
     private javax.swing.JComboBox<String> cboObjectName;
     private javax.swing.JComboBox<String> cbo_objectname;
@@ -1499,8 +1905,11 @@ public class SystemForm extends javax.swing.JPanel {
     private javax.swing.JCheckBox ckb_select;
     private Ultilities.swing.Controls.ComboBoxSuggestion comboBoxSuggestion;
     private javax.swing.JLabel countRecord;
+    private javax.swing.ButtonGroup grRadio_Type;
+    private javax.swing.JPanel import_export;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1514,6 +1923,9 @@ public class SystemForm extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
+    private javax.swing.JPanel jPanel14;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
@@ -1521,22 +1933,29 @@ public class SystemForm extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JLabel lb_IE;
     private javax.swing.JLabel lb_slProfile;
     private javax.swing.JLabel lb_slProfile1;
     private javax.swing.JLabel lb_slProfile3;
+    private javax.swing.JLabel lb_slProfile4;
     private javax.swing.JLabel lb_slUser;
     private javax.swing.JLabel lbl_Pass;
     private javax.swing.JLabel numRecord_tab2;
+    private javax.swing.JRadioButton rad_datapump;
+    private javax.swing.JRadioButton rad_sqlcl;
     private javax.swing.JRadioButton rdo_NotPass;
     private javax.swing.JRadioButton rdo_Pass;
     private Ultilities.swing.Controls.Table table1;
     private Ultilities.swing.Controls.Table table2;
+    private Ultilities.swing.Controls.Table table_ImEx;
     private Ultilities.swing.Controls.Table table_Profile;
     private Ultilities.swing.Controls.Table table_User;
     private Ultilities.swing.Controls.Table table_tab2;
     private javax.swing.JTextField txtPolicyName;
     private javax.swing.JTextField txt_Pass;
+    private javax.swing.JTextField txt_pathFile;
     private javax.swing.JTextField txt_role_name;
     // End of variables declaration//GEN-END:variables
 }

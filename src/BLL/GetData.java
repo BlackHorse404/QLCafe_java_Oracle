@@ -144,6 +144,11 @@ public class GetData {
         return da.QueryTable();
     }
     
+    public ArrayList getDataTableByName(String nameTable){
+        DataAccess da = new DataAccess(String.format("select * from datacaphe.%s", nameTable));
+        return da.QueryTable();
+    }
+    
     public ArrayList getAllRecordAutdit(){
         DataAccess da = new DataAccess("select * from dba_fga_audit_trail");
         return da.QueryTable();
@@ -153,7 +158,7 @@ public class GetData {
     {
         //DataAccess da = new DataAccess("select distinct table_name from dba_tables where table_name='KHACHHANG' or table_name='HOADON' or table_name='CHITIETHOADON' or table_name='KHUYENMAI' or table_name='THUCDON' or table_name='PHANLOAI'");
  
-        DataAccess da = new DataAccess("select table_name  from DBA_TABLES where owner like (select owner from DBA_TABLES where table_name ='HOADON')");
+        DataAccess da = new DataAccess("select table_name from DBA_TABLES where owner = 'DATACAPHE'");
 
         Object[][] t = da.QueryContentTable();
         ArrayList<String> arr=new ArrayList<String>();
@@ -166,7 +171,7 @@ public class GetData {
     
     public ArrayList getObjectSchema()
     {
-        DataAccess da = new DataAccess("select username from dba_users where account_status = 'OPEN' and last_login  not like 'null'");
+        DataAccess da = new DataAccess("select username from dba_users where account_status = 'OPEN' and last_login not like 'null'");
         Object[][] t = da.QueryContentTable();
         ArrayList<String> arr=new ArrayList<String>();
         for(int i =0;i<t.length; i++)
@@ -235,6 +240,10 @@ public class GetData {
         DataAccess da = new DataAccess("select RESOURCE_NAME from dba_profiles where PROFILE = 'DEFAULT'");
         return da.QueryContentTable();
     }
-    //</editor-fold>
+    //</editor-fold>    
     
+    public Object[][] getAllDirectory(){
+        DataAccess da = new DataAccess("select * from DBA_DIRECTORIES");
+        return da.QueryContentTable();
+    }
 }
