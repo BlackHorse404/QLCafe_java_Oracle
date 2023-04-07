@@ -52,7 +52,7 @@ public class ImportExport {
                     "LOAD "+tableName+" "+path+"\n " +
                     "exit");
             
-            ExecuteCMD.runCommand("sql datacaphe/datacaphe@localhost/caphe @"+scriptPath);
+            ExecuteCMD.runCommand("sql datacaphes/datacaphe@localhost/caphe @"+scriptPath);
         }
         catch(Exception err){
             return false;

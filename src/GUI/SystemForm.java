@@ -162,7 +162,7 @@ public class SystemForm extends javax.swing.JPanel {
         PROFILE = new javax.swing.JPanel();
         jPanel10 = new javax.swing.JPanel();
         jPanel11 = new javax.swing.JPanel();
-        buttonGradient3 = new Ultilities.swing.Controls.ButtonGradient();
+        btn_TaoMoi = new Ultilities.swing.Controls.ButtonGradient();
         btn_CapNhat = new Ultilities.swing.Controls.ButtonGradient();
         btn_XoaProfile = new Ultilities.swing.Controls.ButtonGradient();
         jLabel9 = new javax.swing.JLabel();
@@ -801,20 +801,20 @@ public class SystemForm extends javax.swing.JPanel {
 
         jPanel11.setLayout(new java.awt.GridLayout(1, 3, 5, 0));
 
-        buttonGradient3.setForeground(new java.awt.Color(0, 0, 0));
-        buttonGradient3.setText("Tạo mới");
-        buttonGradient3.setColor1(new java.awt.Color(51, 255, 204));
-        buttonGradient3.setColor2(new java.awt.Color(0, 204, 204));
-        buttonGradient3.setFocusPainted(false);
-        buttonGradient3.setFocusable(false);
-        buttonGradient3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        buttonGradient3.setSizeSpeed(5.0F);
-        buttonGradient3.addActionListener(new java.awt.event.ActionListener() {
+        btn_TaoMoi.setForeground(new java.awt.Color(0, 0, 0));
+        btn_TaoMoi.setText("Tạo mới");
+        btn_TaoMoi.setColor1(new java.awt.Color(51, 255, 204));
+        btn_TaoMoi.setColor2(new java.awt.Color(0, 204, 204));
+        btn_TaoMoi.setFocusPainted(false);
+        btn_TaoMoi.setFocusable(false);
+        btn_TaoMoi.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btn_TaoMoi.setSizeSpeed(5.0F);
+        btn_TaoMoi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonGradient3ActionPerformed(evt);
+                btn_TaoMoiActionPerformed(evt);
             }
         });
-        jPanel11.add(buttonGradient3);
+        jPanel11.add(btn_TaoMoi);
 
         btn_CapNhat.setForeground(new java.awt.Color(0, 0, 0));
         btn_CapNhat.setText("Cập nhật");
@@ -1541,12 +1541,12 @@ public class SystemForm extends javax.swing.JPanel {
     }//GEN-LAST:event_btn_XoaProfileActionPerformed
 
     CreateProfile fCrePro = null;
-    private void buttonGradient3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGradient3ActionPerformed
+    private void btn_TaoMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_TaoMoiActionPerformed
         if(fCrePro == null)
             fCrePro = new CreateProfile();
         fCrePro.setVisible(true);
         fCrePro.root = this;
-    }//GEN-LAST:event_buttonGradient3ActionPerformed
+    }//GEN-LAST:event_btn_TaoMoiActionPerformed
 
     private void btn_CapNhatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CapNhatActionPerformed
         UpdateProfile f = new UpdateProfile();
@@ -1693,16 +1693,9 @@ public class SystemForm extends javax.swing.JPanel {
         int returnvalue = openFileChooser.showOpenDialog(this);
         if(returnvalue == JFileChooser.APPROVE_OPTION)
         {
-            try {
-                File file = openFileChooser.getSelectedFile ();
-                if(!file.exists())
-                    file.createNewFile();
-                String absolutePath = file.getAbsolutePath();
-
-                txt_pathFile.setText(absolutePath);
-            } catch (IOException ex) {
-                Logger.getLogger(SystemForm.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            File file = openFileChooser.getSelectedFile ();
+            String absolutePath = file.getAbsolutePath();
+            txt_pathFile.setText(absolutePath);
         }
         else
         {
@@ -1751,7 +1744,7 @@ public class SystemForm extends javax.swing.JPanel {
         if(rad_datapump.isSelected() == true)
             {
                 String path = cb_Dir.getSelectedItem().toString();
-                if(ImportExport.ExportDataPump("impdp datacaphe/datacaphe tables="+tableName+" directory="+path+" dumpfile = exp_data_"+tableName+".dmp logfile= exp_data.log TABLE_EXISTS_ACTION=APPEND"))
+                if(ImportExport.ExportDataPump("impdp datacaphe/datacaphe tables="+tableName+" directory="+path+" dumpfile = exp_data_"+tableName+".dmp logfile= exp_data_"+tableName+".log TABLE_EXISTS_ACTION=APPEND"))
                 {
                     JOptionPane.showMessageDialog(this, "Export Datapump hoàn thành !");
                 }
@@ -1882,6 +1875,7 @@ public class SystemForm extends javax.swing.JPanel {
     private javax.swing.JButton btn_InsertPriv;
     private Ultilities.swing.Controls.ButtonGradient btn_RemoveUser;
     private javax.swing.JButton btn_Revoke;
+    private Ultilities.swing.Controls.ButtonGradient btn_TaoMoi;
     private javax.swing.JButton btn_XemTT;
     private Ultilities.swing.Controls.ButtonGradient btn_XoaProfile;
     private Ultilities.swing.Controls.buttonCustom btn_browse;
@@ -1889,7 +1883,6 @@ public class SystemForm extends javax.swing.JPanel {
     private javax.swing.JButton btn_showaudit;
     private javax.swing.JButton btn_updaterole;
     private Ultilities.swing.Controls.ButtonGradient buttonGradient1;
-    private Ultilities.swing.Controls.ButtonGradient buttonGradient3;
     private Ultilities.swing.Controls.ComboBoxSuggestion cb_Dir;
     private Ultilities.swing.Controls.ComboBoxSuggestion cb_ListProfile;
     private Ultilities.swing.Controls.ComboBoxSuggestion cb_TableName_IE;

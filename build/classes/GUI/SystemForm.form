@@ -1091,7 +1091,7 @@
                     <Property name="rows" type="int" value="1"/>
                   </Layout>
                   <SubComponents>
-                    <Component class="Ultilities.swing.Controls.ButtonGradient" name="buttonGradient3">
+                    <Component class="Ultilities.swing.Controls.ButtonGradient" name="btn_TaoMoi">
                       <Properties>
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="0" green="0" red="0" type="rgb"/>
@@ -1111,7 +1111,7 @@
                         <Property name="sizeSpeed" type="float" value="5.0"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonGradient3ActionPerformed"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_TaoMoiActionPerformed"/>
                       </Events>
                     </Component>
                     <Component class="Ultilities.swing.Controls.ButtonGradient" name="btn_CapNhat">
