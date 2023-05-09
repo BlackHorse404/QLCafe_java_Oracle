@@ -14,7 +14,7 @@ public class DBConfig {
     private static String SID = "caphe";
     public static String username;
     public static String password;
-    public static Connection Connect = null;
+    public static Connection Connect = getConnectionString();
     
     public static Connection getConnectionString()
     {
@@ -27,6 +27,7 @@ public class DBConfig {
         }
         catch(Exception err)
         {
+            System.out.println(err.getMessage());
             return null;
         } 
     }

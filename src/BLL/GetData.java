@@ -94,6 +94,12 @@ public class GetData {
         return da.QueryTable();
     } 
     
+    public ArrayList showSessionCurrentBlocking()
+    {
+        DataAccess da = new DataAccess("Select SID, SERIAL#, USERNAME, STATUS, OSUSER, MACHINE, PORT, PROGRAM, PREV_EXEC_START  from v$session WHERE sid IN (SELECT blocking_session FROM v$session)");
+        return da.QueryTable();
+    } 
+    
     //hiển thị thông tin các Session hiện hành
     public ArrayList showProcessOfSession()
     {
@@ -156,17 +162,22 @@ public class GetData {
     
      public ArrayList getTableName()
     {
-        //DataAccess da = new DataAccess("select distinct table_name from dba_tables where table_name='KHACHHANG' or table_name='HOADON' or table_name='CHITIETHOADON' or table_name='KHUYENMAI' or table_name='THUCDON' or table_name='PHANLOAI'");
+        try{
+            //DataAccess da = new DataAccess("select distinct table_name from dba_tables where table_name='KHACHHANG' or table_name='HOADON' or table_name='CHITIETHOADON' or table_name='KHUYENMAI' or table_name='THUCDON' or table_name='PHANLOAI'");
  
-        DataAccess da = new DataAccess("select table_name from DBA_TABLES where owner = 'DATACAPHE'");
+            DataAccess da = new DataAccess("select table_name from DBA_TABLES where owner = 'DATACAPHE'");
 
-        Object[][] t = da.QueryContentTable();
-        ArrayList<String> arr=new ArrayList<String>();
-        for(int i =0;i<t.length; i++)
-        {
-            arr.add(t[i][0].toString());
+            Object[][] t = da.QueryContentTable();
+            ArrayList<String> arr=new ArrayList<String>();
+            for(int i =0;i<t.length; i++)
+            {
+                arr.add(t[i][0].toString());
+            }
+            return arr;
         }
-        return arr;
+        catch(Exception err)
+        {}
+        return null;
     }
     
     public ArrayList getObjectSchema()
@@ -245,5 +256,26 @@ public class GetData {
     public Object[][] getAllDirectory(){
         DataAccess da = new DataAccess("select * from DBA_DIRECTORIES");
         return da.QueryContentTable();
+    }
+    
+    
+    //<editor-fold defaultstate="collapsed" desc="Backup and restore">
+    public ArrayList getAllDatafileForBackupInfo(){
+        DataAccess da = new DataAccess("SELECT file#, name FROM v$datafile");
+        return da.QueryTable ();
+    }
+    //</editor-fold>
+    
+    
+    //get data ThucDon
+    public ArrayList getDataThucDon() {
+        DataAccess da = new DataAccess(String.format("SELECT MAMON,TENMON,KICHCO, GIA,TRANGTHAI, HINHANH FROM datacaphe.THUCDON"));
+        return da.QueryTable();
+    }
+    
+    //get data khachhang
+    public ArrayList getDataKhachHang() {
+        DataAccess da = new DataAccess(String.format("SELECT * from datacaphe.KHACHHANG"));
+        return da.QueryTable();
     }
 }

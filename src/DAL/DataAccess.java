@@ -3,10 +3,12 @@ package DAL;
 import java.sql.*;
 import javax.swing.JOptionPane;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class DataAccess {
     
-    private static Connection conn = DBConfig.Connect;
+    public static Connection conn = DBConfig.Connect;
     private static Statement st = getStatement();
     private ResultSet rs = null;
 
@@ -139,5 +141,18 @@ public class DataAccess {
             System.out.println("Err DataAccess " + err.getMessage());
         }
         return null; 
+    }
+    
+    public static void CallSql(String sql){
+        try {
+            String command = "{call "+sql+" }";
+            CallableStatement cstmt = conn.prepareCall(command);
+            cstmt.execute();
+            cstmt.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(DataAccess.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+
     }
 }

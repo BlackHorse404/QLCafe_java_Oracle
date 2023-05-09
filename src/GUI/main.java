@@ -10,8 +10,5 @@ public class main {
     public static void main(String args[]) {
         Login t = new Login();
         t.showLogin();
-        
-        //ExecuteCMD.runCommand("echo hi");
-        
     }
 }

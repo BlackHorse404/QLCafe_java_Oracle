@@ -55,4 +55,10 @@ public class ExecuteData {
         String temp = String.format("create user %s identified by %s",user,pass);
         return DataAccess.ResultOfExecuteSql(temp);
     }
+    
+    public static boolean deleteKH(String MaKH)
+    {
+        String temp = String.format("execute xoaKhachHang('%s')",MaKH);
+        return DataAccess.ResultOfExecuteSql(temp);
+    }
 }

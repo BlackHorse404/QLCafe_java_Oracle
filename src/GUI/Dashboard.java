@@ -5,6 +5,8 @@ import java.awt.Color;
 import javax.swing.JComponent;
 import BLL.GetData;
 import GUI.Dashboard;
+import GUI.KhachHangGUI.KhachHang;
+import GUI.SanPhamGUI.SanPham;
 import java.io.File;
 import java.sql.*;
 import java.io.IOException;
@@ -41,6 +43,14 @@ public class Dashboard extends javax.swing.JFrame {
                 if (index == 0) {
                     setForm(new StartForm());
                 } 
+                else if (index == 1)
+                {
+                    setForm(new SanPham());
+                }
+                else if (index == 4)
+                {
+                    setForm(new KhachHang());
+                }
                 else if (index == 5) {
                     setForm(new SystemForm());
                 }

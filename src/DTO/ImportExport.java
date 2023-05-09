@@ -13,7 +13,7 @@ import java.io.File;
 public class ImportExport {
     public static boolean ExportDataPump(String command){
         try{
-            ExecuteCMD.runCommand(command);
+            ExecuteCMD.runCommand(command, false);
         }
         catch(Exception err){
             return false;
@@ -33,7 +33,7 @@ public class ImportExport {
                     "select * from "+tableName+";\n" +
                     "SPOOL off\n" + "exit");
             
-            ExecuteCMD.runCommand("sql datacaphe/datacaphe@localhost/caphe @"+scriptPath);
+            ExecuteCMD.runCommand("sql datacaphe/datacaphe@localhost/caphe @"+scriptPath, false);
         }
         catch(Exception err){
             return false;
@@ -52,7 +52,7 @@ public class ImportExport {
                     "LOAD "+tableName+" "+path+"\n " +
                     "exit");
             
-            ExecuteCMD.runCommand("sql datacaphes/datacaphe@localhost/caphe @"+scriptPath);
+            ExecuteCMD.runCommand("sql datacaphes/datacaphe@localhost/caphe @"+scriptPath, false);
         }
         catch(Exception err){
             return false;

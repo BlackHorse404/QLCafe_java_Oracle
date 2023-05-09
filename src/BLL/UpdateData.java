@@ -14,8 +14,10 @@ public class UpdateData {
      private DataAccess da;
      private String user;
     public UpdateData() {
-        da = new DataAccess ("select distinct owner from DBA_TABLES where owner like (select owner from DBA_TABLES where table_name ='HOADON')");
-        user = da.returnValue ().toString ();      
+        try{
+            da = new DataAccess ("select distinct owner from DBA_TABLES where owner like (select owner from DBA_TABLES where table_name ='HOADON')");
+            user = da.returnValue ().toString ();      
+        }catch(Exception err){}
     }
     // <editor-fold defaultstate="collapsed" desc="Tablespace">  
     //Tạo tablespace

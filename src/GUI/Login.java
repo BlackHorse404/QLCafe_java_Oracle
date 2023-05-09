@@ -226,6 +226,7 @@ public class Login extends javax.swing.JFrame {
         DBConfig.username = user;
         DBConfig.password = pass;
         Connection conn = DBConfig.getConnectionString();
+        DBConfig.testgetConnect();
         try{
             DBConfig.Connect = conn;
             conn.createStatement();
@@ -242,6 +243,7 @@ public class Login extends javax.swing.JFrame {
         catch(Exception err){
             JOptionPane.showMessageDialog(this, "Đăng nhập thất bại !","Lỗi Đăng Nhập",JOptionPane.ERROR_MESSAGE);
             this.setVisible(true);
+            System.out.println(err.getMessage());
             return false;
         }
     }

@@ -12,6 +12,7 @@ import BLL.GetData;
 import BLL.UpdateData;
 import DTO.ImportExport;
 import GUI.UserUI.CreateUser;
+import Ultilities.CMD.ExecuteCMD;
 import Ultilities.ConvertData.ConvertDataORCL;
 import Ultilities.swing.Controls.ButtonColumn;
 import java.awt.Component;
@@ -33,6 +34,7 @@ import javax.swing.JTable;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
+import Ultilities.swing.AlertBox;
 
 /**
  *
@@ -50,29 +52,10 @@ public class SystemForm extends javax.swing.JPanel {
     ArrayList tableName = x.getTableName();
     String statement;
     
+    
     @SuppressWarnings("unchecked")
     public SystemForm() {
-        initComponents();
-
-        comboBoxSuggestion.addItem("SGA");
-        comboBoxSuggestion.addItem("PGA");
-        comboBoxSuggestion.addItem("Process");
-        comboBoxSuggestion.addItem("ControlFile");
-        comboBoxSuggestion.addItem("Instance");
-        comboBoxSuggestion.addItem("SessionProcess");
-        comboBoxSuggestion.addItem("SPFile");
-        comboBoxSuggestion.addItem("DataFile");
-        comboBoxSuggestion.addItem("Database");
-        comboBoxSuggestion.addItem("Policy Is Valid");
-                       
-        showDataOnTable(table1,x.showSGA());
-        LoadComboBoxObjectName();
-        showDataOnTable(table2,x.getDataRole ());
-        flag = false;
-        lbl_Pass.setVisible (flag);
-        txt_Pass.setVisible (flag);
-        cbo_objectname.setSelectedIndex (0);
-        
+        initComponents();        
     }
 
     public void showDataOnTable(Ultilities.swing.Controls.Table table,ArrayList arr)
@@ -83,6 +66,7 @@ public class SystemForm extends javax.swing.JPanel {
         model.setDataVector(data, columnNames);
         countRecord.setText("Số dòng: "+data.length);
     }
+    
     public void showDataOnTable_1(Ultilities.swing.Controls.Table table , ArrayList arr)
     {
         DefaultTableModel model = (DefaultTableModel)table.getModel();
@@ -95,6 +79,158 @@ public class SystemForm extends javax.swing.JPanel {
     }
     
     
+    //tab 2 - manager session
+    Action kill = new AbstractAction()
+    {
+        public void actionPerformed(ActionEvent e)
+        {
+            //remove row
+            JTable table = (JTable)e.getSource();
+            int indexRow = Integer.valueOf( e.getActionCommand() );
+            
+            String SID = table.getValueAt(indexRow, 0).toString();
+            String SerialID = table.getValueAt(indexRow, 1).toString();
+            if(ExecuteData.ExecuteSql(SID, SerialID))
+            {
+                JOptionPane.showMessageDialog(table, "Kill session thành công !","Thông Báo",JOptionPane.INFORMATION_MESSAGE);
+                ((DefaultTableModel)table.getModel()).removeRow(indexRow);
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(table, "Kill session thất bại !","Thông Báo",JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    };
+    
+    private void loadpriv()
+    {
+        try
+        {
+            for(Component com : Panel2.getComponents ())
+            {
+                    if(com instanceof JCheckBox)
+                    {
+                        JCheckBox box = (JCheckBox)com;
+                        box.setSelected (false);
+                    }
+            }
+            int row = table2.getSelectedRow ();
+            String tablename =cbo_objectname.getSelectedItem ().toString ();
+            String role = table2.getValueAt (row,0).toString ();
+            ArrayList arr = x.getPrivRole (role,tablename);
+            if(arr.size () ==0)
+            {
+                for(Component com : Panel2.getComponents ())
+                {
+                    if(com instanceof JCheckBox)
+                    {
+                        JCheckBox box = (JCheckBox)com; 
+                        box.setSelected (false);
+                    }
+                }
+            }
+            else
+            {
+                for(int i = 0; i<arr.size ();i++)
+                {
+                    String priv = arr.get (i).toString ();
+                        for(Component com : Panel2.getComponents ())
+                    {
+                        if(com instanceof JCheckBox)
+                        {
+                            JCheckBox box = (JCheckBox)com;
+
+                            String ckbselect = box.getText ();
+                            if(priv.compareTo (ckbselect) ==0)
+                            {
+                                box.setSelected (true);
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+            
+        
+        }
+        catch(Exception ex)
+        {
+                
+        }
+    }    
+    
+    private void LoadComboBoxObjectName()
+    {
+        for(var e:tableName)
+        {
+            cboObjectName.addItem(e.toString());
+            cbo_objectname.addItem (e.toString ());
+        }
+    }
+    
+    
+    //tab profile
+    public void loadDataProfile(){
+        //load combobox list name profile
+        cb_ListProfile.removeAllItems();
+        Object[][] nameProfiles = x.getAllProfileName();
+        int n = nameProfiles.length;
+        for(int i =0;i<n;i++)
+        {
+            cb_ListProfile.addItem(nameProfiles[i][0].toString());
+        }
+        lb_slProfile.setText("Số Lượng Profile: "+n);
+    }
+    
+    
+    public void loadUserData(){
+        ArrayList temp = x.getAllUserAndProfile();
+        DefaultTableModel model = (DefaultTableModel)table_User.getModel();
+        String arr[][] = ConvertDataORCL.ConvertObject2DToString2D((Object[][])temp.get(1));
+        model.setDataVector(arr, (Object[])temp.get(0));
+        model.addColumn("");
+        ButtonColumn btnCol = new ButtonColumn(table_User, EditUser, arr[0].length,"edit");
+        lb_slUser.setText("Số Lượng User: "+arr.length);
+    }
+    
+    EditUser editUserForm = null;
+    Action EditUser = new AbstractAction()
+    {
+        public void actionPerformed(ActionEvent e)
+        {
+            //remove row
+            JTable table = (JTable)e.getSource();
+            int indexRow = Integer.valueOf( e.getActionCommand() );
+            
+            String user = table.getValueAt(indexRow, 1).toString();
+            if(editUserForm == null)
+                editUserForm = new EditUser();
+            
+            editUserForm.user = user;
+            editUserForm.root = SystemForm.this;
+            editUserForm.setVisible(true);
+            
+        }
+    };
+    
+    private void loadCombobox_IETable(){
+        ArrayList t = x.getTableName();
+        cb_TableName_IE.removeAllItems();
+        t.forEach((e) -> cb_TableName_IE.addItem(e));
+        cb_TableName_IE.addItem("All");
+    }
+    
+    // =========================
+    // backup and restore
+    // =========================
+    
+    private void loadTableDataFileOfBackupRestore(){
+        DefaultTableModel model = (DefaultTableModel)table_dataFile.getModel();
+        ArrayList temp = x.getAllDatafileForBackupInfo();
+        Object[] header = (Object[])temp.get(0);
+        Object[][] data = (Object[][])temp.get(1);
+        model.setDataVector(data, header);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -104,7 +240,8 @@ public class SystemForm extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        grRadio_Type = new javax.swing.ButtonGroup();
+        grRadio_Backup = new javax.swing.ButtonGroup();
+        grRadio_Recover = new javax.swing.ButtonGroup();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         TTHT = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
@@ -121,6 +258,7 @@ public class SystemForm extends javax.swing.JPanel {
         table_tab2 = new Ultilities.swing.Controls.Table();
         numRecord_tab2 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
+        chkBox_blockingUser = new javax.swing.JCheckBox();
         AUDIT = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -197,18 +335,37 @@ public class SystemForm extends javax.swing.JPanel {
         jPanel3 = new javax.swing.JPanel();
         btn_import = new Ultilities.swing.Controls.buttonCustom();
         btn_Export = new Ultilities.swing.Controls.buttonCustom();
+        Backup_Restore = new javax.swing.JPanel();
+        jPanel15 = new javax.swing.JPanel();
+        lb_slProfile5 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        rad_bkFull = new javax.swing.JRadioButton();
+        rad_bkFullArchivelog = new javax.swing.JRadioButton();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        table_dataFile = new Ultilities.swing.Controls.Table();
+        jScrollPane9 = new javax.swing.JScrollPane();
+        cmdScreen = new javax.swing.JTextArea();
+        jPanel7 = new javax.swing.JPanel();
+        btn_LoadListBackup = new Ultilities.swing.Controls.buttonCustom();
+        btn_showAllDataFileBKRS = new Ultilities.swing.Controls.buttonCustom();
+        btnClearCMD = new Ultilities.swing.Controls.buttonCustom();
+        chk_compressBK = new javax.swing.JCheckBox();
+        jPanel4 = new javax.swing.JPanel();
+        jPanel5 = new javax.swing.JPanel();
+        btn_backup = new Ultilities.swing.Controls.buttonCustom();
+        btn_recovery = new Ultilities.swing.Controls.buttonCustom();
 
         jTabbedPane1.setBackground(new java.awt.Color(255, 255, 255));
         jTabbedPane1.setToolTipText("");
         jTabbedPane1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jTabbedPane1.setVerifyInputWhenFocusTarget(false);
-        jTabbedPane1.addComponentListener(new java.awt.event.ComponentAdapter() {
-            public void componentShown(java.awt.event.ComponentEvent evt) {
-                jTabbedPane1ComponentShown(evt);
-            }
-        });
 
         TTHT.setBackground(new java.awt.Color(255, 255, 255));
+        TTHT.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                TTHTComponentShown(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -276,9 +433,9 @@ public class SystemForm extends javax.swing.JPanel {
         TTHTLayout.setHorizontalGroup(
             TTHTLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, TTHTLayout.createSequentialGroup()
-                .addContainerGap(28, Short.MAX_VALUE)
+                .addContainerGap(29, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
             .addGroup(TTHTLayout.createSequentialGroup()
                 .addGap(26, 26, 26)
                 .addComponent(buttonGradient1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -292,7 +449,7 @@ public class SystemForm extends javax.swing.JPanel {
             .addGroup(TTHTLayout.createSequentialGroup()
                 .addGap(38, 38, 38)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
                 .addGroup(TTHTLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonGradient1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(countRecord, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -301,7 +458,7 @@ public class SystemForm extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        jTabbedPane1.addTab("Thông tin hệ thống", TTHT);
+        jTabbedPane1.addTab("System Info", TTHT);
 
         SESSION.setBackground(new java.awt.Color(255, 255, 255));
         SESSION.addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -347,7 +504,7 @@ public class SystemForm extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        table_tab2.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        table_tab2.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
         jScrollPane2.setViewportView(table_tab2);
 
         numRecord_tab2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -357,6 +514,15 @@ public class SystemForm extends javax.swing.JPanel {
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel10.setText("QUẢN LÝ SESSION CỦA CÁC USER");
 
+        chkBox_blockingUser.setBackground(new java.awt.Color(255, 255, 255));
+        chkBox_blockingUser.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        chkBox_blockingUser.setText("Blocking Session");
+        chkBox_blockingUser.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                chkBox_blockingUserItemStateChanged(evt);
+            }
+        });
+
         javax.swing.GroupLayout SESSIONLayout = new javax.swing.GroupLayout(SESSION);
         SESSION.setLayout(SESSIONLayout);
         SESSIONLayout.setHorizontalGroup(
@@ -365,7 +531,9 @@ public class SystemForm extends javax.swing.JPanel {
             .addGroup(SESSIONLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(numRecord_tab2, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 338, Short.MAX_VALUE)
+                .addGap(74, 74, 74)
+                .addComponent(chkBox_blockingUser)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 135, Short.MAX_VALUE)
                 .addComponent(btnDemo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -376,17 +544,18 @@ public class SystemForm extends javax.swing.JPanel {
             SESSIONLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, SESSIONLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
-                .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE)
+                .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(SESSIONLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnDemo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(numRecord_tab2))
+                    .addComponent(numRecord_tab2)
+                    .addComponent(chkBox_blockingUser))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jTabbedPane1.addTab("Quản lý session", SESSION);
+        jTabbedPane1.addTab("QL Session", SESSION);
 
         AUDIT.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -478,7 +647,7 @@ public class SystemForm extends javax.swing.JPanel {
                         .addComponent(btnCreateAuditPolicy, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(51, 51, 51)
                         .addComponent(btn_showaudit, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(135, Short.MAX_VALUE))
+                .addContainerGap(155, Short.MAX_VALUE))
         );
         AUDITLayout.setVerticalGroup(
             AUDITLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -513,10 +682,10 @@ public class SystemForm extends javax.swing.JPanel {
                 .addGroup(AUDITLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_showaudit, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCreateAuditPolicy, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(224, Short.MAX_VALUE))
+                .addContainerGap(215, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Quản Lý Audit", AUDIT);
+        jTabbedPane1.addTab("QL Audit", AUDIT);
 
         QL_ROLE.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -666,7 +835,7 @@ public class SystemForm extends javax.swing.JPanel {
                 .addGap(15, 15, 15))
         );
 
-        jTabbedPane1.addTab("Quản lý role", QL_ROLE);
+        jTabbedPane1.addTab("QL Role", QL_ROLE);
 
         Control_ROLE.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -785,7 +954,7 @@ public class SystemForm extends javax.swing.JPanel {
                 .addComponent(jLabel8)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(306, Short.MAX_VALUE))
+                .addContainerGap(297, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Role", Control_ROLE);
@@ -799,6 +968,7 @@ public class SystemForm extends javax.swing.JPanel {
 
         jPanel10.setBackground(new java.awt.Color(255, 255, 255));
 
+        jPanel11.setBackground(new java.awt.Color(255, 255, 255));
         jPanel11.setLayout(new java.awt.GridLayout(1, 3, 5, 0));
 
         btn_TaoMoi.setForeground(new java.awt.Color(0, 0, 0));
@@ -906,9 +1076,9 @@ public class SystemForm extends javax.swing.JPanel {
                 .addComponent(lb_slProfile)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(5, 5, 5))
         );
 
         javax.swing.GroupLayout PROFILELayout = new javax.swing.GroupLayout(PROFILE);
@@ -1006,7 +1176,7 @@ public class SystemForm extends javax.swing.JPanel {
                 .addComponent(lb_slProfile3)
                 .addGap(18, 18, 18)
                 .addComponent(lb_slUser)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1052,12 +1222,12 @@ public class SystemForm extends javax.swing.JPanel {
         });
 
         rad_sqlcl.setBackground(new java.awt.Color(255, 255, 255));
-        grRadio_Type.add(rad_sqlcl);
+        grRadio_Backup.add(rad_sqlcl);
         rad_sqlcl.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         rad_sqlcl.setText("SQLCL");
 
         rad_datapump.setBackground(new java.awt.Color(255, 255, 255));
-        grRadio_Type.add(rad_datapump);
+        grRadio_Backup.add(rad_datapump);
         rad_datapump.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         rad_datapump.setText("DATAPUMP");
         rad_datapump.addItemListener(new java.awt.event.ItemListener() {
@@ -1072,7 +1242,6 @@ public class SystemForm extends javax.swing.JPanel {
         txt_pathFile.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         btn_browse.setBackground(new java.awt.Color(102, 153, 255));
-        btn_browse.setForeground(new java.awt.Color(0, 0, 0));
         btn_browse.setText("browse");
         btn_browse.setBorderColor(new java.awt.Color(102, 153, 255));
         btn_browse.setColor(new java.awt.Color(102, 153, 255));
@@ -1144,6 +1313,8 @@ public class SystemForm extends javax.swing.JPanel {
                 .addGap(0, 2, Short.MAX_VALUE))
         );
 
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+
         table_ImEx.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -1157,8 +1328,9 @@ public class SystemForm extends javax.swing.JPanel {
         ));
         jScrollPane6.setViewportView(table_ImEx);
 
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+
         btn_import.setBackground(new java.awt.Color(102, 255, 153));
-        btn_import.setForeground(new java.awt.Color(0, 0, 0));
         btn_import.setText("IMPORT");
         btn_import.setBorderColor(new java.awt.Color(255, 255, 255));
         btn_import.setColor(new java.awt.Color(102, 255, 153));
@@ -1170,7 +1342,6 @@ public class SystemForm extends javax.swing.JPanel {
         });
 
         btn_Export.setBackground(new java.awt.Color(102, 204, 255));
-        btn_Export.setForeground(new java.awt.Color(0, 0, 0));
         btn_Export.setText("EXPORT");
         btn_Export.setBorderColor(new java.awt.Color(102, 255, 255));
         btn_Export.setColor(new java.awt.Color(102, 204, 255));
@@ -1242,6 +1413,264 @@ public class SystemForm extends javax.swing.JPanel {
         );
 
         jTabbedPane1.addTab("Import/Export", import_export);
+
+        Backup_Restore.setBackground(new java.awt.Color(255, 255, 255));
+        Backup_Restore.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                Backup_RestoreComponentShown(evt);
+            }
+        });
+
+        jPanel15.setBackground(new java.awt.Color(255, 255, 255));
+
+        lb_slProfile5.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lb_slProfile5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lb_slProfile5.setText("BACKUP & RESTORE");
+        lb_slProfile5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel12.setText("Chế Độ Backup");
+
+        rad_bkFull.setBackground(new java.awt.Color(255, 255, 255));
+        grRadio_Backup.add(rad_bkFull);
+        rad_bkFull.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        rad_bkFull.setText("FULL");
+
+        rad_bkFullArchivelog.setBackground(new java.awt.Color(255, 255, 255));
+        grRadio_Backup.add(rad_bkFullArchivelog);
+        rad_bkFullArchivelog.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        rad_bkFullArchivelog.setText("FULL WITH ARCHIVELOG");
+
+        table_dataFile.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane7.setViewportView(table_dataFile);
+
+        cmdScreen.setEditable(false);
+        cmdScreen.setBackground(new java.awt.Color(0, 0, 0));
+        cmdScreen.setColumns(20);
+        cmdScreen.setForeground(new java.awt.Color(51, 255, 51));
+        cmdScreen.setRows(5);
+        cmdScreen.setDisabledTextColor(new java.awt.Color(0, 0, 0));
+        cmdScreen.setRequestFocusEnabled(false);
+        jScrollPane9.setViewportView(cmdScreen);
+
+        jPanel7.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Controls"));
+
+        btn_LoadListBackup.setText("Load List Backup");
+        btn_LoadListBackup.setBorderColor(new java.awt.Color(255, 255, 204));
+        btn_LoadListBackup.setBorderPainted(false);
+        btn_LoadListBackup.setColor(new java.awt.Color(255, 255, 153));
+        btn_LoadListBackup.setColorClick(new java.awt.Color(255, 255, 204));
+        btn_LoadListBackup.setColorOver(new java.awt.Color(255, 255, 204));
+        btn_LoadListBackup.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btn_LoadListBackup.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_LoadListBackupActionPerformed(evt);
+            }
+        });
+
+        btn_showAllDataFileBKRS.setText("Show All Datafile");
+        btn_showAllDataFileBKRS.setBorderColor(new java.awt.Color(255, 255, 204));
+        btn_showAllDataFileBKRS.setBorderPainted(false);
+        btn_showAllDataFileBKRS.setColor(new java.awt.Color(255, 255, 153));
+        btn_showAllDataFileBKRS.setColorClick(new java.awt.Color(255, 255, 204));
+        btn_showAllDataFileBKRS.setColorOver(new java.awt.Color(255, 255, 204));
+        btn_showAllDataFileBKRS.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btn_showAllDataFileBKRS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_showAllDataFileBKRSActionPerformed(evt);
+            }
+        });
+
+        btnClearCMD.setForeground(new java.awt.Color(255, 255, 255));
+        btnClearCMD.setText("Clear CMD");
+        btnClearCMD.setBorderColor(new java.awt.Color(255, 153, 153));
+        btnClearCMD.setBorderPainted(false);
+        btnClearCMD.setColor(new java.awt.Color(255, 102, 102));
+        btnClearCMD.setColorClick(new java.awt.Color(255, 153, 153));
+        btnClearCMD.setColorOver(new java.awt.Color(255, 153, 153));
+        btnClearCMD.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnClearCMD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClearCMDActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnClearCMD, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn_showAllDataFileBKRS, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
+                    .addComponent(btn_LoadListBackup, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addComponent(btn_LoadListBackup, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btn_showAllDataFileBKRS, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnClearCMD, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        chk_compressBK.setBackground(new java.awt.Color(255, 255, 255));
+        chk_compressBK.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        chk_compressBK.setText("Compress");
+
+        javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
+        jPanel15.setLayout(jPanel15Layout);
+        jPanel15Layout.setHorizontalGroup(
+            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel15Layout.createSequentialGroup()
+                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel15Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane7))
+                    .addGroup(jPanel15Layout.createSequentialGroup()
+                        .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel15Layout.createSequentialGroup()
+                                .addComponent(lb_slProfile5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(112, 112, 112))
+                            .addGroup(jPanel15Layout.createSequentialGroup()
+                                .addGap(28, 28, 28)
+                                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(45, 45, 45)
+                                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(chk_compressBK)
+                                    .addGroup(jPanel15Layout.createSequentialGroup()
+                                        .addComponent(rad_bkFull, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(54, 54, 54)
+                                        .addComponent(rad_bkFullArchivelog, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(6, 6, 6))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel15Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane9)
+                .addContainerGap())
+        );
+        jPanel15Layout.setVerticalGroup(
+            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel15Layout.createSequentialGroup()
+                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel15Layout.createSequentialGroup()
+                        .addComponent(lb_slProfile5, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(rad_bkFull)
+                            .addComponent(rad_bkFullArchivelog))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(chk_compressBK))
+                    .addGroup(jPanel15Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jPanel5.setBackground(new java.awt.Color(255, 255, 255));
+
+        btn_backup.setBackground(new java.awt.Color(102, 255, 153));
+        btn_backup.setText("BACKUP");
+        btn_backup.setBorderColor(new java.awt.Color(255, 255, 255));
+        btn_backup.setColor(new java.awt.Color(102, 255, 153));
+        btn_backup.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btn_backup.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_backupActionPerformed(evt);
+            }
+        });
+
+        btn_recovery.setBackground(new java.awt.Color(102, 204, 255));
+        btn_recovery.setText("RECOVERY");
+        btn_recovery.setBorderColor(new java.awt.Color(102, 255, 255));
+        btn_recovery.setColor(new java.awt.Color(102, 204, 255));
+        btn_recovery.setColorClick(new java.awt.Color(153, 204, 255));
+        btn_recovery.setColorOver(new java.awt.Color(204, 255, 255));
+        btn_recovery.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btn_recovery.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_recoveryActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(129, 129, 129)
+                .addComponent(btn_backup, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 175, Short.MAX_VALUE)
+                .addComponent(btn_recovery, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(92, 92, 92))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(btn_backup, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_recovery, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        javax.swing.GroupLayout Backup_RestoreLayout = new javax.swing.GroupLayout(Backup_Restore);
+        Backup_Restore.setLayout(Backup_RestoreLayout);
+        Backup_RestoreLayout.setHorizontalGroup(
+            Backup_RestoreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Backup_RestoreLayout.createSequentialGroup()
+                .addGroup(Backup_RestoreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        Backup_RestoreLayout.setVerticalGroup(
+            Backup_RestoreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Backup_RestoreLayout.createSequentialGroup()
+                .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, 504, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(Backup_RestoreLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(Backup_RestoreLayout.createSequentialGroup()
+                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))))
+        );
+
+        jTabbedPane1.addTab("Backup/Restore", Backup_Restore);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -1458,7 +1887,6 @@ public class SystemForm extends javax.swing.JPanel {
             System.out.println(e.getMessage());
         }
     }//GEN-LAST:event_btnCreateAuditPolicyActionPerformed
-
     // tab 3
     private void cboObjectNameItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboObjectNameItemStateChanged
         // TODO add your handling code here:
@@ -1470,8 +1898,9 @@ public class SystemForm extends javax.swing.JPanel {
     }//GEN-LAST:event_btnDemoActionPerformed
 
     private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
-        showDataOnTable(table_tab2, x.showSessionCurrent());
+        showDataOnTable_1(table_tab2, x.showSessionCurrent());
         numRecord_tab2.setText("Số lượng Session: "+table_tab2.getRowCount());
+        chkBox_blockingUser.setSelected(false);
     }//GEN-LAST:event_btnRefreshActionPerformed
 
     private void buttonGradient1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGradient1ActionPerformed
@@ -1514,20 +1943,6 @@ public class SystemForm extends javax.swing.JPanel {
             break;
         }
     }//GEN-LAST:event_comboBoxSuggestionItemStateChanged
-
-    //tab profile
-    
-    public void loadDataProfile(){
-        //load combobox list name profile
-        cb_ListProfile.removeAllItems();
-        Object[][] nameProfiles = x.getAllProfileName();
-        int n = nameProfiles.length;
-        for(int i =0;i<n;i++)
-        {
-            cb_ListProfile.addItem(nameProfiles[i][0].toString());
-        }
-        lb_slProfile.setText("Số Lượng Profile: "+n);
-    }
     
     private void btn_XoaProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_XoaProfileActionPerformed
         String nameProfile = cb_ListProfile.getSelectedItem().toString();
@@ -1556,7 +1971,7 @@ public class SystemForm extends javax.swing.JPanel {
     }//GEN-LAST:event_btn_CapNhatActionPerformed
 
     private void SESSIONComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_SESSIONComponentShown
-        showDataOnTable(table_tab2, x.showSessionCurrent());
+        showDataOnTable_1(table_tab2, x.showSessionCurrent());
         numRecord_tab2.setText("Số lượng Session: "+table_tab2.getRowCount());
     }//GEN-LAST:event_SESSIONComponentShown
 
@@ -1583,37 +1998,7 @@ public class SystemForm extends javax.swing.JPanel {
             else
                 JOptionPane.showMessageDialog(this, "Xóa User '"+ user +"' thất bại !");
     }//GEN-LAST:event_btn_RemoveUserActionPerformed
-    
-    EditUser editUserForm = null;
-    Action EditUser = new AbstractAction()
-    {
-        public void actionPerformed(ActionEvent e)
-        {
-            //remove row
-            JTable table = (JTable)e.getSource();
-            int indexRow = Integer.valueOf( e.getActionCommand() );
-            
-            String user = table.getValueAt(indexRow, 1).toString();
-            if(editUserForm == null)
-                editUserForm = new EditUser();
-            
-            editUserForm.user = user;
-            editUserForm.root = SystemForm.this;
-            editUserForm.setVisible(true);
-            
-        }
-    };
-    
-    public void loadUserData(){
-        ArrayList temp = x.getAllUserAndProfile();
-        DefaultTableModel model = (DefaultTableModel)table_User.getModel();
-        String arr[][] = ConvertDataORCL.ConvertObject2DToString2D((Object[][])temp.get(1));
-        model.setDataVector(arr, (Object[])temp.get(0));
-        model.addColumn("");
-        ButtonColumn btnCol = new ButtonColumn(table_User, EditUser, arr[0].length,"edit");
-        lb_slUser.setText("Số Lượng User: "+arr.length);
-    }
-    
+
     private void USERComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_USERComponentShown
         loadUserData();
     }//GEN-LAST:event_USERComponentShown
@@ -1636,14 +2021,7 @@ public class SystemForm extends javax.swing.JPanel {
             cb_Dir.addItem(AllDir[i][1].toString());
         }
     }//GEN-LAST:event_import_exportComponentShown
-
-    private void loadCombobox_IETable(){
-        ArrayList t = x.getTableName();
-        cb_TableName_IE.removeAllItems();
-        t.forEach((e) -> cb_TableName_IE.addItem(e));
-        cb_TableName_IE.addItem("All");
-    }
-    
+   
     private void btn_ExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ExportActionPerformed
         String tableName = cb_TableName_IE.getSelectedItem().toString();
         
@@ -1730,10 +2108,6 @@ public class SystemForm extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_rad_datapumpItemStateChanged
 
-    private void jTabbedPane1ComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jTabbedPane1ComponentShown
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTabbedPane1ComponentShown
-
     private void cb_DirItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cb_DirItemStateChanged
         int index=cb_Dir.getSelectedIndex();
         txt_pathFile.setText(AllDir[index][2].toString());
@@ -1764,100 +2138,142 @@ public class SystemForm extends javax.swing.JPanel {
             }
     }//GEN-LAST:event_btn_importActionPerformed
 
-    //tab 2 - manager session
-    
-    Action kill = new AbstractAction()
-    {
-        public void actionPerformed(ActionEvent e)
-        {
-            //remove row
-            JTable table = (JTable)e.getSource();
-            int indexRow = Integer.valueOf( e.getActionCommand() );
-            
-            String SID = table.getValueAt(indexRow, 0).toString();
-            String SerialID = table.getValueAt(indexRow, 1).toString();
-            if(ExecuteData.ExecuteSql(SID, SerialID))
-            {
-                JOptionPane.showMessageDialog(table, "Kill session thành công !","Thông Báo",JOptionPane.INFORMATION_MESSAGE);
-                ((DefaultTableModel)table.getModel()).removeRow(indexRow);
-            }
-            else
-            {
-                JOptionPane.showMessageDialog(table, "Kill session thất bại !","Thông Báo",JOptionPane.ERROR_MESSAGE);
-            }
-        }
-    };
-    
-    private void loadpriv()
-    {
-        try
-        {
-             for(Component com : Panel2.getComponents ())
-             {
-                    if(com instanceof JCheckBox)
-                    {
-                        JCheckBox box = (JCheckBox)com;
-                           box.setSelected (false);
-
-                    }
-            }
-            int row = table2.getSelectedRow ();
-            String tablename =cbo_objectname.getSelectedItem ().toString ();
-            String role = table2.getValueAt (row,0).toString ();
-            ArrayList arr = x.getPrivRole (role,tablename);
-            if(arr.size () ==0)
-            {
-                 for(Component com : Panel2.getComponents ())
-                {
-                    if(com instanceof JCheckBox)
-                    {
-                        JCheckBox box = (JCheckBox)com; 
-                        box.setSelected (false);
-                    }
-                }
-            }
-            else
-            {
-                for(int i = 0; i<arr.size ();i++)
-               {
-                   String priv = arr.get (i).toString ();
-                    for(Component com : Panel2.getComponents ())
-                   {
-                       if(com instanceof JCheckBox)
-                       {
-                           JCheckBox box = (JCheckBox)com;
-
-                           String ckbselect = box.getText ();
-                           if(priv.compareTo (ckbselect) ==0)
-                           {
-                               box.setSelected (true);
-                               break;
-                           }
-                       }
-                   }
-
-               }
-            }
-            
+    private void Backup_RestoreComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_Backup_RestoreComponentShown
+        rad_bkFull.setSelected(true);
         
-        }
-        catch(Exception ex)
-        {
-                
-        }
-    }    
+        loadTableDataFileOfBackupRestore();
+    }//GEN-LAST:event_Backup_RestoreComponentShown
     
-    private void LoadComboBoxObjectName()
-    {
-        for(var e:tableName)
+    @SuppressWarnings("unchecked")
+    private void TTHTComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_TTHTComponentShown
+        comboBoxSuggestion.addItem("SGA");
+        comboBoxSuggestion.addItem("PGA");
+        comboBoxSuggestion.addItem("Process");
+        comboBoxSuggestion.addItem("ControlFile");
+        comboBoxSuggestion.addItem("Instance");
+        comboBoxSuggestion.addItem("SessionProcess");
+        comboBoxSuggestion.addItem("SPFile");
+        comboBoxSuggestion.addItem("DataFile");
+        comboBoxSuggestion.addItem("Database");
+        comboBoxSuggestion.addItem("Policy Is Valid");
+
+        showDataOnTable(table1,x.showSGA());
+        LoadComboBoxObjectName();
+        showDataOnTable(table2,x.getDataRole ());
+        flag = false;
+        lbl_Pass.setVisible (flag);
+        txt_Pass.setVisible (flag);
+        cbo_objectname.setSelectedIndex (0);
+    }//GEN-LAST:event_TTHTComponentShown
+
+    private void btn_backupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_backupActionPerformed
+
+        if(chk_compressBK.isSelected())
         {
-            cboObjectName.addItem(e.toString());
-            cbo_objectname.addItem (e.toString ());
+            if(rad_bkFull.isSelected()){
+                File file = new File("src/ResourceSQL/backupFull_CP.txt");
+                if(file.canRead())
+                {
+                    System.out.println(file.getAbsoluteFile().toString());
+                    ExecuteCMD.txtAreas = cmdScreen; 
+                    if(ExecuteCMD.runCommand("RMAN @"+file.getAbsolutePath(), true)){
+                        JOptionPane.showMessageDialog(null, "Backup Database Done !","Backup Alert",JOptionPane.INFORMATION_MESSAGE);
+                    }
+                    else
+                        JOptionPane.showMessageDialog(null, "Backup Database Has Error !","Backup Alert",JOptionPane.ERROR_MESSAGE);
+                } 
+            }
+            else if(rad_bkFullArchivelog.isSelected()){
+                File file = new File("src/ResourceSQL/backupFullArchivelog_CP.txt");
+                if(file.canRead())
+                {
+                    System.out.println(file.getAbsoluteFile().toString());
+                    ExecuteCMD.txtAreas = cmdScreen; 
+                    if(ExecuteCMD.runCommand("RMAN @"+file.getAbsolutePath(), true)){
+                        JOptionPane.showMessageDialog(null, "Backup Database Done !","Backup Alert",JOptionPane.INFORMATION_MESSAGE);
+                    }
+                    else
+                        JOptionPane.showMessageDialog(null, "Backup Database Has Error !","Backup Alert",JOptionPane.ERROR_MESSAGE);
+                } 
+            }
         }
-    }
-   
+        else{
+            if(rad_bkFull.isSelected()){
+                File file = new File("src/ResourceSQL/backupFull.txt");
+                if(file.canRead())
+                {
+                    System.out.println(file.getAbsoluteFile().toString());
+                    ExecuteCMD.txtAreas = cmdScreen; 
+                    if(ExecuteCMD.runCommand("RMAN @"+file.getAbsolutePath(), true)){
+                        JOptionPane.showMessageDialog(null, "Backup Database Done !","Backup Alert",JOptionPane.INFORMATION_MESSAGE);
+                    }
+                    else
+                        JOptionPane.showMessageDialog(null, "Backup Database Has Error !","Backup Alert",JOptionPane.ERROR_MESSAGE);
+                } 
+            }
+            else if(rad_bkFullArchivelog.isSelected()){
+                File file = new File("src/ResourceSQL/backupFullArchivelog.txt");
+                if(file.canRead())
+                {
+                    System.out.println(file.getAbsoluteFile().toString());
+                    ExecuteCMD.txtAreas = cmdScreen; 
+                    if(ExecuteCMD.runCommand("RMAN @"+file.getAbsolutePath(), true)){
+                        JOptionPane.showMessageDialog(null, "Backup Database Done !","Backup Alert",JOptionPane.INFORMATION_MESSAGE);
+                    }
+                    else
+                        JOptionPane.showMessageDialog(null, "Backup Database Has Error !","Backup Alert",JOptionPane.ERROR_MESSAGE);
+                } 
+            }
+        }
+           
+    }//GEN-LAST:event_btn_backupActionPerformed
+
+    private void btn_showAllDataFileBKRSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_showAllDataFileBKRSActionPerformed
+        loadTableDataFileOfBackupRestore();
+    }//GEN-LAST:event_btn_showAllDataFileBKRSActionPerformed
+
+    private void btn_recoveryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_recoveryActionPerformed
+        File file = new File("src/ResourceSQL/recovery.txt");
+       
+        if(file.canRead())
+        {
+            System.out.println(file.getAbsoluteFile().toString());
+            ExecuteCMD.txtAreas = cmdScreen; 
+            if(ExecuteCMD.runCommand("RMAN @"+file.getAbsolutePath(), true)){
+                JOptionPane.showMessageDialog(null, "Recover Database Done !","Recover Alert",JOptionPane.INFORMATION_MESSAGE);
+            }
+            else
+                JOptionPane.showMessageDialog(null, "Recover Database Has Error !","Recover Alert",JOptionPane.ERROR_MESSAGE);
+        } 
+    }//GEN-LAST:event_btn_recoveryActionPerformed
+
+    private void btnClearCMDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearCMDActionPerformed
+        cmdScreen.setText("");
+    }//GEN-LAST:event_btnClearCMDActionPerformed
+
+    private void btn_LoadListBackupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_LoadListBackupActionPerformed
+        File file = new File("src/ResourceSQL/showListBackup.txt");
+        if(file.canRead())
+        {
+            System.out.println(file.getAbsoluteFile().toString());
+            ExecuteCMD.txtAreas = cmdScreen; 
+            if(ExecuteCMD.runCommand("RMAN @"+file.getAbsolutePath(), true)){
+                JOptionPane.showMessageDialog(null, "Run Done !","Run Command Alert",JOptionPane.INFORMATION_MESSAGE);
+            }
+            else
+                JOptionPane.showMessageDialog(null, "Run Has Error !","Run Command Alert",JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btn_LoadListBackupActionPerformed
+
+    private void chkBox_blockingUserItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_chkBox_blockingUserItemStateChanged
+        showDataOnTable_1(table_tab2, x.showSessionCurrentBlocking());
+        numRecord_tab2.setText("Số lượng Session: "+table_tab2.getRowCount());        
+    }//GEN-LAST:event_chkBox_blockingUserItemStateChanged
+
+ 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel AUDIT;
+    private javax.swing.JPanel Backup_Restore;
     private javax.swing.JPanel Control_ROLE;
     private javax.swing.JPanel PROFILE;
     private javax.swing.JPanel Panel2;
@@ -1865,6 +2281,7 @@ public class SystemForm extends javax.swing.JPanel {
     private javax.swing.JPanel SESSION;
     private javax.swing.JPanel TTHT;
     private javax.swing.JPanel USER;
+    private Ultilities.swing.Controls.buttonCustom btnClearCMD;
     private javax.swing.JButton btnCreateAuditPolicy;
     private Ultilities.swing.Controls.ButtonGradient btnDemo;
     private Ultilities.swing.Controls.ButtonGradient btnRefresh;
@@ -1873,13 +2290,17 @@ public class SystemForm extends javax.swing.JPanel {
     private Ultilities.swing.Controls.ButtonGradient btn_CreateUser;
     private Ultilities.swing.Controls.buttonCustom btn_Export;
     private javax.swing.JButton btn_InsertPriv;
+    private Ultilities.swing.Controls.buttonCustom btn_LoadListBackup;
     private Ultilities.swing.Controls.ButtonGradient btn_RemoveUser;
     private javax.swing.JButton btn_Revoke;
     private Ultilities.swing.Controls.ButtonGradient btn_TaoMoi;
     private javax.swing.JButton btn_XemTT;
     private Ultilities.swing.Controls.ButtonGradient btn_XoaProfile;
+    private Ultilities.swing.Controls.buttonCustom btn_backup;
     private Ultilities.swing.Controls.buttonCustom btn_browse;
     private Ultilities.swing.Controls.buttonCustom btn_import;
+    private Ultilities.swing.Controls.buttonCustom btn_recovery;
+    private Ultilities.swing.Controls.buttonCustom btn_showAllDataFileBKRS;
     private javax.swing.JButton btn_showaudit;
     private javax.swing.JButton btn_updaterole;
     private Ultilities.swing.Controls.ButtonGradient buttonGradient1;
@@ -1889,6 +2310,8 @@ public class SystemForm extends javax.swing.JPanel {
     private javax.swing.JCheckBox cbk_update;
     private javax.swing.JComboBox<String> cboObjectName;
     private javax.swing.JComboBox<String> cbo_objectname;
+    private javax.swing.JCheckBox chkBox_blockingUser;
+    private javax.swing.JCheckBox chk_compressBK;
     private javax.swing.JCheckBox ckbDelete;
     private javax.swing.JCheckBox ckbInsert;
     private javax.swing.JCheckBox ckbUpdate;
@@ -1896,13 +2319,16 @@ public class SystemForm extends javax.swing.JPanel {
     private javax.swing.JCheckBox ckb_delete;
     private javax.swing.JCheckBox ckb_insert;
     private javax.swing.JCheckBox ckb_select;
+    private javax.swing.JTextArea cmdScreen;
     private Ultilities.swing.Controls.ComboBoxSuggestion comboBoxSuggestion;
     private javax.swing.JLabel countRecord;
-    private javax.swing.ButtonGroup grRadio_Type;
+    private javax.swing.ButtonGroup grRadio_Backup;
+    private javax.swing.ButtonGroup grRadio_Recover;
     private javax.swing.JPanel import_export;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1917,9 +2343,13 @@ public class SystemForm extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;
+    private javax.swing.JPanel jPanel15;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -1927,15 +2357,20 @@ public class SystemForm extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel lb_IE;
     private javax.swing.JLabel lb_slProfile;
     private javax.swing.JLabel lb_slProfile1;
     private javax.swing.JLabel lb_slProfile3;
     private javax.swing.JLabel lb_slProfile4;
+    private javax.swing.JLabel lb_slProfile5;
     private javax.swing.JLabel lb_slUser;
     private javax.swing.JLabel lbl_Pass;
     private javax.swing.JLabel numRecord_tab2;
+    private javax.swing.JRadioButton rad_bkFull;
+    private javax.swing.JRadioButton rad_bkFullArchivelog;
     private javax.swing.JRadioButton rad_datapump;
     private javax.swing.JRadioButton rad_sqlcl;
     private javax.swing.JRadioButton rdo_NotPass;
@@ -1945,6 +2380,7 @@ public class SystemForm extends javax.swing.JPanel {
     private Ultilities.swing.Controls.Table table_ImEx;
     private Ultilities.swing.Controls.Table table_Profile;
     private Ultilities.swing.Controls.Table table_User;
+    private Ultilities.swing.Controls.Table table_dataFile;
     private Ultilities.swing.Controls.Table table_tab2;
     private javax.swing.JTextField txtPolicyName;
     private javax.swing.JTextField txt_Pass;
