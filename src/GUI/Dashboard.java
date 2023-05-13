@@ -7,6 +7,7 @@ import BLL.GetData;
 import GUI.Dashboard;
 import GUI.KhachHangGUI.KhachHang;
 import GUI.SanPhamGUI.SanPham;
+import GUI.TimKiem.TimKiem;
 import java.io.File;
 import java.sql.*;
 import java.io.IOException;
@@ -53,6 +54,9 @@ public class Dashboard extends javax.swing.JFrame {
                 }
                 else if (index == 5) {
                     setForm(new SystemForm());
+                }
+                else if (index == 7) {
+                    setForm(new TimKiem());
                 }
                 else if (index == 9) {
                     Logout();

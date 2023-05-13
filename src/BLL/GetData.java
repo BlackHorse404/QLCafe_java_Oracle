@@ -182,7 +182,7 @@ public class GetData {
     
     public ArrayList getObjectSchema()
     {
-        DataAccess da = new DataAccess("select username from dba_users where account_status = 'OPEN' and last_login not like 'null'");
+        DataAccess da = new DataAccess("select username from dba_users where account_status = 'OPEN' and default_tablespace = 'USERS'");
         Object[][] t = da.QueryContentTable();
         ArrayList<String> arr=new ArrayList<String>();
         for(int i =0;i<t.length; i++)
@@ -277,5 +277,11 @@ public class GetData {
     public ArrayList getDataKhachHang() {
         DataAccess da = new DataAccess(String.format("SELECT * from datacaphe.KHACHHANG"));
         return da.QueryTable();
+    }
+    
+    //get data tenloai
+    public Object[][] getDataLoaiMon() {
+        DataAccess da = new DataAccess(String.format("SELECT TENLOAI from datacaphe.PHANLOAI"));
+        return da.QueryContentTable();
     }
 }

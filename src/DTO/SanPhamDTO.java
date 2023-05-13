@@ -14,11 +14,17 @@ public class SanPhamDTO {
     private String name;
     private String id ;
     private String trangthai;
+    private String moTa;
 
     public String getTrangthai() {
         return trangthai;
     }
-
+    public String getMota() {
+        return trangthai;
+    }
+    public void settMota(String mota) {
+        this.moTa = mota;
+    }
     public void setTrangthai(String trangthai) {
         this.trangthai = trangthai;
     }
@@ -73,6 +79,13 @@ public class SanPhamDTO {
 
     public SanPhamDTO(Blob imageBlob, String name, String id, String kc) {
         this.imageBlob = imageBlob;
+        this.name = name;
+        this.id = id;
+        this.kc = kc;
+    } 
+    
+    public SanPhamDTO(String mota, String name, String id, String kc) {
+        this.moTa = mota;
         this.name = name;
         this.id = id;
         this.kc = kc;

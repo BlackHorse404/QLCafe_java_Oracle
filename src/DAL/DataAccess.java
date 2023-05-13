@@ -152,7 +152,6 @@ public class DataAccess {
         } catch (SQLException ex) {
             Logger.getLogger(DataAccess.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-
     }
+    
 }

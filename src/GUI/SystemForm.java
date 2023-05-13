@@ -50,12 +50,21 @@ public class SystemForm extends javax.swing.JPanel {
     private ExecuteData y = new ExecuteData();
     private UpdateData up = new UpdateData();
     ArrayList tableName = x.getTableName();
+    ArrayList objectSchema=x.getObjectSchema();
     String statement;
     
     
     @SuppressWarnings("unchecked")
     public SystemForm() {
         initComponents();        
+    }
+    
+    private void LoadComboBoxObjectSchema()
+    {
+        for(var e:objectSchema)
+        {
+            cboObjectSchema.addItem(e.toString());
+        }
     }
 
     public void showDataOnTable(Ultilities.swing.Controls.Table table,ArrayList arr)
@@ -272,6 +281,8 @@ public class SystemForm extends javax.swing.JPanel {
         btnCreateAuditPolicy = new javax.swing.JButton();
         btn_showaudit = new javax.swing.JButton();
         btn_XemTT = new javax.swing.JButton();
+        jLabel13 = new javax.swing.JLabel();
+        cboObjectSchema = new javax.swing.JComboBox<>();
         QL_ROLE = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -558,6 +569,11 @@ public class SystemForm extends javax.swing.JPanel {
         jTabbedPane1.addTab("QL Session", SESSION);
 
         AUDIT.setBackground(new java.awt.Color(255, 255, 255));
+        AUDIT.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                AUDITComponentShown(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -614,6 +630,16 @@ public class SystemForm extends javax.swing.JPanel {
             }
         });
 
+        jLabel13.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel13.setText("User");
+
+        cboObjectSchema.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cboObjectSchema.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cboObjectSchemaItemStateChanged(evt);
+            }
+        });
+
         javax.swing.GroupLayout AUDITLayout = new javax.swing.GroupLayout(AUDIT);
         AUDIT.setLayout(AUDITLayout);
         AUDITLayout.setHorizontalGroup(
@@ -629,43 +655,46 @@ public class SystemForm extends javax.swing.JPanel {
                             .addComponent(ckbDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(ckbUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(AUDITLayout.createSequentialGroup()
-                        .addGap(178, 178, 178)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btn_XemTT))
-                    .addGroup(AUDITLayout.createSequentialGroup()
                         .addGap(146, 146, 146)
                         .addGroup(AUDITLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel3)
-                            .addComponent(jLabel4))
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel13))
                         .addGap(43, 43, 43)
                         .addGroup(AUDITLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(cboObjectName, 0, 210, Short.MAX_VALUE)
-                            .addComponent(txtPolicyName)))
+                            .addComponent(txtPolicyName)
+                            .addComponent(cboObjectSchema, 0, 210, Short.MAX_VALUE)))
                     .addGroup(AUDITLayout.createSequentialGroup()
                         .addGap(188, 188, 188)
                         .addComponent(btnCreateAuditPolicy, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(51, 51, 51)
-                        .addComponent(btn_showaudit, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(155, Short.MAX_VALUE))
+                        .addComponent(btn_showaudit, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(AUDITLayout.createSequentialGroup()
+                        .addGap(178, 178, 178)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(45, 45, 45)
+                        .addComponent(btn_XemTT)))
+                .addContainerGap(116, Short.MAX_VALUE))
         );
         AUDITLayout.setVerticalGroup(
             AUDITLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(AUDITLayout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addGroup(AUDITLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(btn_XemTT))
+                .addGap(21, 21, 21)
+                .addGroup(AUDITLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cboObjectSchema, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel13))
+                .addGap(10, 10, 10)
+                .addGroup(AUDITLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(txtPolicyName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(AUDITLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(AUDITLayout.createSequentialGroup()
-                        .addGroup(AUDITLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(AUDITLayout.createSequentialGroup()
-                                .addGap(34, 34, 34)
-                                .addComponent(jLabel2))
-                            .addGroup(AUDITLayout.createSequentialGroup()
-                                .addGap(17, 17, 17)
-                                .addComponent(btn_XemTT)))
-                        .addGap(30, 30, 30)
-                        .addGroup(AUDITLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(txtPolicyName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(27, 27, 27)
                         .addGroup(AUDITLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
                             .addComponent(cboObjectName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -673,6 +702,7 @@ public class SystemForm extends javax.swing.JPanel {
                         .addComponent(ckbInsert)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AUDITLayout.createSequentialGroup()
+                        .addGap(65, 65, 65)
                         .addComponent(jLabel6)
                         .addGap(1, 1, 1)))
                 .addComponent(ckbUpdate)
@@ -682,7 +712,7 @@ public class SystemForm extends javax.swing.JPanel {
                 .addGroup(AUDITLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_showaudit, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCreateAuditPolicy, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(215, Short.MAX_VALUE))
+                .addContainerGap(206, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("QL Audit", AUDIT);
@@ -1874,8 +1904,7 @@ public class SystemForm extends javax.swing.JPanel {
                 String a=cboObjectName.getSelectedItem().toString();
                 String b=txtPolicyName.getText();
                 String c=statement;
-                /*Chỗ chỉnh sửa*/
-                String d="nguoidung1";
+                String d=cboObjectSchema.getSelectedItem().toString();
 
                 y.CreateAuditPolicy(d,a,b,c);
                 JOptionPane.showMessageDialog(this, "Thiết lập policy thành công!","Thông Báo",JOptionPane.INFORMATION_MESSAGE);
@@ -2270,6 +2299,15 @@ public class SystemForm extends javax.swing.JPanel {
         numRecord_tab2.setText("Số lượng Session: "+table_tab2.getRowCount());        
     }//GEN-LAST:event_chkBox_blockingUserItemStateChanged
 
+    private void cboObjectSchemaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboObjectSchemaItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboObjectSchemaItemStateChanged
+
+    private void AUDITComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_AUDITComponentShown
+        LoadComboBoxObjectSchema();
+        LoadComboBoxObjectName();
+    }//GEN-LAST:event_AUDITComponentShown
+
  
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel AUDIT;
@@ -2309,6 +2347,7 @@ public class SystemForm extends javax.swing.JPanel {
     private Ultilities.swing.Controls.ComboBoxSuggestion cb_TableName_IE;
     private javax.swing.JCheckBox cbk_update;
     private javax.swing.JComboBox<String> cboObjectName;
+    private javax.swing.JComboBox<String> cboObjectSchema;
     private javax.swing.JComboBox<String> cbo_objectname;
     private javax.swing.JCheckBox chkBox_blockingUser;
     private javax.swing.JCheckBox chk_compressBK;
@@ -2329,6 +2368,7 @@ public class SystemForm extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
