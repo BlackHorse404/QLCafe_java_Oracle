@@ -3,21 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/HOC_KY_VI/HE_QUAN_TRI_ORACLE/QLCafe_java_Oracle/src/GUI/UserUI/EditUser.java</file>
-            <file>file:/D:/HOC_KY_VI/HE_QUAN_TRI_ORACLE/QLCafe_java_Oracle/src/ResourceSQL/backupFullArchiveLog_CP.txt</file>
-            <file>file:/D:/HOC_KY_VI/HE_QUAN_TRI_ORACLE/QLCafe_java_Oracle/src/GUI/Role_User.java</file>
-            <file>file:/D:/HOC_KY_VI/HE_QUAN_TRI_ORACLE/QLCafe_java_Oracle/src/GUI/Nhanvien/Nhanvien_panel.java</file>
-            <file>file:/D:/HOC_KY_VI/HE_QUAN_TRI_ORACLE/QLCafe_java_Oracle/src/GUI/Dashboard.java</file>
-            <file>file:/D:/HOC_KY_VI/HE_QUAN_TRI_ORACLE/QLCafe_java_Oracle/src/ResourceSQL/backupFullArchiveLog.txt</file>
-            <file>file:/D:/HOC_KY_VI/HE_QUAN_TRI_ORACLE/QLCafe_java_Oracle/src/DTO/ImportExport.java</file>
             <file>file:/D:/HOC_KY_VI/HE_QUAN_TRI_ORACLE/QLCafe_java_Oracle/src/GUI/main.java</file>
-            <file>file:/D:/HOC_KY_VI/HE_QUAN_TRI_ORACLE/QLCafe_java_Oracle/src/GUI/KhachHangGUI/KhachHang.java</file>
-            <file>file:/D:/HOC_KY_VI/HE_QUAN_TRI_ORACLE/QLCafe_java_Oracle/src/BLL/UpdateData.java</file>
-            <file>file:/D:/HOC_KY_VI/HE_QUAN_TRI_ORACLE/QLCafe_java_Oracle/src/Ultilities/component/Menu.java</file>
-            <file>file:/D:/HOC_KY_VI/HE_QUAN_TRI_ORACLE/QLCafe_java_Oracle/src/GUI/SystemForm.java</file>
-            <file>file:/D:/HOC_KY_VI/HE_QUAN_TRI_ORACLE/QLCafe_java_Oracle/src/BLL/ExecuteData.java</file>
-            <file>file:/D:/HOC_KY_VI/HE_QUAN_TRI_ORACLE/QLCafe_java_Oracle/src/GUI/VPD.java</file>
-            <file>file:/D:/HOC_KY_VI/HE_QUAN_TRI_ORACLE/QLCafe_java_Oracle/src/BLL/GetData.java</file>
+            <file>file:/D:/HOC_KY_VI/HE_QUAN_TRI_ORACLE/QLCafe_java_Oracle/src/GUI/Nhanvien/Nhanvien_panel.java</file>
         </group>
     </open-files>
 </project-private>
