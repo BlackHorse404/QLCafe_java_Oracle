@@ -36,6 +36,8 @@
     </Component>
     <Component class="javax.swing.ButtonGroup" name="buttonGroup1">
     </Component>
+    <Component class="javax.swing.ButtonGroup" name="buttonGroup2">
+    </Component>
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="2"/>
@@ -263,6 +265,9 @@
               </Constraints>
             </Component>
             <Component class="javax.swing.JTextField" name="txt_Disk">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txt_DiskActionPerformed"/>
+              </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                   <AbsoluteConstraints x="100" y="50" width="90" height="30"/>
@@ -284,6 +289,9 @@
             </Component>
             <Component class="javax.swing.JRadioButton" name="rdo_existDatafile">
               <Properties>
+                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                  <ComponentRef name="buttonGroup2"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Datafile &#x111;&#xe3; t&#x1ed3;n t&#x1ea1;i"/>
               </Properties>
               <Constraints>
@@ -294,6 +302,9 @@
             </Component>
             <Component class="javax.swing.JRadioButton" name="rdo_newDatafile">
               <Properties>
+                <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                  <ComponentRef name="buttonGroup2"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Datafile m&#x1edb;i"/>
               </Properties>
               <Constraints>

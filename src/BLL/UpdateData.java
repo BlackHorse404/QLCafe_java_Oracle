@@ -87,7 +87,7 @@ public class UpdateData {
     {
         try
         {
-            da = new DataAccess(String.format ("ALTER TABLESPACE %s DROP DATAFILE '%s';" ,name,path));
+            da = new DataAccess(String.format ("ALTER TABLESPACE %s DROP DATAFILE '%s'" ,name,path));
             return true;
         }
         catch(Exception ex)
@@ -175,7 +175,7 @@ public class UpdateData {
     }
     public boolean revokeAllToRole( String name, String object)
     {
-         da = new DataAccess(String.format ("revoke all  on %s.%s to %s" ,user,object, name));
+         da = new DataAccess(String.format ("revoke all  on %s.%s from %s" ,user,object, name));
          return true;
     }
     public boolean revokeRole(String priv, String name, String object)

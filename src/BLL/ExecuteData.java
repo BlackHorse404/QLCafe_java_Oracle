@@ -46,6 +46,7 @@ public class ExecuteData {
         String temp = String.format("ALTER USER %s PROFILE %s",user, profileNew);
         return DataAccess.ResultOfExecuteSql(temp);
     }
+   
     public static boolean DropUser(String user){
         String temp = String.format("DROP USER %s CASCADE",user);
         return DataAccess.ResultOfExecuteSql(temp);
@@ -61,4 +62,34 @@ public class ExecuteData {
         String temp = String.format("execute xoaKhachHang('%s')",MaKH);
         return DataAccess.ResultOfExecuteSql(temp);
     }
+    
+    
+     public static boolean GrantRoleOfUser(String user, String rolename){
+        String temp = String.format("GRANT %s to %s",rolename, user);
+        return DataAccess.ResultOfExecuteSql(temp);
+    }
+    public static boolean DeleteRole( String role){
+        String temp = String.format("DROP ROLE %s",role);
+        return DataAccess.ResultOfExecuteSql(temp);
+    }
+    public static boolean RevokeRole( String role, String user){
+        String temp = String.format("REVOKE %s FROM %s",role, user);
+        return DataAccess.ResultOfExecuteSql(temp);
+    }
+     // <editor-fold defaultstate="collapsed" desc="Them Xoa Sua Nhan vien">
+    public static boolean ThemNhanVien(String maNV,String hoTen, String sdt,String gioiTinh){
+        String temp = String.format("insert into datacaphe.nhanvien(MANV, TENNV, SDT, GIOITINH) values('%s',N'%s','%s','%s')",maNV,hoTen, sdt, gioiTinh);
+        return DataAccess.ResultOfExecuteSql(temp);
+    }
+    
+    public static boolean XoaNhanVien(String maNV){
+        String temp = String.format("delete from datacaphe.nhanvien where MANV='%s'",maNV);
+        return DataAccess.ResultOfExecuteSql(temp);
+    }
+    
+    public static boolean SuaNhanVien(String maNV, String hoTen, String sdt,String gioiTinh){
+        String temp = String.format("UPDATE datacaphe.NHANVIEN set TENNV = N'%s', SDT = '%s', GIOITINH = '%s' WHERE MANV = '%s'",hoTen, sdt, gioiTinh, maNV);
+        return DataAccess.ResultOfExecuteSql(temp);
+    }
+    // </editor-fold>
 }

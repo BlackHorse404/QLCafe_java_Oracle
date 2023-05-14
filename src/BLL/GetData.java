@@ -109,6 +109,17 @@ public class GetData {
     //</editor-fold>
     
     //</editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="Lấy thông tin nhân viên"> 
+    public ArrayList getDataNhanVien() {
+        DataAccess da = new DataAccess("SELECT MANV, TENNV, SDT,GIOITINH, TAIKHOAN FROM datacaphe.NHANVIEN");
+        return da.QueryTable();
+    }
+    
+    public ArrayList getDataKH(){
+        DataAccess da = new DataAccess( "SELECT * FROM DATACAPHE.KHACHHANG");
+        return da.QueryTable();
+    }
+    // </editor-fold>
     
     //get User
     public ArrayList getAllUserAndProfile(){
@@ -277,5 +288,17 @@ public class GetData {
     public ArrayList getDataKhachHang() {
         DataAccess da = new DataAccess(String.format("SELECT * from datacaphe.KHACHHANG"));
         return da.QueryTable();
+    }
+     public Object[][] getNameRole(){
+        DataAccess da = new DataAccess("SELECT ROLE FROM DBA_ROLES");
+        return da.QueryContentTable();
+    }
+    public ArrayList getRoleUser(String user){
+       DataAccess da = new DataAccess(String.format("SELECT * FROM DBA_ROLE_PRIVS WHERE UPPER(GRANTEE) LIKE '%s'", user));
+        return da.QueryTable();
+    }
+    public ArrayList getData(String table){
+       DataAccess da = new DataAccess(String.format("SELECT * FROM DATACAPHE.%s", table));
+       return da.QueryTable();
     }
 }

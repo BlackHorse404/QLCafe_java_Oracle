@@ -25,6 +25,7 @@ public class EditUser extends javax.swing.JFrame {
     public EditUser() {
         initComponents();
         loadProfile();
+        loadRole();
     }
 
     
@@ -38,6 +39,17 @@ public class EditUser extends javax.swing.JFrame {
         for(int i =0;i<n;i++)
         {
             cb_Profile.addItem(nameProfiles[i][0].toString());
+        }
+    }
+    private void loadRole(){
+        //load combobox list name profile
+        GetData x = new GetData();
+        cb_role.removeAllItems();
+        Object[][] nameRole = x.getNameRole();
+        int n = nameRole.length;
+        for(int i =0;i<n;i++)
+        {
+            cb_role.addItem(nameRole[i][0].toString());
         }
     }
     /**
@@ -56,6 +68,9 @@ public class EditUser extends javax.swing.JFrame {
         cb_Profile = new Ultilities.swing.Controls.ComboBoxSuggestion();
         btn_Luu = new Ultilities.swing.Controls.ButtonGradient();
         btn_Huy = new Ultilities.swing.Controls.ButtonGradient();
+        jLabel3 = new javax.swing.JLabel();
+        cb_role = new Ultilities.swing.Controls.ComboBoxSuggestion();
+        btn_thuhoi = new Ultilities.swing.Controls.ButtonGradient();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -95,6 +110,22 @@ public class EditUser extends javax.swing.JFrame {
             }
         });
 
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("ROLE");
+        jLabel3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        btn_thuhoi.setForeground(new java.awt.Color(0, 0, 0));
+        btn_thuhoi.setText("Thu hồi");
+        btn_thuhoi.setColor1(new java.awt.Color(153, 255, 153));
+        btn_thuhoi.setColor2(new java.awt.Color(153, 255, 255));
+        btn_thuhoi.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btn_thuhoi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_thuhoiActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -102,11 +133,18 @@ public class EditUser extends javax.swing.JFrame {
             .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(22, Short.MAX_VALUE)
-                .addComponent(btn_Luu, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(14, 14, 14)
+                .addComponent(btn_Luu, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btn_Huy, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30))
+                .addComponent(btn_thuhoi, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btn_Huy, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(55, 55, 55)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                .addComponent(cb_role, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -114,11 +152,16 @@ public class EditUser extends javax.swing.JFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(48, 48, 48)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cb_role, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(7, 7, 7)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_Luu, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_Huy, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(10, Short.MAX_VALUE))
+                    .addComponent(btn_Huy, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_thuhoi, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -136,7 +179,7 @@ public class EditUser extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_LuuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_LuuActionPerformed
-        if(ExecuteData.EditProfileOfUser(user, cb_Profile.getSelectedItem().toString())){
+        if(ExecuteData.EditProfileOfUser(user, cb_Profile.getSelectedItem().toString()) && ExecuteData.GrantRoleOfUser(user, cb_role.getSelectedItem().toString())){
             JOptionPane.showMessageDialog(this,"Cập nhật thông tin "+ user +" thành công !");
             root.loadUserData();
         }
@@ -148,12 +191,27 @@ public class EditUser extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btn_HuyActionPerformed
 
+    private void btn_thuhoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_thuhoiActionPerformed
+        // TODO add your handling code here:
+        if(ExecuteData.RevokeRole( cb_role.getSelectedItem().toString(),user))
+        {
+            JOptionPane.showMessageDialog(this,"Thu hồi role "+ cb_role.getSelectedItem().toString() + " của "+ user +" thành công !");
+            root.loadUserData();
+        }
+        else
+            JOptionPane.showMessageDialog(this,"Thu hồi role của "+ user +" thất bại !");
+    
+    }//GEN-LAST:event_btn_thuhoiActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private Ultilities.swing.Controls.ButtonGradient btn_Huy;
     private Ultilities.swing.Controls.ButtonGradient btn_Luu;
+    private Ultilities.swing.Controls.ButtonGradient btn_thuhoi;
     private Ultilities.swing.Controls.ComboBoxSuggestion cb_Profile;
+    private Ultilities.swing.Controls.ComboBoxSuggestion cb_role;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables

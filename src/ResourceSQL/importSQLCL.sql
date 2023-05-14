@@ -1,4 +1,4 @@
 set SQLFORMAT csv;
 set encoding UTF-8;
-LOAD CHITIETHOADON C:\Users\phatl\OneDrive\Desktop\test\test.csv
+LOAD datacaphe.CHITIETPHIEUNHAP C:\Directory\exp_sqlcl\ctpn.csv
  exit

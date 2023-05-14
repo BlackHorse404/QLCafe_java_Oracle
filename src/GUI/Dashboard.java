@@ -6,6 +6,7 @@ import javax.swing.JComponent;
 import BLL.GetData;
 import GUI.Dashboard;
 import GUI.KhachHangGUI.KhachHang;
+import GUI.Nhanvien.Nhanvien_panel;
 import GUI.SanPhamGUI.SanPham;
 import java.io.File;
 import java.sql.*;
@@ -46,6 +47,9 @@ public class Dashboard extends javax.swing.JFrame {
                 else if (index == 1)
                 {
                     setForm(new SanPham());
+                }else if (index == 2)
+                {
+                    setForm(new Nhanvien_panel());
                 }
                 else if (index == 4)
                 {
