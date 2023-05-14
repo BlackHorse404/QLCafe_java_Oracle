@@ -1,6 +1,6 @@
 set SQLFORMAT csv;
 set encoding UTF-8;
-SPOOL 'C:\Users\phatl\OneDrive\Desktop\test\CHITIETHOADON.csv'
-select * from CHITIETHOADON;
+SPOOL 'C:\Users\phatl\OneDrive\Desktop\file_Khachhang.csv'
+select * from KHACHHANG;
 SPOOL off
 exit
