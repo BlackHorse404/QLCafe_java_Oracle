@@ -301,7 +301,10 @@ public class GetData {
        DataAccess da = new DataAccess(String.format("SELECT * FROM DATACAPHE.%s", table));
        return da.QueryTable();
     }
-    
+    public ArrayList getRoleofUser(String user){
+       DataAccess da = new DataAccess(String.format(" SELECT * FROM DBA_ROLE_PRIVS where GRANTEE = '%s'", user));
+       return da.QueryTable();
+    }
     public ArrayList getAllUserName()
     {
         try{

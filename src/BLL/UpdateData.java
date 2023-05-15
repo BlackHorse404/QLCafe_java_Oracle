@@ -217,5 +217,15 @@ public class UpdateData {
          da = new DataAccess(String.format ("revoke select, update, delete on datacaphe.%s from %s" ,Object, user));
          return true;
     }
+    public boolean defaultRole(String user,String role)
+    {
+         da = new DataAccess(String.format ("ALTER USER %s DEFAULT  ROLE %s" , user, role));
+         return true;
+    }
+    public boolean defaultAllRole(String user)
+    {
+         da = new DataAccess(String.format ("ALTER USER %s DEFAULT  ROLE ALL" , user));
+         return true;
+    }
     // </editor-fold>
 }
