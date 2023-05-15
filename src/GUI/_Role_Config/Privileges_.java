@@ -22,6 +22,9 @@ public class Privileges_ extends javax.swing.JFrame {
      */
     public Privileges_() {
         initComponents();
+         setLocationRelativeTo (null);
+         LoadComboBoxObjectName();
+         LoadComboBoxUserName();
     }
     private GetData x = new GetData();
      private UpdateData up = new UpdateData();
@@ -194,7 +197,8 @@ public class Privileges_ extends javax.swing.JFrame {
                     }
             }
            String Obj = cbo_objectname.getSelectedItem().toString();
-            ArrayList arr = x.getPrivToObject (Obj);
+            String user = cbo_Username.getSelectedItem().toString();
+            ArrayList arr = x.getPrivToObject ( Obj,user);
             if(arr.size () ==0)
             {
                 for(Component com : Panel2.getComponents ())
@@ -244,7 +248,8 @@ public class Privileges_ extends javax.swing.JFrame {
         if(ckb_all.isSelected ())
         {
             up.grantAllPrivToUser(user,obj);
-
+            JOptionPane.showMessageDialog(this, String.format ("Cấp quyền cho %s thành công!", user),"Thông Báo",JOptionPane.INFORMATION_MESSAGE);
+            loadpriv();
         }
         else
         {
@@ -282,7 +287,8 @@ public class Privileges_ extends javax.swing.JFrame {
         if(ckb_all.isSelected ())
         {
             up.revokeAllToRole(user, obj);
-
+            JOptionPane.showMessageDialog(this, String.format ("Thu hồi quyền cho %s thành công!", user),"Thông Báo",JOptionPane.INFORMATION_MESSAGE);
+            loadpriv();
         }
         else
         {
@@ -323,6 +329,7 @@ public class Privileges_ extends javax.swing.JFrame {
     }
     private void cbo_UsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbo_UsernameActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_cbo_UsernameActionPerformed
 
     /**

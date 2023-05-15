@@ -199,22 +199,22 @@ public class UpdateData {
    
     public boolean revokePrivToUser(String user, String obj ,String priv)
     {
-         da = new DataAccess(String.format ("Revoke %s on %s from %s" ,priv, obj , user));
+         da = new DataAccess(String.format ("Revoke %s on datacaphe.%s from %s" ,priv, obj , user));
          return true;
     }
     public boolean grantPrivToUser(String user,String Object, String priv)
     {
-         da = new DataAccess(String.format ("grant %s on %s to %s" ,priv,Object, user));
+         da = new DataAccess(String.format ("grant %s on datacaphe.%s to %s" ,priv,Object, user));
          return true;
     }
     public boolean grantAllPrivToUser(String user,String Object)
     {
-         da = new DataAccess(String.format ("grant select, update, delete on %s to %s" ,Object, user));
+         da = new DataAccess(String.format ("grant select, update, delete on datacaphe.%s to %s" ,Object, user));
          return true;
     }
     public boolean revokeAllPrivToUser(String user,String Object)
     {
-         da = new DataAccess(String.format ("revoke select, update, delete on %s from %s" ,Object, user));
+         da = new DataAccess(String.format ("revoke select, update, delete on datacaphe.%s from %s" ,Object, user));
          return true;
     }
     // </editor-fold>

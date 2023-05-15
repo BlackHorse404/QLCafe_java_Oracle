@@ -304,12 +304,32 @@ public class GetData {
     
     public ArrayList getAllUserName()
     {
-        DataAccess da = new DataAccess("SELECT username FROM DBA_USERS where account_status = 'OPEN'");
-        return da.QueryTable ();
+        try{
+            //DataAccess da = new DataAccess("select distinct table_name from dba_tables where table_name='KHACHHANG' or table_name='HOADON' or table_name='CHITIETHOADON' or table_name='KHUYENMAI' or table_name='THUCDON' or table_name='PHANLOAI'");
+ 
+            DataAccess da = new DataAccess("SELECT username FROM DBA_USERS where account_status = 'OPEN'");
+
+            Object[][] t = da.QueryContentTable();
+            ArrayList<String> arr=new ArrayList<String>();
+            for(int i =0;i<t.length; i++)
+            {
+                arr.add(t[i][0].toString());
+            }
+            return arr;
+        }
+        catch(Exception err)
+        {}
+        return null;
     }
-    public ArrayList getPrivToObject(String Obj)
+    public ArrayList getPrivToObject(String Obj, String user)
     {
-        DataAccess da = new DataAccess(String.format("SELECT privilege FROM DBA_TAB_PRIVS where GRANTEE = 'HA05' and GRANTOR ='DATACAPHE' and table_name = '%s' ", Obj));
-        return da.QueryTable ();
+        DataAccess da = new DataAccess(String.format("SELECT privilege FROM DBA_TAB_PRIVS where GRANTEE = '%s' and GRANTOR ='DATACAPHE' and table_name = '%s' ", user,Obj));
+        Object[][] t = da.QueryContentTable();
+        ArrayList<String> arr=new ArrayList<String>();
+        for(int i =0;i<t.length; i++)
+        {
+            arr.add(t[i][0].toString());
+        }
+        return arr;
     }
 }
