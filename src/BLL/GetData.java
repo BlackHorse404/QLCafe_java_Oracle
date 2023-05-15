@@ -301,4 +301,15 @@ public class GetData {
        DataAccess da = new DataAccess(String.format("SELECT * FROM DATACAPHE.%s", table));
        return da.QueryTable();
     }
+    
+    public ArrayList getAllUserName()
+    {
+        DataAccess da = new DataAccess("SELECT username FROM DBA_USERS where account_status = 'OPEN'");
+        return da.QueryTable ();
+    }
+    public ArrayList getPrivToObject(String Obj)
+    {
+        DataAccess da = new DataAccess(String.format("SELECT privilege FROM DBA_TAB_PRIVS where GRANTEE = 'HA05' and GRANTOR ='DATACAPHE' and table_name = '%s' ", Obj));
+        return da.QueryTable ();
+    }
 }

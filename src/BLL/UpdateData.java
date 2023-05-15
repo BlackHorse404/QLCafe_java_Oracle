@@ -193,5 +193,29 @@ public class UpdateData {
          da = new DataAccess(String.format (" alter role %s not IDENTIFIED" ,name));
          return true;
     }
-    // </editor-fold>  
+    
+    // </editor-fold> 
+    // <editor-fold defaultstate="collapsed" desc="Privileges">  
+   
+    public boolean revokePrivToUser(String user, String obj ,String priv)
+    {
+         da = new DataAccess(String.format ("Revoke %s on %s from %s" ,priv, obj , user));
+         return true;
+    }
+    public boolean grantPrivToUser(String user,String Object, String priv)
+    {
+         da = new DataAccess(String.format ("grant %s on %s to %s" ,priv,Object, user));
+         return true;
+    }
+    public boolean grantAllPrivToUser(String user,String Object)
+    {
+         da = new DataAccess(String.format ("grant select, update, delete on %s to %s" ,Object, user));
+         return true;
+    }
+    public boolean revokeAllPrivToUser(String user,String Object)
+    {
+         da = new DataAccess(String.format ("revoke select, update, delete on %s from %s" ,Object, user));
+         return true;
+    }
+    // </editor-fold>
 }

@@ -63,7 +63,7 @@ public class ExecuteData {
         return DataAccess.ResultOfExecuteSql(temp);
     }
     
-    
+    // <editor-fold defaultstate="collapsed" desc="ROLE">
      public static boolean GrantRoleOfUser(String user, String rolename){
         String temp = String.format("GRANT %s to %s",rolename, user);
         return DataAccess.ResultOfExecuteSql(temp);
@@ -76,9 +76,10 @@ public class ExecuteData {
         String temp = String.format("REVOKE %s FROM %s",role, user);
         return DataAccess.ResultOfExecuteSql(temp);
     }
-     // <editor-fold defaultstate="collapsed" desc="Them Xoa Sua Nhan vien">
-    public static boolean ThemNhanVien(String maNV,String hoTen, String sdt,String gioiTinh){
-        String temp = String.format("insert into datacaphe.nhanvien(MANV, TENNV, SDT, GIOITINH) values('%s',N'%s','%s','%s')",maNV,hoTen, sdt, gioiTinh);
+    // </editor-fold>
+    // <editor-fold defaultstate="collapsed" desc="Them Xoa Sua Nhan vien">
+    public static boolean ThemNhanVien(String maNV,String hoTen, String sdt,String gioiTinh, String taikhoan){
+        String temp = String.format("insert into datacaphe.nhanvien(MANV, TENNV, SDT, GIOITINH, TAIKHOAN) values('%s',N'%s','%s',N'%s','%s')",maNV,hoTen, sdt, gioiTinh, taikhoan);
         return DataAccess.ResultOfExecuteSql(temp);
     }
     
@@ -87,8 +88,8 @@ public class ExecuteData {
         return DataAccess.ResultOfExecuteSql(temp);
     }
     
-    public static boolean SuaNhanVien(String maNV, String hoTen, String sdt,String gioiTinh){
-        String temp = String.format("UPDATE datacaphe.NHANVIEN set TENNV = N'%s', SDT = '%s', GIOITINH = '%s' WHERE MANV = '%s'",hoTen, sdt, gioiTinh, maNV);
+    public static boolean SuaNhanVien(String maNV, String hoTen, String sdt,String gioiTinh, String taikhoan){
+        String temp = String.format("UPDATE datacaphe.NHANVIEN set TENNV = N'%s', SDT = '%s', GIOITINH = N'%s', TAIKHOAN = '%s' WHERE MANV = '%s'",hoTen, sdt, gioiTinh, maNV,taikhoan);
         return DataAccess.ResultOfExecuteSql(temp);
     }
     // </editor-fold>

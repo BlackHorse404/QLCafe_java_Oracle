@@ -44,8 +44,9 @@ public class KhachHang extends javax.swing.JPanel {
         btnXoaKH = new Ultilities.swing.Controls.ButtonGradient();
 
         setBackground(new java.awt.Color(255, 255, 255));
-        setMinimumSize(new java.awt.Dimension(785, 607));
-        setPreferredSize(new java.awt.Dimension(785, 607));
+        setMinimumSize(new java.awt.Dimension(1100, 700));
+        setPreferredSize(new java.awt.Dimension(1100, 700));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tb_KH.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -60,6 +61,8 @@ public class KhachHang extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(tb_KH);
 
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1130, 529));
+
         btnXoaKH.setForeground(new java.awt.Color(0, 0, 0));
         btnXoaKH.setText("Xóa");
         btnXoaKH.setColor1(new java.awt.Color(255, 102, 102));
@@ -71,25 +74,7 @@ public class KhachHang extends javax.swing.JPanel {
                 btnXoaKHActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(256, 256, 256)
-                .addComponent(btnXoaKH, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(279, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 529, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnXoaKH, javax.swing.GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE)
-                .addGap(12, 12, 12))
-        );
+        add(btnXoaKH, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 540, 250, 54));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnXoaKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaKHActionPerformed
