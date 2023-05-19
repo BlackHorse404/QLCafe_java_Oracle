@@ -14,7 +14,7 @@ public class ExecuteData {
     }
     public static boolean DeleteAuditPolicy(String objectSchema, String objectName, String policyName)
     {
-        String temp = String.format("BEGIN DBMS_FGA.DROP_POLICY( object_schema  => '%s', object_name  => '%s', policy_name => '%s'); END;commit work;",objectSchema, objectName, policyName);
+        String temp = String.format("BEGIN DBMS_FGA.DROP_POLICY( object_schema  => '%s', object_name  => '%s', policy_name => '%s'); END;",objectSchema, objectName, policyName);
         return DataAccess.ResultOfExecuteSql(temp);
     }
    
@@ -52,7 +52,7 @@ public class ExecuteData {
     }
     
     public static boolean createUser(String user, String pass){
-        String temp = String.format("create user %s identified by %s",user,pass);
+        String temp = String.format("BEGIN create_user_and_grant_session('%s','%s'); END;",user,pass);
         return DataAccess.ResultOfExecuteSql(temp);
     }
     
@@ -61,4 +61,8 @@ public class ExecuteData {
         String temp = String.format("execute xoaKhachHang('%s')",MaKH);
         return DataAccess.ResultOfExecuteSql(temp);
     }
+    
+    
+
+    
 }

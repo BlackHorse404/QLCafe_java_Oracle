@@ -5,6 +5,7 @@
 package BLL;
 
 import DAL.DataAccess;
+import java.util.ArrayList;
 
 /**
  *
@@ -26,4 +27,5 @@ public class GetValue {
         da = new DataAccess("Select sum(bytes)/1024/1024 total_space_mb from dba_data_files");
         return da.returnValue().toString () + " MB";
     }
+    
 }

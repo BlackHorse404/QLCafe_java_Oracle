@@ -278,4 +278,29 @@ public class GetData {
         DataAccess da = new DataAccess(String.format("SELECT * from datacaphe.KHACHHANG"));
         return da.QueryTable();
     }
+    
+    //hoa don
+    //Hiển Thị Thông Tin Hóa Đơn
+    public ArrayList showDataHoaDon()
+    {
+        DataAccess da = new DataAccess("Select * From datacaphe.HoaDon");
+        return  da.QueryTable();
+    }
+    //Hiển Thị Thông Tin Chi tiết hóa đơn
+    public ArrayList showDataCTHD()
+    {
+        DataAccess da = new DataAccess("Select * From datacaphe.Chitiethoadon");
+        return  da.QueryTable();
+    }
+    public ArrayList getDataMaKH()
+    {
+        DataAccess da = new DataAccess("SELECT MAKH from datacaphe.KHACHHANG");
+        Object[][] t = da.QueryContentTable();
+        ArrayList<String> arr=new ArrayList<String>();
+        for(int i =0;i<t.length; i++)
+        {
+            arr.add(t[i][0].toString());
+        }
+        return arr;
+    }
 }

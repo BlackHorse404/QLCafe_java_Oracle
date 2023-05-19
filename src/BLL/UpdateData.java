@@ -13,6 +13,8 @@ import DAL.DataAccess;
 public class UpdateData {
      private DataAccess da;
      private String user;
+     
+     
     public UpdateData() {
         try{
             da = new DataAccess ("select distinct owner from DBA_TABLES where owner like (select owner from DBA_TABLES where table_name ='HOADON')");

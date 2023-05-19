@@ -143,14 +143,16 @@ public class DataAccess {
         return null; 
     }
     
-    public static void CallSql(String sql){
+    public static boolean CallSql(String sql){
         try {
             String command = "{call "+sql+" }";
             CallableStatement cstmt = conn.prepareCall(command);
             cstmt.execute();
             cstmt.close();
-        } catch (SQLException ex) {
-            Logger.getLogger(DataAccess.class.getName()).log(Level.SEVERE, null, ex);
+            return true;
+        } catch (SQLException err) {
+            JOptionPane.showMessageDialog(null, err.getMessage(),"Thông Báo",JOptionPane.ERROR_MESSAGE);
+            return  false;
         }
 
 
