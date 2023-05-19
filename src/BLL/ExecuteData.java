@@ -1,6 +1,8 @@
 package BLL;
 
 import DAL.DataAccess;
+import java.time.LocalDateTime; 
+import java.time.format.DateTimeFormatter;
 
 public class ExecuteData {
     public static boolean ExecuteSql(String SID, String SerialID)
@@ -14,7 +16,19 @@ public class ExecuteData {
     }
     public static boolean DeleteAuditPolicy(String objectSchema, String objectName, String policyName)
     {
-        String temp = String.format("BEGIN DBMS_FGA.DROP_POLICY( object_schema  => '%s', object_name  => '%s', policy_name => '%s'); END;commit work;",objectSchema, objectName, policyName);
+        String temp = String.format("BEGIN DBMS_FGA.DROP_POLICY( object_schema  => '%s', object_name  => '%s', policy_name => '%s'); END;",objectSchema, objectName, policyName);
+        return DataAccess.ResultOfExecuteSql(temp);
+    }
+    
+    public static boolean EditStandardAudit(String auditMode, String statement, String objectSchema, String objectName)
+    {
+        String temp = String.format("%s %s on %s.%s",auditMode,statement,objectSchema,objectName);
+        return DataAccess.ResultOfExecuteSql(temp);
+    }
+    
+    public static boolean CreateStandardAudit(String statement, String objectSchema, String objectName)
+    {
+        String temp = String.format("audit %s on %s.%s",statement, objectSchema, objectName);
         return DataAccess.ResultOfExecuteSql(temp);
     }
    
@@ -58,7 +72,19 @@ public class ExecuteData {
     
     public static boolean deleteKH(String MaKH)
     {
-        String temp = String.format("execute xoaKhachHang('%s')",MaKH);
+        String temp = String.format("DELETE FROM datacaphe.KhachHang where MAKH = '%s'",MaKH);
+        return DataAccess.ResultOfExecuteSql(temp);
+    }
+    
+    public static boolean addKH(String tenKH, String gioiTinh, String SDT, Integer diem, String HSD)
+    {
+        String temp = String.format("insert into datacaphe.KHACHHANG values (null, '%s','%s','%s',%s,TO_DATE('%s','DD/MM/YYYY'))",tenKH,gioiTinh,SDT,diem.toString(),HSD);
+        return DataAccess.ResultOfExecuteSql(temp);
+    }
+    
+    public static boolean editKH(String tenKH, String gioiTinh, String SDT, Integer diem, String HSD, String maKH)
+    {
+        String temp = String.format("update datacaphe.KHACHHANG set TENKH='%s',GIOITINH='%s',SDT='%s',diemtichluy=%s,HSD=TO_DATE('%s','DD/MM/YYYY') where MAKH='%s'",tenKH,gioiTinh,SDT,diem.toString(),HSD,maKH);
         return DataAccess.ResultOfExecuteSql(temp);
     }
 }

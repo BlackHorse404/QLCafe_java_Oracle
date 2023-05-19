@@ -198,13 +198,25 @@ public class GetData {
     }
     public ArrayList getDataAuditPolicy()
     {
-        DataAccess da = new DataAccess("select session_id, DB_user, object_name, object_schema, policy_name, timestamp,sql_text  from dba_fga_audit_trail");
+        DataAccess da = new DataAccess("select AUDIT_TYPE, TO_CHAR(NEW_TIME (EXTENDED_TIMESTAMP,'GMT', 'MST'), 'DD-MM-YYYY HH24:MI:SS') as TIME, OS_USER, OBJECT_SCHEMA, OBJECT_NAME, STATEMENT_TYPE, SQL_TEXT from dba_common_audit_trail");
         return da.QueryTable ();
     }
     
     public ArrayList getUsername()
     {
-        DataAccess da = new DataAccess("select tablename from dba_users where account_status = 'OPEN' and last_login  not like 'null'");
+        DataAccess da = new DataAccess("select username from dba_users where account_status = 'OPEN' and last_login  not like 'null'");
+        Object[][] t = da.QueryContentTable();
+        ArrayList<String> arr=new ArrayList<String>();
+        for(int i =0;i<t.length; i++)
+        {
+            arr.add(t[i][0].toString());
+        }
+        return arr;
+    }
+    //lấy tên audit lên form chỉnh sửa Audit Policy
+    public ArrayList getPolicyName()
+    {
+        DataAccess da = new DataAccess("select policy_name from dba_audit_policies");
         Object[][] t = da.QueryContentTable();
         ArrayList<String> arr=new ArrayList<String>();
         for(int i =0;i<t.length; i++)
@@ -283,5 +295,17 @@ public class GetData {
     public Object[][] getDataLoaiMon() {
         DataAccess da = new DataAccess(String.format("SELECT TENLOAI from datacaphe.PHANLOAI"));
         return da.QueryContentTable();
+    }
+    
+    public ArrayList getDataMaKH()
+    {
+        DataAccess da = new DataAccess("SELECT MAKH from datacaphe.KHACHHANG");
+        Object[][] t = da.QueryContentTable();
+        ArrayList<String> arr=new ArrayList<String>();
+        for(int i =0;i<t.length; i++)
+        {
+            arr.add(t[i][0].toString());
+        }
+        return arr;
     }
 }
