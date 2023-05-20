@@ -5,6 +5,8 @@ import java.awt.Color;
 import javax.swing.JComponent;
 import BLL.GetData;
 import GUI.Dashboard;
+import GUI.HoaDon.CHITIETHOADON;
+import GUI.HoaDon.QLHoaDon;
 import GUI.KhachHangGUI.KhachHang;
 import GUI.Nhanvien.Nhanvien_panel;
 import GUI.SanPhamGUI.SanPham;
@@ -58,10 +60,19 @@ public class Dashboard extends javax.swing.JFrame {
                 else if (index == 5) {
                     setForm(new SystemForm());
                 }
-                else if (index == 9) {
+                else if (index == 8){
+                    setForm(new QLHoaDon());
+                }
+                else if (index == 7){
+                    setForm(new QLHoaDon());
+                }
+                 else if (index == 9){
+                    setForm(new CHITIETHOADON());
+                }
+                else if (index == 11) {
                     Logout();
                 }
-                else if(index == 10)
+                else if(index == 12)
                 {
                     if(JOptionPane.showConfirmDialog(Dashboard.this, "Bạn muốn thoát chương trình ?") == JOptionPane.YES_OPTION)
                         System.exit(0);

@@ -190,41 +190,7 @@ public class GetData {
         {}
         return null;
     }
-    
-    public ArrayList getObjectSchema()
-    {
-        DataAccess da = new DataAccess("select username from dba_users where account_status = 'OPEN' and last_login not like 'null'");
-        Object[][] t = da.QueryContentTable();
-        ArrayList<String> arr=new ArrayList<String>();
-        for(int i =0;i<t.length; i++)
-        {
-            arr.add(t[i][0].toString());
-        }
-        return arr;
-    }
-    public ArrayList getDataAudit()
-    {
-        DataAccess da = new DataAccess("select Object_schema, object_name, policy_owner , policy_name, ins, upd, del from dba_audit_policies");
-        return da.QueryTable ();
-    }
-    public ArrayList getDataAuditPolicy()
-    {
-        DataAccess da = new DataAccess("select session_id, DB_user, object_name, object_schema, policy_name, timestamp,sql_text  from dba_fga_audit_trail");
-        return da.QueryTable ();
-    }
-    
-    public ArrayList getUsername()
-    {
-        DataAccess da = new DataAccess("select tablename from dba_users where account_status = 'OPEN' and last_login  not like 'null'");
-        Object[][] t = da.QueryContentTable();
-        ArrayList<String> arr=new ArrayList<String>();
-        for(int i =0;i<t.length; i++)
-        {
-            arr.add(t[i][0].toString());
-        }
-        return arr;
-    }
-    
+   
     public ArrayList getPrivRole(String name_role, String table_name)
     {
         DataAccess da = new DataAccess( String.format ("select privilege from role_tab_privs where role='%s'  and table_name = '%s'",name_role, table_name));
@@ -264,11 +230,12 @@ public class GetData {
     }
     //</editor-fold>    
     
+    // <editor-fold defaultstate="collapsed" desc="Lấy thông tini Directory">
     public Object[][] getAllDirectory(){
         DataAccess da = new DataAccess("select * from DBA_DIRECTORIES");
         return da.QueryContentTable();
     }
-    
+    // </editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="Backup and restore">
     public ArrayList getAllDatafileForBackupInfo(){
@@ -278,18 +245,33 @@ public class GetData {
     //</editor-fold>
     
     
-    //get data ThucDon
+    // <editor-fold defaultstate="collapsed" desc="Lấy ảnh thực đơn">
     public ArrayList getDataThucDon() {
         DataAccess da = new DataAccess(String.format("SELECT MAMON,TENMON,KICHCO, GIA,TRANGTHAI, HINHANH FROM datacaphe.THUCDON"));
         return da.QueryTable();
     }
+    // </editor-fold>
     
-    //get data khachhang
+    // <editor-fold defaultstate="collapsed" desc="KHÁCH HÀNG">
     public ArrayList getDataKhachHang() {
         DataAccess da = new DataAccess(String.format("SELECT * from datacaphe.KHACHHANG"));
         return da.QueryTable();
     }
-     public Object[][] getNameRole(){
+    // </editor-fold>
+    
+    // <editor-fold defaultstate="collapsed" desc="Thao bổ sung role">
+    public ArrayList getObjectSchema()
+    {
+        DataAccess da = new DataAccess("select username from dba_users where account_status = 'OPEN' and default_tablespace = 'USERS'");
+        Object[][] t = da.QueryContentTable();
+        ArrayList<String> arr=new ArrayList<String>();
+        for(int i =0;i<t.length; i++)
+        {
+            arr.add(t[i][0].toString());
+        }
+        return arr;
+    }
+    public Object[][] getNameRole(){
         DataAccess da = new DataAccess("SELECT ROLE FROM DBA_ROLES");
         return da.QueryContentTable();
     }
@@ -335,4 +317,68 @@ public class GetData {
         }
         return arr;
     }
+    // </editor-fold>
+    
+    // <editor-fold defaultstate="collapsed" desc="Phuong Audit chỉnh sửa bo sung moi">
+    public ArrayList getDataAudit()
+    {
+        DataAccess da = new DataAccess("select Object_schema, object_name, policy_owner , policy_name, ins, upd, del from dba_audit_policies");
+        return da.QueryTable ();
+    }
+    public ArrayList getDataAuditPolicy()
+    {
+        DataAccess da = new DataAccess("select AUDIT_TYPE, TO_CHAR(NEW_TIME (EXTENDED_TIMESTAMP,'GMT', 'MST'), 'DD-MM-YYYY HH24:MI:SS') as TIME, OS_USER, OBJECT_SCHEMA, OBJECT_NAME, STATEMENT_TYPE, SQL_TEXT from dba_common_audit_trail");
+        return da.QueryTable ();
+    }
+    
+    public ArrayList getUsername()
+    {
+        DataAccess da = new DataAccess("select username from dba_users where account_status = 'OPEN' and last_login  not like 'null'");
+        Object[][] t = da.QueryContentTable();
+        ArrayList<String> arr=new ArrayList<String>();
+        for(int i =0;i<t.length; i++)
+        {
+            arr.add(t[i][0].toString());
+        }
+        return arr;
+    }
+    //lấy tên audit lên form chỉnh sửa Audit Policy
+    public ArrayList getPolicyName()
+    {
+        DataAccess da = new DataAccess("select policy_name from dba_audit_policies");
+        Object[][] t = da.QueryContentTable();
+        ArrayList<String> arr=new ArrayList<String>();
+        for(int i =0;i<t.length; i++)
+        {
+            arr.add(t[i][0].toString());
+        }
+        return arr;
+    }
+    // </editor-fold>
+    
+    //<editor-fold defaultstate="collapsed" desc="Nghia Chitiethoadon bo sung moi">
+    //Hiển Thị Thông Tin Hóa Đơn
+    public ArrayList showDataHoaDon()
+    {
+        DataAccess da = new DataAccess("Select * From datacaphe.HoaDon");
+        return  da.QueryTable();
+    }
+    //Hiển Thị Thông Tin Chi tiết hóa đơn
+    public ArrayList showDataCTHD()
+    {
+        DataAccess da = new DataAccess("Select * From datacaphe.Chitiethoadon");
+        return  da.QueryTable();
+    }
+    public ArrayList getDataMaKH()
+    {
+        DataAccess da = new DataAccess("SELECT MAKH from datacaphe.KHACHHANG");
+        Object[][] t = da.QueryContentTable();
+        ArrayList<String> arr=new ArrayList<String>();
+        for(int i =0;i<t.length; i++)
+        {
+            arr.add(t[i][0].toString());
+        }
+        return arr;
+    }
+    // </editor-fold>
 }
