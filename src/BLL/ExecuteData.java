@@ -77,8 +77,16 @@ public class ExecuteData {
     // </editor-fold>
     
     // <editor-fold defaultstate="collapsed" desc="ROLE">
+    public static boolean  GrantSelect_dba_Role_priv(String user){
+       String temp = String.format("GRANT select on SYS.DBA_ROLE_PRIVS to %s", user);
+       return DataAccess.ResultOfExecuteSql(temp);
+    }
      public static boolean GrantRoleOfUser(String user, String rolename){
         String temp = String.format("GRANT %s to %s",rolename, user);
+        return DataAccess.ResultOfExecuteSql(temp);
+    }
+     public static boolean GrantRoleOfUserAdminOption(String user, String rolename){
+        String temp = String.format("GRANT %s to %s with admin option",rolename, user);
         return DataAccess.ResultOfExecuteSql(temp);
     }
     public static boolean DeleteRole( String role){

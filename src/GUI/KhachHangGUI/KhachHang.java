@@ -5,7 +5,9 @@
 package GUI.KhachHangGUI;
 
 import BLL.CallExecute;
+import BLL.ExecuteData;
 import BLL.GetData;
+import GUI.EditAuditPolicy;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -25,6 +27,7 @@ public class KhachHang extends javax.swing.JPanel {
     }
 
     GetData x = new GetData();
+    ExecuteData e = new ExecuteData();
     private void loadDataKH(){
         ArrayList arr = x.getDataKhachHang();
         DefaultTableModel model = (DefaultTableModel)tb_KH.getModel();
@@ -42,11 +45,12 @@ public class KhachHang extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         tb_KH = new Ultilities.swing.Controls.Table();
         btnXoaKH = new Ultilities.swing.Controls.ButtonGradient();
+        btnSua = new Ultilities.swing.Controls.ButtonGradient();
+        btnThemKH = new Ultilities.swing.Controls.ButtonGradient();
 
         setBackground(new java.awt.Color(255, 255, 255));
-        setMinimumSize(new java.awt.Dimension(1100, 700));
-        setPreferredSize(new java.awt.Dimension(1100, 700));
-        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        setMinimumSize(new java.awt.Dimension(785, 607));
+        setPreferredSize(new java.awt.Dimension(785, 607));
 
         tb_KH.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -61,8 +65,6 @@ public class KhachHang extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(tb_KH);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1130, 529));
-
         btnXoaKH.setForeground(new java.awt.Color(0, 0, 0));
         btnXoaKH.setText("Xóa");
         btnXoaKH.setColor1(new java.awt.Color(255, 102, 102));
@@ -74,18 +76,107 @@ public class KhachHang extends javax.swing.JPanel {
                 btnXoaKHActionPerformed(evt);
             }
         });
-        add(btnXoaKH, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 540, 250, 54));
+
+        btnSua.setForeground(new java.awt.Color(0, 0, 0));
+        btnSua.setText("Sửa");
+        btnSua.setColor1(new java.awt.Color(255, 102, 102));
+        btnSua.setColor2(new java.awt.Color(255, 153, 153));
+        btnSua.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnSua.setSizeSpeed(5.0F);
+        btnSua.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSuaActionPerformed(evt);
+            }
+        });
+
+        btnThemKH.setForeground(new java.awt.Color(0, 0, 0));
+        btnThemKH.setText("Thêm");
+        btnThemKH.setColor1(new java.awt.Color(255, 102, 102));
+        btnThemKH.setColor2(new java.awt.Color(255, 153, 153));
+        btnThemKH.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnThemKH.setSizeSpeed(5.0F);
+        btnThemKH.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThemKHActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnThemKH, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnXoaKH, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnSua, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 529, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnXoaKH, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnThemKH, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSua, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
+        );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnXoaKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaKHActionPerformed
-        int row = tb_KH.getSelectedRow();
-        CallExecute.callDeleteKH_PKH(tb_KH.getValueAt(row, 0).toString());
-        //CallExecute.callDeleteKH(tb_KH.getValueAt(row, 0).toString());
-        loadDataKH();
+        try
+        {
+            int row = tb_KH.getSelectedRow();
+            //CallExecute.callDeleteKH_PKH(tb_KH.getValueAt(row, 0).toString());
+            //CallExecute.callDeleteKH(tb_KH.getValueAt(row, 0).toString());
+            e.deleteKH(tb_KH.getValueAt(row, 0).toString());
+            loadDataKH();
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(this, e.getMessage(),"Thông Báo",JOptionPane.ERROR_MESSAGE);
+            System.out.println(e.getMessage());
+        }
     }//GEN-LAST:event_btnXoaKHActionPerformed
+    SuaKH s=null;
+    private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
+        // TODO add your handling code here:
+        try{
+            if(s==null)
+            s=new SuaKH();
+            s.setVisible(true);
+            loadDataKH();
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(this, e.getMessage(),"Thông Báo",JOptionPane.ERROR_MESSAGE);
+            System.out.println(e.getMessage());
+        }
+    }//GEN-LAST:event_btnSuaActionPerformed
+    ThemKH f=null;
+    private void btnThemKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemKHActionPerformed
+        // TODO add your handling code here:
+        try
+        {
+            if(f==null)
+            f=new ThemKH();
+            f.setVisible(true);
+            loadDataKH();
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(this, e.getMessage(),"Thông Báo",JOptionPane.ERROR_MESSAGE);
+            System.out.println(e.getMessage());
+        }
+    }//GEN-LAST:event_btnThemKHActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private Ultilities.swing.Controls.ButtonGradient btnSua;
+    private Ultilities.swing.Controls.ButtonGradient btnThemKH;
     private Ultilities.swing.Controls.ButtonGradient btnXoaKH;
     private javax.swing.JScrollPane jScrollPane1;
     private Ultilities.swing.Controls.Table tb_KH;

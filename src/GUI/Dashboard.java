@@ -9,7 +9,12 @@ import GUI.HoaDon.CHITIETHOADON;
 import GUI.HoaDon.QLHoaDon;
 import GUI.KhachHangGUI.KhachHang;
 import GUI.Nhanvien.Nhanvien_panel;
+import GUI.Role_Priv_Config.GrantRole;
 import GUI.SanPhamGUI.SanPham;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import GUI.Role_Priv_Config.GrantRole;
 import java.io.File;
 import java.sql.*;
 import java.io.IOException;
@@ -59,6 +64,9 @@ public class Dashboard extends javax.swing.JFrame {
                 }
                 else if (index == 5) {
                     setForm(new SystemForm());
+                }
+                else if (index == 6) {
+                    setForm(new GrantRole());
                 }
                 else if (index == 8){
                     setForm(new QLHoaDon());

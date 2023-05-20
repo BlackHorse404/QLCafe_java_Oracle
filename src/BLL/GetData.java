@@ -120,7 +120,8 @@ public class GetData {
         return da.QueryTable();
     }
     // </editor-fold>
-    
+    //<editor-fold defaultstate="collapsed" desc="Các hàm cần thiết để đăng nhập">
+
     //get User
     public ArrayList getAllUserAndProfile(){
         DataAccess da = new DataAccess("SELECT USER_ID, USERNAME, ACCOUNT_STATUS, LOCK_DATE, EXPIRY_DATE, CREATED, PROFILE FROM dba_users");
@@ -161,15 +162,16 @@ public class GetData {
         return da.QueryTable();
     }
     
+    // </editor-fold>
+    
+    //<editor-fold defaultstate="collapsed" desc="Hàm lấy nội dung bảng theo tên bảng và hàm lấy tên bảng">
+
     public ArrayList getDataTableByName(String nameTable){
         DataAccess da = new DataAccess(String.format("select * from datacaphe.%s", nameTable));
         return da.QueryTable();
     }
     
-    public ArrayList getAllRecordAutdit(){
-        DataAccess da = new DataAccess("select * from dba_fga_audit_trail");
-        return da.QueryTable();
-    }
+   
     
      public ArrayList getTableName()
     {
@@ -190,29 +192,17 @@ public class GetData {
         {}
         return null;
     }
-   
-    public ArrayList getPrivRole(String name_role, String table_name)
-    {
-        DataAccess da = new DataAccess( String.format ("select privilege from role_tab_privs where role='%s'  and table_name = '%s'",name_role, table_name));
-        Object[][] t = da.QueryContentTable();
-        ArrayList<String> arr=new ArrayList<String>();
-        for(int i =0;i<t.length; i++)
-        {
-            arr.add(t[i][0].toString());
-        }
-        return arr;
-    }
-     public ArrayList getDataRole()
-    {
-        DataAccess da = new DataAccess("SELECT ROLE, PASSWORD_REQUIRED,AUTHENTICATION_TYPE, ORACLE_MAINTAINED FROM  DBA_ROLES");
-        return da.QueryTable ();
-    }
-     
+   // </editor-fold>
+    
+    
     public Object[][] getInfoAccount(){
-        DataAccess da = new DataAccess(String.format("select * from scott.nhanvien where TAIKHOAN = '%s'",getCurrentUser().toLowerCase()));
+        DataAccess da = new DataAccess(String.format("select * from datacaphe.nhanvien where TAIKHOAN = '%s'",getCurrentUser().toLowerCase()));
         return da.QueryContentTable();
     }
-    
+     public ArrayList getAllRecordAutdit(){
+        DataAccess da = new DataAccess("select * from dba_fga_audit_trail");
+        return da.QueryTable();
+    }
     //<editor-fold defaultstate="collapsed" desc=" Profile Config ">
     public Object[][] getAllProfileName(){
         DataAccess da = new DataAccess("SELECT distinct PROFILE from dba_profiles");
@@ -260,6 +250,22 @@ public class GetData {
     // </editor-fold>
     
     // <editor-fold defaultstate="collapsed" desc="Thao bổ sung role">
+    public ArrayList getPrivRole(String name_role, String table_name)
+    {
+        DataAccess da = new DataAccess( String.format ("select privilege from role_tab_privs where role='%s'  and table_name = '%s'",name_role, table_name));
+        Object[][] t = da.QueryContentTable();
+        ArrayList<String> arr=new ArrayList<String>();
+        for(int i =0;i<t.length; i++)
+        {
+            arr.add(t[i][0].toString());
+        }
+        return arr;
+    }
+     public ArrayList getDataRole()
+    {
+        DataAccess da = new DataAccess("SELECT ROLE, PASSWORD_REQUIRED,AUTHENTICATION_TYPE, ORACLE_MAINTAINED FROM  DBA_ROLES");
+        return da.QueryTable ();
+    }
     public ArrayList getObjectSchema()
     {
         DataAccess da = new DataAccess("select username from dba_users where account_status = 'OPEN' and default_tablespace = 'USERS'");
@@ -285,6 +291,11 @@ public class GetData {
     }
     public ArrayList getRoleofUser(String user){
        DataAccess da = new DataAccess(String.format(" SELECT * FROM DBA_ROLE_PRIVS where GRANTEE = '%s'", user));
+       return da.QueryTable();
+    }
+    
+    public ArrayList getRoleofUserToUser(String user){
+       DataAccess da = new DataAccess(String.format(" SELECT * FROM sys.DBA_ROLE_PRIVS where GRANTEE = '%s'", user));
        return da.QueryTable();
     }
     public ArrayList getAllUserName()
@@ -379,6 +390,13 @@ public class GetData {
             arr.add(t[i][0].toString());
         }
         return arr;
+    }
+    // </editor-fold>
+    
+    //<editor-fold defaultstate="collapsed" desc="Hàm hỗ trợ cho form tìm kiếm">
+    public Object[][] getDataLoaiMon() {
+        DataAccess da = new DataAccess(String.format("SELECT TENLOAI from datacaphe.PHANLOAI"));
+        return da.QueryContentTable();
     }
     // </editor-fold>
 }
