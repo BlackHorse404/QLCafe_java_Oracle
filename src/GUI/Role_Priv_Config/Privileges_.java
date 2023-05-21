@@ -98,6 +98,11 @@ public class Privileges_ extends javax.swing.JFrame {
                 btn_RevokeMousePressed(evt);
             }
         });
+        btn_Revoke.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_RevokeActionPerformed(evt);
+            }
+        });
 
         ckb_all.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         ckb_all.setText("TẤT CẢ");
@@ -346,8 +351,7 @@ public class Privileges_ extends javax.swing.JFrame {
         String user = cbo_Username.getSelectedItem().toString();
         if(ckb_all.isSelected ())
         {
-             if(ck_grantoption.isSelected())
-                {
+             
                     if(up.revokeAllPrivToUser(user, obj))
                     {
                     JOptionPane.showMessageDialog(this, String.format ("Thu hồi quyền cho %s thành công!", user),"Thông Báo",JOptionPane.INFORMATION_MESSAGE);
@@ -357,23 +361,6 @@ public class Privileges_ extends javax.swing.JFrame {
                     {
                          JOptionPane.showMessageDialog(this, String.format ("Thu hồi quyền cho %s thất bại!",user),"Thông Báo",JOptionPane.INFORMATION_MESSAGE);
                     }
-                }
-             else
-             {
-                 
-                 if(up.revokeAllPrivToUserCascade(user, obj))
-                 {
-                      JOptionPane.showMessageDialog(this, String.format ("Thu hồi quyền cho %s thành công!", user),"Thông Báo",JOptionPane.INFORMATION_MESSAGE);
-                        loadpriv();
-                 }
-                 else
-                 {
-                      JOptionPane.showMessageDialog(this, String.format ("Thu hồi quyền cho %s thất bại!",user),"Thông Báo",JOptionPane.INFORMATION_MESSAGE);
-                 }
-                      
-               
-             }
-            
         }
         else
         {
@@ -389,9 +376,8 @@ public class Privileges_ extends javax.swing.JFrame {
                 }
             }
             try {
-                if(ck_grantoption.isSelected())
-                {
-                    if(up.revokePrivToUserCascade(user,obj,priv.substring (0,priv.length ()-1)))
+                
+                    if(up.revokePrivToUser(user,obj,priv.substring (0,priv.length ()-1)))
                     {
                         JOptionPane.showMessageDialog(this, String.format ("Thu hồi quyền cho %s thành công!",user),"Thông Báo",JOptionPane.INFORMATION_MESSAGE);
                     loadpriv ();
@@ -400,8 +386,6 @@ public class Privileges_ extends javax.swing.JFrame {
                     {
                          JOptionPane.showMessageDialog(this, String.format ("Thu hồi quyền cho %s thất bại!",user),"Thông Báo",JOptionPane.INFORMATION_MESSAGE);
                     }
-                    
-                }
                 
             } catch ( Exception e ) {
             }
@@ -431,6 +415,10 @@ public class Privileges_ extends javax.swing.JFrame {
     private void btn_InsertPrivActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_InsertPrivActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_InsertPrivActionPerformed
+
+    private void btn_RevokeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_RevokeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_RevokeActionPerformed
     
     /**
      * @param args the command line arguments

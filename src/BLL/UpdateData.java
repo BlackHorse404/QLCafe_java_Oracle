@@ -209,11 +209,7 @@ public class UpdateData {
          da = new DataAccess(String.format ("Revoke %s on datacaphe.%s from %s" ,priv, obj , user));
          return true;
     }
-     public boolean revokePrivToUserCascade(String user, String obj ,String priv)
-    {
-         da = new DataAccess(String.format ("Revoke %s on datacaphe.%s from %s cascade" ,priv, obj , user));
-         return true;
-    }
+     
     public boolean grantPrivToUser(String user,String Object, String priv)
     {
          da = new DataAccess(String.format ("grant %s on datacaphe.%s to %s" ,priv,Object, user));
@@ -237,11 +233,6 @@ public class UpdateData {
     public boolean revokeAllPrivToUser(String user,String Object)
     {
          da = new DataAccess(String.format ("revoke select, update, delete on datacaphe.%s from %s" ,Object, user));
-         return true;
-    }
-    public boolean revokeAllPrivToUserCascade(String user,String Object)
-    {
-         da = new DataAccess(String.format ("revoke select, update, delete on datacaphe.%s from %s cascade" ,Object, user));
          return true;
     }
     public boolean defaultRole(String user,String role)

@@ -322,23 +322,6 @@ public class SystemForm extends javax.swing.JPanel {
         btn_VPD = new javax.swing.JButton();
         btn_CreateUser = new Ultilities.swing.Controls.ButtonGradient();
         btn_grantSelectRole = new javax.swing.JButton();
-        import_export = new javax.swing.JPanel();
-        jPanel14 = new javax.swing.JPanel();
-        lb_slProfile4 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        cb_TableName_IE = new Ultilities.swing.Controls.ComboBoxSuggestion();
-        rad_sqlcl = new javax.swing.JRadioButton();
-        rad_datapump = new javax.swing.JRadioButton();
-        lb_IE = new javax.swing.JLabel();
-        txt_pathFile = new javax.swing.JTextField();
-        btn_browse = new Ultilities.swing.Controls.buttonCustom();
-        cb_Dir = new Ultilities.swing.Controls.ComboBoxSuggestion();
-        jPanel2 = new javax.swing.JPanel();
-        jScrollPane6 = new javax.swing.JScrollPane();
-        table_ImEx = new Ultilities.swing.Controls.Table();
-        jPanel3 = new javax.swing.JPanel();
-        btn_import = new Ultilities.swing.Controls.buttonCustom();
-        btn_Export = new Ultilities.swing.Controls.buttonCustom();
         Backup_Restore = new javax.swing.JPanel();
         jPanel15 = new javax.swing.JPanel();
         lb_slProfile5 = new javax.swing.JLabel();
@@ -376,6 +359,23 @@ public class SystemForm extends javax.swing.JPanel {
         ckbSelect = new javax.swing.JCheckBox();
         btnCreateStandardAudit = new javax.swing.JButton();
         btnEditAuditPolicy = new javax.swing.JButton();
+        import_export = new javax.swing.JPanel();
+        jPanel14 = new javax.swing.JPanel();
+        lb_slProfile4 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        cb_TableName_IE = new Ultilities.swing.Controls.ComboBoxSuggestion();
+        rad_sqlcl = new javax.swing.JRadioButton();
+        rad_datapump = new javax.swing.JRadioButton();
+        lb_IE = new javax.swing.JLabel();
+        txt_pathFile = new javax.swing.JTextField();
+        btn_browse = new Ultilities.swing.Controls.buttonCustom();
+        cb_Dir = new Ultilities.swing.Controls.ComboBoxSuggestion();
+        jPanel2 = new javax.swing.JPanel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        table_ImEx = new Ultilities.swing.Controls.Table();
+        jPanel3 = new javax.swing.JPanel();
+        btn_import = new Ultilities.swing.Controls.buttonCustom();
+        btn_Export = new Ultilities.swing.Controls.buttonCustom();
 
         jTabbedPane1.setBackground(new java.awt.Color(255, 255, 255));
         jTabbedPane1.setToolTipText("");
@@ -1288,225 +1288,6 @@ public class SystemForm extends javax.swing.JPanel {
 
         jTabbedPane1.addTab("User", USER);
 
-        import_export.setBackground(new java.awt.Color(255, 255, 255));
-        import_export.setMinimumSize(new java.awt.Dimension(1100, 700));
-        import_export.setPreferredSize(new java.awt.Dimension(1100, 700));
-        import_export.setVerifyInputWhenFocusTarget(false);
-        import_export.addComponentListener(new java.awt.event.ComponentAdapter() {
-            public void componentShown(java.awt.event.ComponentEvent evt) {
-                import_exportComponentShown(evt);
-            }
-        });
-
-        jPanel14.setBackground(new java.awt.Color(255, 255, 255));
-
-        lb_slProfile4.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        lb_slProfile4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lb_slProfile4.setText("IMPORT AND EXPORT DATA");
-        lb_slProfile4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-
-        jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel11.setText("Bảng Dữ Liệu");
-
-        cb_TableName_IE.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                cb_TableName_IEItemStateChanged(evt);
-            }
-        });
-
-        rad_sqlcl.setBackground(new java.awt.Color(255, 255, 255));
-        grRadio_Backup.add(rad_sqlcl);
-        rad_sqlcl.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        rad_sqlcl.setText("SQLCL");
-
-        rad_datapump.setBackground(new java.awt.Color(255, 255, 255));
-        grRadio_Backup.add(rad_datapump);
-        rad_datapump.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        rad_datapump.setText("DATAPUMP");
-        rad_datapump.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                rad_datapumpItemStateChanged(evt);
-            }
-        });
-
-        lb_IE.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lb_IE.setText("File Export");
-
-        txt_pathFile.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-
-        btn_browse.setBackground(new java.awt.Color(102, 153, 255));
-        btn_browse.setText("browse");
-        btn_browse.setBorderColor(new java.awt.Color(102, 153, 255));
-        btn_browse.setColor(new java.awt.Color(102, 153, 255));
-        btn_browse.setColorClick(new java.awt.Color(204, 204, 255));
-        btn_browse.setColorOver(new java.awt.Color(102, 153, 255));
-        btn_browse.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_browseActionPerformed(evt);
-            }
-        });
-
-        cb_Dir.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                cb_DirItemStateChanged(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
-        jPanel14.setLayout(jPanel14Layout);
-        jPanel14Layout.setHorizontalGroup(
-            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lb_slProfile4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel14Layout.createSequentialGroup()
-                .addGap(55, 55, 55)
-                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel14Layout.createSequentialGroup()
-                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cb_TableName_IE, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel14Layout.createSequentialGroup()
-                        .addComponent(lb_IE, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cb_Dir, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 324, Short.MAX_VALUE)
-                        .addComponent(txt_pathFile, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(12, 12, 12)
-                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(rad_datapump, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(rad_sqlcl, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btn_browse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
-        );
-        jPanel14Layout.setVerticalGroup(
-            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel14Layout.createSequentialGroup()
-                .addComponent(lb_slProfile4, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel14Layout.createSequentialGroup()
-                        .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(cb_TableName_IE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel14Layout.createSequentialGroup()
-                                .addGap(28, 28, 28)
-                                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(cb_Dir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lb_IE, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel14Layout.createSequentialGroup()
-                                .addGap(36, 36, 36)
-                                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(txt_pathFile, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btn_browse, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                    .addGroup(jPanel14Layout.createSequentialGroup()
-                        .addComponent(rad_sqlcl)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(rad_datapump)))
-                .addGap(0, 2, Short.MAX_VALUE))
-        );
-
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-
-        table_ImEx.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane6.setViewportView(table_ImEx);
-
-        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
-
-        btn_import.setBackground(new java.awt.Color(102, 255, 153));
-        btn_import.setText("IMPORT");
-        btn_import.setBorderColor(new java.awt.Color(255, 255, 255));
-        btn_import.setColor(new java.awt.Color(102, 255, 153));
-        btn_import.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btn_import.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_importActionPerformed(evt);
-            }
-        });
-
-        btn_Export.setBackground(new java.awt.Color(102, 204, 255));
-        btn_Export.setText("EXPORT");
-        btn_Export.setBorderColor(new java.awt.Color(102, 255, 255));
-        btn_Export.setColor(new java.awt.Color(102, 204, 255));
-        btn_Export.setColorClick(new java.awt.Color(153, 204, 255));
-        btn_Export.setColorOver(new java.awt.Color(204, 255, 255));
-        btn_Export.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btn_Export.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_ExportActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(129, 129, 129)
-                .addComponent(btn_import, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btn_Export, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(92, 92, 92))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(btn_import, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(btn_Export, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane6)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 7, Short.MAX_VALUE))
-        );
-
-        javax.swing.GroupLayout import_exportLayout = new javax.swing.GroupLayout(import_export);
-        import_export.setLayout(import_exportLayout);
-        import_exportLayout.setHorizontalGroup(
-            import_exportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, import_exportLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        import_exportLayout.setVerticalGroup(
-            import_exportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(import_exportLayout.createSequentialGroup()
-                .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-
-        jTabbedPane1.addTab("Import/Export", import_export);
-
         Backup_Restore.setBackground(new java.awt.Color(255, 255, 255));
         Backup_Restore.setMinimumSize(new java.awt.Dimension(1100, 700));
         Backup_Restore.setPreferredSize(new java.awt.Dimension(1100, 700));
@@ -1954,6 +1735,225 @@ public class SystemForm extends javax.swing.JPanel {
         );
 
         jTabbedPane1.addTab("QL Audit", AUDIT);
+
+        import_export.setBackground(new java.awt.Color(255, 255, 255));
+        import_export.setMinimumSize(new java.awt.Dimension(1100, 700));
+        import_export.setPreferredSize(new java.awt.Dimension(1100, 700));
+        import_export.setVerifyInputWhenFocusTarget(false);
+        import_export.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                import_exportComponentShown(evt);
+            }
+        });
+
+        jPanel14.setBackground(new java.awt.Color(255, 255, 255));
+
+        lb_slProfile4.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lb_slProfile4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lb_slProfile4.setText("IMPORT AND EXPORT DATA");
+        lb_slProfile4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel11.setText("Bảng Dữ Liệu");
+
+        cb_TableName_IE.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cb_TableName_IEItemStateChanged(evt);
+            }
+        });
+
+        rad_sqlcl.setBackground(new java.awt.Color(255, 255, 255));
+        grRadio_Backup.add(rad_sqlcl);
+        rad_sqlcl.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        rad_sqlcl.setText("SQLCL");
+
+        rad_datapump.setBackground(new java.awt.Color(255, 255, 255));
+        grRadio_Backup.add(rad_datapump);
+        rad_datapump.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        rad_datapump.setText("DATAPUMP");
+        rad_datapump.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                rad_datapumpItemStateChanged(evt);
+            }
+        });
+
+        lb_IE.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lb_IE.setText("File Export");
+
+        txt_pathFile.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        btn_browse.setBackground(new java.awt.Color(102, 153, 255));
+        btn_browse.setText("browse");
+        btn_browse.setBorderColor(new java.awt.Color(102, 153, 255));
+        btn_browse.setColor(new java.awt.Color(102, 153, 255));
+        btn_browse.setColorClick(new java.awt.Color(204, 204, 255));
+        btn_browse.setColorOver(new java.awt.Color(102, 153, 255));
+        btn_browse.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_browseActionPerformed(evt);
+            }
+        });
+
+        cb_Dir.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cb_DirItemStateChanged(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
+        jPanel14.setLayout(jPanel14Layout);
+        jPanel14Layout.setHorizontalGroup(
+            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lb_slProfile4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel14Layout.createSequentialGroup()
+                .addGap(55, 55, 55)
+                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel14Layout.createSequentialGroup()
+                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cb_TableName_IE, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel14Layout.createSequentialGroup()
+                        .addComponent(lb_IE, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cb_Dir, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 324, Short.MAX_VALUE)
+                        .addComponent(txt_pathFile, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(12, 12, 12)
+                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(rad_datapump, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(rad_sqlcl, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btn_browse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+        jPanel14Layout.setVerticalGroup(
+            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel14Layout.createSequentialGroup()
+                .addComponent(lb_slProfile4, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel14Layout.createSequentialGroup()
+                        .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cb_TableName_IE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel14Layout.createSequentialGroup()
+                                .addGap(28, 28, 28)
+                                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(cb_Dir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lb_IE, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel14Layout.createSequentialGroup()
+                                .addGap(36, 36, 36)
+                                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(txt_pathFile, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btn_browse, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(jPanel14Layout.createSequentialGroup()
+                        .addComponent(rad_sqlcl)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(rad_datapump)))
+                .addGap(0, 2, Short.MAX_VALUE))
+        );
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+
+        table_ImEx.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane6.setViewportView(table_ImEx);
+
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+
+        btn_import.setBackground(new java.awt.Color(102, 255, 153));
+        btn_import.setText("IMPORT");
+        btn_import.setBorderColor(new java.awt.Color(255, 255, 255));
+        btn_import.setColor(new java.awt.Color(102, 255, 153));
+        btn_import.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btn_import.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_importActionPerformed(evt);
+            }
+        });
+
+        btn_Export.setBackground(new java.awt.Color(102, 204, 255));
+        btn_Export.setText("EXPORT");
+        btn_Export.setBorderColor(new java.awt.Color(102, 255, 255));
+        btn_Export.setColor(new java.awt.Color(102, 204, 255));
+        btn_Export.setColorClick(new java.awt.Color(153, 204, 255));
+        btn_Export.setColorOver(new java.awt.Color(204, 255, 255));
+        btn_Export.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btn_Export.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_ExportActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(129, 129, 129)
+                .addComponent(btn_import, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btn_Export, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(92, 92, 92))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(btn_import, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btn_Export, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane6)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 7, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout import_exportLayout = new javax.swing.GroupLayout(import_export);
+        import_export.setLayout(import_exportLayout);
+        import_exportLayout.setHorizontalGroup(
+            import_exportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, import_exportLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        import_exportLayout.setVerticalGroup(
+            import_exportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(import_exportLayout.createSequentialGroup()
+                .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Import/Export", import_export);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -2759,14 +2759,14 @@ public class SystemForm extends javax.swing.JPanel {
 
     private void btn_grantSelectRoleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_grantSelectRoleActionPerformed
         // TODO add your handling code here:
-        int row = tbl_userofrole.getSelectedRow();
+        int row = table_User.getSelectedRow();
        if(row < 0)
        {
             JOptionPane.showMessageDialog(null,"Bạn chưa chọn dòng !");
        }
        else
        {
-           String user = cbo_Username.getSelectedItem().toString();
+           String user = table_User.getValueAt(row, 1).toString();
            if(ExecuteData.GrantSelect_dba_Role_priv(user))
            {
                JOptionPane.showMessageDialog(null,"Cấp quyền thành công!");
