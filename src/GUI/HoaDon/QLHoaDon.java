@@ -90,7 +90,7 @@ public class QLHoaDon extends javax.swing.JPanel {
         setMinimumSize(new java.awt.Dimension(1100, 700));
         setPreferredSize(new java.awt.Dimension(1100, 700));
 
-        jp2.setBackground(new java.awt.Color(102, 255, 153));
+        jp2.setBackground(new java.awt.Color(255, 255, 255));
 
         table_HD.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         table_HD.setModel(new javax.swing.table.DefaultTableModel(

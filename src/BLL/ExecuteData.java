@@ -1,6 +1,8 @@
 package BLL;
 
 import DAL.DataAccess;
+import java.time.LocalDateTime; 
+import java.time.format.DateTimeFormatter;
 
 public class ExecuteData {
     public static boolean ExecuteSql(String SID, String SerialID)
@@ -14,10 +16,9 @@ public class ExecuteData {
     }
     public static boolean DeleteAuditPolicy(String objectSchema, String objectName, String policyName)
     {
-        String temp = String.format("BEGIN DBMS_FGA.DROP_POLICY( object_schema  => '%s', object_name  => '%s', policy_name => '%s'); END;commit work;",objectSchema, objectName, policyName);
+        String temp = String.format("BEGIN DBMS_FGA.DROP_POLICY( object_schema  => '%s', object_name  => '%s', policy_name => '%s'); END;",objectSchema, objectName, policyName);
         return DataAccess.ResultOfExecuteSql(temp);
     }
-   
     public static boolean ChangePassword(String username, String newPass){
         String temp = String.format("ALTER USER %s IDENTIFIED BY %s",username, newPass);
         return DataAccess.ResultOfExecuteSql(temp);

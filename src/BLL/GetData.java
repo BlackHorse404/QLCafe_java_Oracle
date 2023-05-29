@@ -194,10 +194,10 @@ public class GetData {
     }
    // </editor-fold>
     
-<<<<<<< HEAD
-    public ArrayList getObjectSchema()
+    
+    public ArrayList getUsername()
     {
-        DataAccess da = new DataAccess("select username from dba_users where account_status = 'OPEN' and default_tablespace = 'USERS'");
+        DataAccess da = new DataAccess("select username from dba_users where account_status = 'OPEN' and last_login  not like 'null'");
         Object[][] t = da.QueryContentTable();
         ArrayList<String> arr=new ArrayList<String>();
         for(int i =0;i<t.length; i++)
@@ -206,19 +206,7 @@ public class GetData {
         }
         return arr;
     }
-    public ArrayList getDataAudit()
-    {
-        DataAccess da = new DataAccess("select Object_schema, object_name, policy_owner , policy_name, ins, upd, del from dba_audit_policies");
-        return da.QueryTable ();
-    }
-    public ArrayList getDataAuditPolicy()
-    {
-        DataAccess da = new DataAccess("select session_id, DB_user, object_name, object_schema, policy_name, timestamp,sql_text  from dba_fga_audit_trail");
-        return da.QueryTable ();
-    }
-=======
->>>>>>> Thao3
-    
+     
     public Object[][] getInfoAccount(){
         DataAccess da = new DataAccess(String.format("select * from datacaphe.nhanvien where TAIKHOAN = '%s'",getCurrentUser().toLowerCase()));
         return da.QueryContentTable();
@@ -271,10 +259,6 @@ public class GetData {
         DataAccess da = new DataAccess(String.format("SELECT * from datacaphe.KHACHHANG"));
         return da.QueryTable();
     }
-<<<<<<< HEAD
-    
-    //get data tenloai
-=======
     // </editor-fold>
     
     // <editor-fold defaultstate="collapsed" desc="Thao bổ sung role">
@@ -370,17 +354,6 @@ public class GetData {
         return da.QueryTable ();
     }
     
-    public ArrayList getUsername()
-    {
-        DataAccess da = new DataAccess("select username from dba_users where account_status = 'OPEN' and last_login  not like 'null'");
-        Object[][] t = da.QueryContentTable();
-        ArrayList<String> arr=new ArrayList<String>();
-        for(int i =0;i<t.length; i++)
-        {
-            arr.add(t[i][0].toString());
-        }
-        return arr;
-    }
     //lấy tên audit lên form chỉnh sửa Audit Policy
     public ArrayList getPolicyName()
     {
@@ -422,13 +395,10 @@ public class GetData {
     // </editor-fold>
     
     //<editor-fold defaultstate="collapsed" desc="Hàm hỗ trợ cho form tìm kiếm">
->>>>>>> Thao3
     public Object[][] getDataLoaiMon() {
         DataAccess da = new DataAccess(String.format("SELECT TENLOAI from datacaphe.PHANLOAI"));
         return da.QueryContentTable();
     }
-<<<<<<< HEAD
-=======
     // </editor-fold>
->>>>>>> Thao3
+
 }

@@ -75,7 +75,7 @@ public class CHITIETHOADON extends javax.swing.JPanel {
         setMinimumSize(new java.awt.Dimension(1100, 700));
         setPreferredSize(new java.awt.Dimension(1100, 700));
 
-        jp5.setBackground(new java.awt.Color(204, 255, 204));
+        jp5.setBackground(new java.awt.Color(255, 255, 255));
 
         table_CTHD.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         table_CTHD.setModel(new javax.swing.table.DefaultTableModel(

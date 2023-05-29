@@ -66,26 +66,19 @@ public class Dashboard extends javax.swing.JFrame {
                 else if (index == 5) {
                     setForm(new SystemForm());
                 }
-<<<<<<< HEAD
-                else if (index == 7) {
-                    setForm(new TimKiem());
-                }
-                else if (index == 9) {
-=======
                 else if (index == 6) {
                     setForm(new GrantRole());
                 }
-                else if (index == 8){
-                    setForm(new QLHoaDon());
-                }
                 else if (index == 7){
+                    setForm(new TimKiem());
+                }
+                else if (index == 8){
                     setForm(new QLHoaDon());
                 }
                  else if (index == 9){
                     setForm(new CHITIETHOADON());
                 }
                 else if (index == 11) {
->>>>>>> Thao3
                     Logout();
                 }
                 else if(index == 12)

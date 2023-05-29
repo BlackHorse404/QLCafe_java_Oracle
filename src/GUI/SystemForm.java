@@ -53,21 +53,13 @@ public class SystemForm extends javax.swing.JPanel {
     private UpdateData up = new UpdateData();
     ArrayList tableName = x.getTableName();
     ArrayList objectSchema=x.getObjectSchema();
-    String statement;
+    String statement="";
     
     
     @SuppressWarnings("unchecked")
     public SystemForm() {
         initComponents();        
         LoadComboBoxUserName();
-    }
-    
-    private void LoadComboBoxObjectSchema()
-    {
-        for(var e:objectSchema)
-        {
-            cboObjectSchema.addItem(e.toString());
-        }
     }
 
     public void showDataOnTable(Ultilities.swing.Controls.Table table,ArrayList arr)
@@ -76,7 +68,6 @@ public class SystemForm extends javax.swing.JPanel {
         String[] columnNames = (String[])arr.get(0);
         String[][] data = ConvertDataORCL.ConvertObject2DToString2D((Object[][])arr.get(1));
         model.setDataVector(data, columnNames);
-        countRecord.setText("Số dòng: "+data.length);
     }
    
     public void showDataOnTable_1(Ultilities.swing.Controls.Table table , ArrayList arr)
@@ -272,7 +263,6 @@ public class SystemForm extends javax.swing.JPanel {
         numRecord_tab2 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         chkBox_blockingUser = new javax.swing.JCheckBox();
-<<<<<<< HEAD
         AUDIT = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -288,8 +278,6 @@ public class SystemForm extends javax.swing.JPanel {
         btn_XemTT = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
         cboObjectSchema = new javax.swing.JComboBox<>();
-=======
->>>>>>> Thao3
         QL_ROLE = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -319,7 +307,7 @@ public class SystemForm extends javax.swing.JPanel {
         btn_updaterole = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
-        jLabel13 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
         cbo_Username = new javax.swing.JComboBox<>();
         jScrollPane8 = new javax.swing.JScrollPane();
         tbl_userofrole = new Ultilities.swing.Controls.Table();
@@ -375,21 +363,21 @@ public class SystemForm extends javax.swing.JPanel {
         jPanel5 = new javax.swing.JPanel();
         btn_backup = new Ultilities.swing.Controls.buttonCustom();
         btn_recovery = new Ultilities.swing.Controls.buttonCustom();
-        AUDIT = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        txtPolicyName = new javax.swing.JTextField();
-        cboObjectName = new javax.swing.JComboBox<>();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        ckbInsert = new javax.swing.JCheckBox();
-        ckbUpdate = new javax.swing.JCheckBox();
-        ckbDelete = new javax.swing.JCheckBox();
-        btnCreateAuditPolicy = new javax.swing.JButton();
-        btn_showaudit = new javax.swing.JButton();
-        btn_XemTT = new javax.swing.JButton();
-        jLabel14 = new javax.swing.JLabel();
-        cboObjectSchema = new javax.swing.JComboBox<>();
+        AUDIT1 = new javax.swing.JPanel();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        txtPolicyName1 = new javax.swing.JTextField();
+        cboObjectName1 = new javax.swing.JComboBox<>();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        ckbInsert1 = new javax.swing.JCheckBox();
+        ckbUpdate1 = new javax.swing.JCheckBox();
+        ckbDelete1 = new javax.swing.JCheckBox();
+        btnCreateAuditPolicy1 = new javax.swing.JButton();
+        btn_showaudit1 = new javax.swing.JButton();
+        btn_XemTT1 = new javax.swing.JButton();
+        jLabel20 = new javax.swing.JLabel();
+        cboObjectSchema1 = new javax.swing.JComboBox<>();
         ckbSelect = new javax.swing.JCheckBox();
         btnCreateStandardAudit = new javax.swing.JButton();
         btnEditAuditPolicy = new javax.swing.JButton();
@@ -622,7 +610,6 @@ public class SystemForm extends javax.swing.JPanel {
 
         jTabbedPane1.addTab("QL Session", SESSION);
 
-<<<<<<< HEAD
         AUDIT.setBackground(new java.awt.Color(255, 255, 255));
         AUDIT.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
@@ -772,8 +759,6 @@ public class SystemForm extends javax.swing.JPanel {
 
         jTabbedPane1.addTab("QL Audit", AUDIT);
 
-=======
->>>>>>> Thao3
         QL_ROLE.setBackground(new java.awt.Color(255, 255, 255));
         QL_ROLE.setMinimumSize(new java.awt.Dimension(1100, 700));
         QL_ROLE.setPreferredSize(new java.awt.Dimension(1100, 700));
@@ -1070,8 +1055,8 @@ public class SystemForm extends javax.swing.JPanel {
 
         jPanel9.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel13.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel13.setText("User");
+        jLabel15.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel15.setText("User");
 
         cbo_Username.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         cbo_Username.addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -1130,7 +1115,7 @@ public class SystemForm extends javax.swing.JPanel {
                         .addGroup(jPanel9Layout.createSequentialGroup()
                             .addComponent(btn_RevokeRoleToUser, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel13)
+                            .addComponent(jLabel15)
                             .addGap(36, 36, 36)
                             .addComponent(cbo_Username, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 1001, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -1143,7 +1128,7 @@ public class SystemForm extends javax.swing.JPanel {
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(cbo_Username, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel13))
+                        .addComponent(jLabel15))
                     .addComponent(btn_RevokeRoleToUser, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1777,85 +1762,100 @@ public class SystemForm extends javax.swing.JPanel {
 
         jTabbedPane1.addTab("Backup/Restore", Backup_Restore);
 
-        AUDIT.setBackground(new java.awt.Color(255, 255, 255));
-        AUDIT.addComponentListener(new java.awt.event.ComponentAdapter() {
+        AUDIT1.setBackground(new java.awt.Color(255, 255, 255));
+        AUDIT1.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
                 AUDITComponentShown(evt);
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Thiết lập Audit Policy");
-        jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jLabel16.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel16.setText("Thiết lập Audit Policy");
+        jLabel16.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        AUDIT1.add(jLabel16);
 
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel3.setText("Nhập tên Audit:");
+        jLabel17.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel17.setText("Nhập tên Audit:");
+        AUDIT1.add(jLabel17);
 
-        txtPolicyName.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtPolicyName1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        AUDIT1.add(txtPolicyName1);
 
-        cboObjectName.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        cboObjectName.addItemListener(new java.awt.event.ItemListener() {
+        cboObjectName1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cboObjectName1.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cboObjectNameItemStateChanged(evt);
             }
         });
+        AUDIT1.add(cboObjectName1);
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel4.setText("Chọn bảng cần Audit:");
+        jLabel18.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel18.setText("Chọn bảng cần Audit:");
+        AUDIT1.add(jLabel18);
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel6.setText("Kiểm toán các thao tác:");
+        jLabel19.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel19.setText("Kiểm toán các thao tác:");
+        AUDIT1.add(jLabel19);
 
-        ckbInsert.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        ckbInsert.setText("INSERT");
+        ckbInsert1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        ckbInsert1.setText("INSERT");
+        AUDIT1.add(ckbInsert1);
 
-        ckbUpdate.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        ckbUpdate.setText("UPDATE");
+        ckbUpdate1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        ckbUpdate1.setText("UPDATE");
+        AUDIT1.add(ckbUpdate1);
 
-        ckbDelete.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        ckbDelete.setText("DELETE");
+        ckbDelete1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        ckbDelete1.setText("DELETE");
+        AUDIT1.add(ckbDelete1);
 
-        btnCreateAuditPolicy.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnCreateAuditPolicy.setText("FGA");
-        btnCreateAuditPolicy.addActionListener(new java.awt.event.ActionListener() {
+        btnCreateAuditPolicy1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnCreateAuditPolicy1.setText("FGA");
+        btnCreateAuditPolicy1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCreateAuditPolicyActionPerformed(evt);
             }
         });
+        AUDIT1.add(btnCreateAuditPolicy1);
 
-        btn_showaudit.setText("Audit trail");
-        btn_showaudit.addMouseListener(new java.awt.event.MouseAdapter() {
+        btn_showaudit1.setText("Audit trail");
+        btn_showaudit1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btn_showauditMouseClicked(evt);
             }
         });
-        btn_showaudit.addActionListener(new java.awt.event.ActionListener() {
+        btn_showaudit1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_showauditActionPerformed(evt);
             }
         });
+        AUDIT1.add(btn_showaudit1);
 
-        btn_XemTT.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btn_XemTT.setText("Xem thông tin");
-        btn_XemTT.addMouseListener(new java.awt.event.MouseAdapter() {
+        btn_XemTT1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btn_XemTT1.setText("Xem thông tin");
+        btn_XemTT1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btn_XemTTMouseClicked(evt);
             }
         });
+        AUDIT1.add(btn_XemTT1);
 
-        jLabel14.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel14.setText("User");
+        jLabel20.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel20.setText("User");
+        AUDIT1.add(jLabel20);
 
-        cboObjectSchema.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        cboObjectSchema.addItemListener(new java.awt.event.ItemListener() {
+        cboObjectSchema1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cboObjectSchema1.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cboObjectSchemaItemStateChanged(evt);
             }
         });
+        AUDIT1.add(cboObjectSchema1);
 
         ckbSelect.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         ckbSelect.setText("SELECT");
+        AUDIT1.add(ckbSelect);
 
         btnCreateStandardAudit.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnCreateStandardAudit.setText("Standard");
@@ -1864,6 +1864,7 @@ public class SystemForm extends javax.swing.JPanel {
                 btnCreateStandardAuditActionPerformed(evt);
             }
         });
+        AUDIT1.add(btnCreateStandardAudit);
 
         btnEditAuditPolicy.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnEditAuditPolicy.setText("Chỉnh sửa");
@@ -1872,96 +1873,9 @@ public class SystemForm extends javax.swing.JPanel {
                 btnEditAuditPolicyActionPerformed(evt);
             }
         });
+        AUDIT1.add(btnEditAuditPolicy);
 
-        javax.swing.GroupLayout AUDITLayout = new javax.swing.GroupLayout(AUDIT);
-        AUDIT.setLayout(AUDITLayout);
-        AUDITLayout.setHorizontalGroup(
-            AUDITLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(AUDITLayout.createSequentialGroup()
-                .addGroup(AUDITLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(AUDITLayout.createSequentialGroup()
-                        .addGap(146, 146, 146)
-                        .addGroup(AUDITLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel14))
-                        .addGap(43, 43, 43)
-                        .addGroup(AUDITLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(cboObjectName, 0, 210, Short.MAX_VALUE)
-                            .addComponent(txtPolicyName)
-                            .addComponent(cboObjectSchema, 0, 210, Short.MAX_VALUE)))
-                    .addGroup(AUDITLayout.createSequentialGroup()
-                        .addGap(178, 178, 178)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(45, 45, 45)
-                        .addComponent(btn_XemTT))
-                    .addGroup(AUDITLayout.createSequentialGroup()
-                        .addGap(130, 130, 130)
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(138, 138, 138)
-                        .addGroup(AUDITLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(ckbInsert, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(ckbDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(ckbUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(ckbSelect, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(AUDITLayout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addComponent(btnEditAuditPolicy, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26)
-                        .addComponent(btnCreateStandardAudit, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(31, 31, 31)
-                        .addComponent(btnCreateAuditPolicy, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(81, 81, 81)
-                        .addComponent(btn_showaudit, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(375, Short.MAX_VALUE))
-        );
-        AUDITLayout.setVerticalGroup(
-            AUDITLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(AUDITLayout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addGroup(AUDITLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(btn_XemTT))
-                .addGap(21, 21, 21)
-                .addGroup(AUDITLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cboObjectSchema, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel14))
-                .addGap(10, 10, 10)
-                .addGroup(AUDITLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(txtPolicyName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(AUDITLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(AUDITLayout.createSequentialGroup()
-                        .addGroup(AUDITLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(cboObjectName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(ckbInsert)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, AUDITLayout.createSequentialGroup()
-                        .addGap(65, 65, 65)
-                        .addComponent(jLabel6)
-                        .addGap(1, 1, 1)))
-                .addComponent(ckbUpdate)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ckbDelete)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ckbSelect)
-                .addGroup(AUDITLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(AUDITLayout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addGroup(AUDITLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnCreateAuditPolicy, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnEditAuditPolicy, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnCreateStandardAudit, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(AUDITLayout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addComponent(btn_showaudit, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(338, Short.MAX_VALUE))
-        );
-
-        jTabbedPane1.addTab("QL Audit", AUDIT);
+        jTabbedPane1.addTab("QL Audit", AUDIT1);
 
         import_export.setBackground(new java.awt.Color(255, 255, 255));
         import_export.setMinimumSize(new java.awt.Dimension(1100, 700));
@@ -2370,78 +2284,6 @@ public class SystemForm extends javax.swing.JPanel {
         loadpriv ();
     }//GEN-LAST:event_cbo_objectnameActionPerformed
 
-<<<<<<< HEAD
-    private void btn_XemTTMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_XemTTMouseClicked
-        // TODO add your handling code here:
-        ShowAudit sau = new ShowAudit ();
-        sau.setVisible (true);
-    }//GEN-LAST:event_btn_XemTTMouseClicked
-
-    private void btn_showauditMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_showauditMouseClicked
-        // TODO add your handling code here:
-        ShowAuditPolicy saup = new ShowAuditPolicy ();
-        saup.setVisible (true);
-    }//GEN-LAST:event_btn_showauditMouseClicked
-
-    private void btnCreateAuditPolicyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateAuditPolicyActionPerformed
-        // TODO add your handling code here:
-        try
-        {
-            String objectName=cboObjectName.getSelectedItem().toString();
-
-            if(txtPolicyName.getText().isEmpty())
-            {
-                JOptionPane.showMessageDialog(this, "Vui long nhap ten!","Canh bao",JOptionPane.ERROR_MESSAGE);
-            }
-            else
-            {
-                if(ckbInsert.isSelected()){
-                    statement="insert";
-                }
-                if(ckbUpdate.isSelected()){
-                    statement="update";
-                }
-                if(ckbDelete.isSelected()){
-                    statement="delete";
-                }
-                if(ckbInsert.isSelected()&&ckbUpdate.isSelected())
-                {
-                    statement="insert, update";
-                }
-                if(ckbInsert.isSelected()&&ckbDelete.isSelected())
-                {
-                    statement="insert, delete";
-                }
-                if(ckbUpdate.isSelected()&&ckbDelete.isSelected())
-                {
-                    statement="update, delete";
-                }
-                if(ckbInsert.isSelected()&&ckbDelete.isSelected()&&ckbInsert.isSelected())
-                {
-                    statement="insert, update, delete";
-                }
-                String a=cboObjectName.getSelectedItem().toString();
-                String b=txtPolicyName.getText();
-                String c=statement;
-                String d=cboObjectSchema.getSelectedItem().toString();
-
-                y.CreateAuditPolicy(d,a,b,c);
-                JOptionPane.showMessageDialog(this, "Thiết lập policy thành công!","Thông Báo",JOptionPane.INFORMATION_MESSAGE);
-            }
-        }
-        catch (Exception e)
-        {
-            JOptionPane.showMessageDialog(this, "Thiet lap audit policy thất bại !","Thông Báo",JOptionPane.ERROR_MESSAGE);
-            System.out.println(e.getMessage());
-        }
-    }//GEN-LAST:event_btnCreateAuditPolicyActionPerformed
-    // tab 3
-    private void cboObjectNameItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboObjectNameItemStateChanged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cboObjectNameItemStateChanged
-
-=======
->>>>>>> Thao3
     private void btnDemoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDemoActionPerformed
         Demo_KillSession t = new Demo_KillSession();
         t.setVisible(true);
@@ -2827,8 +2669,6 @@ public class SystemForm extends javax.swing.JPanel {
         numRecord_tab2.setText("Số lượng Session: "+table_tab2.getRowCount());        
     }//GEN-LAST:event_chkBox_blockingUserItemStateChanged
 
-<<<<<<< HEAD
-=======
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         int row = table_User.getSelectedRow();
@@ -3011,51 +2851,9 @@ public class SystemForm extends javax.swing.JPanel {
         sau.setVisible (true);
     }//GEN-LAST:event_btn_XemTTMouseClicked
 
->>>>>>> Thao3
     private void cboObjectSchemaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboObjectSchemaItemStateChanged
         // TODO add your handling code here:
     }//GEN-LAST:event_cboObjectSchemaItemStateChanged
-
-<<<<<<< HEAD
-=======
-    private void btnCreateStandardAuditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateStandardAuditActionPerformed
-        // TODO add your handling code here:
-        try
-        {
-            String objectName=cboObjectName.getSelectedItem().toString();
-            for(Component com : AUDIT.getComponents())
-            {
-                if(com instanceof JCheckBox)
-                {
-                    JCheckBox box = (JCheckBox)com;
-                    if(box.isSelected ())
-                    {
-                        statement += box.getText()+",";
-                    }
-                }
-
-            }
-            String realStatement=statement.substring(0,statement.length()-1);
-            String a=cboObjectName.getSelectedItem().toString();
-            String b=realStatement;
-            String c=cboObjectSchema.getSelectedItem().toString();
-            y.CreateStandardAudit(b,c,a);
-            JOptionPane.showMessageDialog(this, "Thiết lập policy thành công!","Thông Báo",JOptionPane.INFORMATION_MESSAGE);
-        }
-        catch(Exception e)
-        {
-            JOptionPane.showMessageDialog(this, "Thiet lap standard audit thất bại !","Thông Báo",JOptionPane.ERROR_MESSAGE);
-            System.out.println(e.getMessage());
-        }
-
-    }//GEN-LAST:event_btnCreateStandardAuditActionPerformed
-    EditAuditPolicy f=null;
-    private void btnEditAuditPolicyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditAuditPolicyActionPerformed
-        // TODO add your handling code here:
-        if(f==null)
-        f=new EditAuditPolicy();
-        f.setVisible(true);
-    }//GEN-LAST:event_btnEditAuditPolicyActionPerformed
     private void LoadComboBoxObjectSchema()
     {
         ArrayList objectSchema=x.getObjectSchema();
@@ -3064,15 +2862,54 @@ public class SystemForm extends javax.swing.JPanel {
             cboObjectSchema.addItem(e.toString());
         }
     }
->>>>>>> Thao3
     private void AUDITComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_AUDITComponentShown
         LoadComboBoxObjectSchema();
         LoadComboBoxObjectName();
     }//GEN-LAST:event_AUDITComponentShown
 
-<<<<<<< HEAD
- 
-=======
+    private void btnCreateStandardAuditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateStandardAuditActionPerformed
+        // TODO add your handling code here:
+        try
+        {
+            String objectName=cboObjectName.getSelectedItem().toString();
+            for(Component com : AUDIT.getComponents())
+                {
+                    if(com instanceof JCheckBox)
+                    {
+                        JCheckBox box = (JCheckBox)com;
+                        if(box.isSelected ())
+                        {
+                            statement += box.getText()+",";
+                        }
+                    }
+
+                }
+                String realStatement=statement.substring(0,statement.length()-1);
+                String a=cboObjectName.getSelectedItem().toString();
+                String b=realStatement;
+                String c=cboObjectSchema.getSelectedItem().toString();
+                y.CreateStandardAudit(b,c,a);
+                JOptionPane.showMessageDialog(this, "Thiết lập policy thành công!","Thông Báo",JOptionPane.INFORMATION_MESSAGE);
+        }
+        catch(Exception e)
+                {
+                    JOptionPane.showMessageDialog(this, "Thiet lap standard audit thất bại !","Thông Báo",JOptionPane.ERROR_MESSAGE);
+            System.out.println(e.getMessage());
+                }
+                
+    }//GEN-LAST:event_btnCreateStandardAuditActionPerformed
+    EditAuditPolicy f=null;
+    private void btnEditAuditPolicyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditAuditPolicyActionPerformed
+        // TODO add your handling code here:
+        if(f==null)
+            f=new EditAuditPolicy();
+        f.setVisible(true);
+    }//GEN-LAST:event_btnEditAuditPolicyActionPerformed
+
+    private void btn_InsertPrivActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_InsertPrivActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_InsertPrivActionPerformed
+
     private void cbo_UsernameComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_cbo_UsernameComponentShown
         // TODO add your handling code here:
         
@@ -3128,9 +2965,9 @@ public class SystemForm extends javax.swing.JPanel {
             cbo_Username.addItem(e.toString());
         }
     }
->>>>>>> Thao3
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel AUDIT;
+    private javax.swing.JPanel AUDIT1;
     private javax.swing.JPanel Backup_Restore;
     private javax.swing.JPanel Control_ROLE;
     private javax.swing.JPanel PROFILE;
@@ -3141,6 +2978,7 @@ public class SystemForm extends javax.swing.JPanel {
     private javax.swing.JPanel USER;
     private Ultilities.swing.Controls.buttonCustom btnClearCMD;
     private javax.swing.JButton btnCreateAuditPolicy;
+    private javax.swing.JButton btnCreateAuditPolicy1;
     private javax.swing.JButton btnCreateStandardAudit;
     private Ultilities.swing.Controls.ButtonGradient btnDemo;
     private javax.swing.JButton btnEditAuditPolicy;
@@ -3158,6 +2996,7 @@ public class SystemForm extends javax.swing.JPanel {
     private Ultilities.swing.Controls.ButtonGradient btn_TaoMoi;
     private javax.swing.JButton btn_VPD;
     private javax.swing.JButton btn_XemTT;
+    private javax.swing.JButton btn_XemTT1;
     private javax.swing.JButton btn_Xoa;
     private Ultilities.swing.Controls.ButtonGradient btn_XoaProfile;
     private Ultilities.swing.Controls.buttonCustom btn_backup;
@@ -3169,6 +3008,7 @@ public class SystemForm extends javax.swing.JPanel {
     private javax.swing.JButton btn_refresh;
     private Ultilities.swing.Controls.buttonCustom btn_showAllDataFileBKRS;
     private javax.swing.JButton btn_showaudit;
+    private javax.swing.JButton btn_showaudit1;
     private javax.swing.JButton btn_updaterole;
     private Ultilities.swing.Controls.ButtonGradient buttonGradient1;
     private javax.swing.ButtonGroup buttonGroup1;
@@ -3177,18 +3017,20 @@ public class SystemForm extends javax.swing.JPanel {
     private Ultilities.swing.Controls.ComboBoxSuggestion cb_TableName_IE;
     private javax.swing.JCheckBox cbk_update;
     private javax.swing.JComboBox<String> cboObjectName;
+    private javax.swing.JComboBox<String> cboObjectName1;
     private javax.swing.JComboBox<String> cboObjectSchema;
-<<<<<<< HEAD
-=======
+    private javax.swing.JComboBox<String> cboObjectSchema1;
     private javax.swing.JComboBox<String> cbo_Username;
->>>>>>> Thao3
     private javax.swing.JComboBox<String> cbo_objectname;
     private javax.swing.JCheckBox chkBox_blockingUser;
     private javax.swing.JCheckBox chk_compressBK;
     private javax.swing.JCheckBox ckbDelete;
+    private javax.swing.JCheckBox ckbDelete1;
     private javax.swing.JCheckBox ckbInsert;
+    private javax.swing.JCheckBox ckbInsert1;
     private javax.swing.JCheckBox ckbSelect;
     private javax.swing.JCheckBox ckbUpdate;
+    private javax.swing.JCheckBox ckbUpdate1;
     private javax.swing.JCheckBox ckb_all;
     private javax.swing.JCheckBox ckb_delete;
     private javax.swing.JCheckBox ckb_insert;
@@ -3206,7 +3048,13 @@ public class SystemForm extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -3267,6 +3115,7 @@ public class SystemForm extends javax.swing.JPanel {
     private Ultilities.swing.Controls.Table tbl_role;
     private Ultilities.swing.Controls.Table tbl_userofrole;
     private javax.swing.JTextField txtPolicyName;
+    private javax.swing.JTextField txtPolicyName1;
     private javax.swing.JFormattedTextField txt_Date;
     private javax.swing.JTextField txt_Pass;
     private javax.swing.JTextField txt_pathFile;

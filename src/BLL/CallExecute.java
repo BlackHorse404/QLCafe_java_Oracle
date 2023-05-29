@@ -4,17 +4,6 @@
  */
 package BLL;
 import DAL.DataAccess;
-<<<<<<< HEAD
-import DTO.SanPhamDTO;
-import java.io.BufferedWriter;
-import java.sql.CallableStatement;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import oracle.jdbc.OracleTypes;
-import java.sql.*;
-import java.util.Vector;
-=======
 import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -22,7 +11,6 @@ import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import oracle.jdbc.OracleTypes;
->>>>>>> Thao3
 /**
  *
  * @author phatl
@@ -35,13 +23,11 @@ public class CallExecute {
     public static void callDeleteKH_PKH(String id){
         DataAccess.CallSql(String.format("KH_PKG.xoa('%s')", id));
     }
-<<<<<<< HEAD
     
 //    public static void callTimKiemSanPham(String tenSP){
 //        DataAccess.CallSql(String.format("traCuuMonAn('%s')", tenSP));
 //    }
     
-=======
      // <editor-fold defaultstate="collapsed" desc="Khách hàng Hóa đơn">
         public static boolean deleteHD(String mahd)
     {
@@ -82,7 +68,6 @@ public class CallExecute {
     }
                // </editor-fold>
     // <editor-fold defaultstate="collapsed" desc="Phương tìm kiếm cursor">        
->>>>>>> Thao3
     public static Vector<Vector> callTimKiemSanPham(String str){
         try {
             Vector<Vector> v = new Vector<Vector>();
@@ -138,8 +123,5 @@ public class CallExecute {
         }
         return null;
     }
-<<<<<<< HEAD
-=======
     // </editor-fold>
->>>>>>> Thao3
 }
