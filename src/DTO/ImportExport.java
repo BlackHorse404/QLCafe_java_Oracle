@@ -49,7 +49,7 @@ public class ImportExport {
            
             RWFile.write(scriptPath, "set SQLFORMAT csv;\n" +
                     "set encoding UTF-8;\n" +
-                    "LOAD "+tableName+" "+path+"\n " +
+                    "LOAD datacaphe."+tableName+" "+path+"\n " +
                     "exit");
             
             ExecuteCMD.runCommand("sql datacaphe/datacaphe@localhost/caphe @"+scriptPath, false);

@@ -5,9 +5,17 @@ import java.awt.Color;
 import javax.swing.JComponent;
 import BLL.GetData;
 import GUI.Dashboard;
+import GUI.HoaDon.CHITIETHOADON;
+import GUI.HoaDon.QLHoaDon;
 import GUI.KhachHangGUI.KhachHang;
+import GUI.Nhanvien.Nhanvien_panel;
+import GUI.Role_Priv_Config.GrantRole;
 import GUI.SanPhamGUI.SanPham;
 import GUI.TimKiem.TimKiem;
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import GUI.Role_Priv_Config.GrantRole;
 import java.io.File;
 import java.sql.*;
 import java.io.IOException;
@@ -47,6 +55,9 @@ public class Dashboard extends javax.swing.JFrame {
                 else if (index == 1)
                 {
                     setForm(new SanPham());
+                }else if (index == 2)
+                {
+                    setForm(new Nhanvien_panel());
                 }
                 else if (index == 4)
                 {
@@ -55,13 +66,29 @@ public class Dashboard extends javax.swing.JFrame {
                 else if (index == 5) {
                     setForm(new SystemForm());
                 }
+<<<<<<< HEAD
                 else if (index == 7) {
                     setForm(new TimKiem());
                 }
                 else if (index == 9) {
+=======
+                else if (index == 6) {
+                    setForm(new GrantRole());
+                }
+                else if (index == 8){
+                    setForm(new QLHoaDon());
+                }
+                else if (index == 7){
+                    setForm(new QLHoaDon());
+                }
+                 else if (index == 9){
+                    setForm(new CHITIETHOADON());
+                }
+                else if (index == 11) {
+>>>>>>> Thao3
                     Logout();
                 }
-                else if(index == 10)
+                else if(index == 12)
                 {
                     if(JOptionPane.showConfirmDialog(Dashboard.this, "Bạn muốn thoát chương trình ?") == JOptionPane.YES_OPTION)
                         System.exit(0);
@@ -116,7 +143,9 @@ public class Dashboard extends javax.swing.JFrame {
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setUndecorated(true);
 
+        mainPanel.setMinimumSize(new java.awt.Dimension(1100, 700));
         mainPanel.setOpaque(false);
+        mainPanel.setPreferredSize(new java.awt.Dimension(1100, 700));
         mainPanel.setLayout(new java.awt.BorderLayout());
 
         javax.swing.GroupLayout panelBorder1Layout = new javax.swing.GroupLayout(panelBorder1);
@@ -128,22 +157,25 @@ public class Dashboard extends javax.swing.JFrame {
                 .addGap(0, 0, 0)
                 .addGroup(panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(header, javax.swing.GroupLayout.DEFAULT_SIZE, 790, Short.MAX_VALUE)))
+                    .addComponent(header, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         panelBorder1Layout.setVerticalGroup(
             panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(menu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(panelBorder1Layout.createSequentialGroup()
-                .addComponent(header, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(2, 2, 2)
-                .addComponent(mainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 616, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(menu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panelBorder1Layout.createSequentialGroup()
+                        .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(mainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 713, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1019, Short.MAX_VALUE)
+            .addGap(0, 1329, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -152,12 +184,12 @@ public class Dashboard extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 686, Short.MAX_VALUE)
+            .addGap(0, 779, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 4, Short.MAX_VALUE)
+                    .addGap(0, 0, Short.MAX_VALUE)
                     .addComponent(panelBorder1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 4, Short.MAX_VALUE)))
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         pack();

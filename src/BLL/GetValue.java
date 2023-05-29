@@ -26,9 +26,18 @@ public class GetValue {
         da = new DataAccess("Select sum(bytes)/1024/1024 total_space_mb from dba_data_files");
         return da.returnValue().toString () + " MB";
     }
+<<<<<<< HEAD
     
     public String getMaLoaiMon(String tenLoai){
         da = new DataAccess(String.format("select MALOAI from datacaphe.phanloai Where TENLOAI like N'%s'",tenLoai));
         return da.returnValue().toString();
     }
+=======
+    //<editor-fold defaultstate="collapsed" desc="Hàm hỗ trợ cho form tìm kiếm">
+    public String getMaLoaiMon(String tenLoai){
+        DataAccess da = new DataAccess(String.format("select MALOAI from datacaphe.phanloai Where TENLOAI like N'%s'",tenLoai));
+        return da.returnValue().toString();
+    }
+    // </editor-fold>
+>>>>>>> Thao3
 }

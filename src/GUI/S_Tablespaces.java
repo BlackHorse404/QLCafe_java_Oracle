@@ -7,14 +7,14 @@ package GUI;
 import BLL.UpdateData;
 import BLL.GetData;
 import BLL.GetValue;
-import java.awt.desktop.OpenFilesEvent;
 import java.io.File;
 import java.util.ArrayList;
+import java.awt.desktop.OpenFilesEvent;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import javax.swing.table.DefaultTableModel;
 import oracle.jdbc.driver.Message;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -36,6 +36,7 @@ public class S_Tablespaces
         t = new UpdateData ();
         initValue ();
         setLocationRelativeTo (null);
+        showDataOnTable();
        
     }
     private void initValue()
@@ -59,6 +60,7 @@ public class S_Tablespaces
         jRadioButtonMenuItem1 = new javax.swing.JRadioButtonMenuItem();
         jRadioButtonMenuItem2 = new javax.swing.JRadioButtonMenuItem();
         buttonGroup1 = new javax.swing.ButtonGroup();
+        buttonGroup2 = new javax.swing.ButtonGroup();
         jDesktopPane2 = new javax.swing.JDesktopPane();
         jPanel2 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
@@ -170,15 +172,23 @@ public class S_Tablespaces
             }
         });
         jPanel2.add(btn_removeDatafile, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 120, 131, 40));
+
+        txt_Disk.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_DiskActionPerformed(evt);
+            }
+        });
         jPanel2.add(txt_Disk, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 50, 90, 30));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel4.setText("Ổ đĩa");
         jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, -1));
 
+        buttonGroup2.add(rdo_existDatafile);
         rdo_existDatafile.setText("Datafile đã tồn tại");
         jPanel2.add(rdo_existDatafile, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 100, 140, -1));
 
+        buttonGroup2.add(rdo_newDatafile);
         rdo_newDatafile.setText("Datafile mới");
         jPanel2.add(rdo_newDatafile, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 140, -1, -1));
 
@@ -508,6 +518,8 @@ public class S_Tablespaces
                 txt_Nametablespace.setText ("");
                 txt_Linkfile.setText ("");
                 txt_Size.setText ("");
+                arr = x.showDataFileAndTablespace ();
+                  showDataOnTable();
             }
             else
             {
@@ -522,16 +534,22 @@ public class S_Tablespaces
     private void btn_changeNameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_changeNameMouseClicked
         // TODO add your handling code here:
         int row = Table_Tablespace.getSelectedRow ();
-        int col = Table_Tablespace.getSelectedColumn ();
          if(txt_Nametablespace.getText ().isEmpty ())
         {
             JOptionPane.showMessageDialog(this, "Lỗi tên đang bị trống! Bạn hãy đặt tên nhé","Lỗi tên",JOptionPane.ERROR_MESSAGE);
         }else
          {
-              if(t.changeNameTablespace (Table_Tablespace.getValueAt (row,col).toString (),txt_Nametablespace.getText()))
+              if(row < 0)
+                {
+                    JOptionPane.showMessageDialog(this, "Bạn chưa chọn tên tablespace muốn đổi!","Thông Báo",JOptionPane.INFORMATION_MESSAGE);
+                       return;
+                }
+              if(t.changeNameTablespace (Table_Tablespace.getValueAt (row,0).toString (),txt_Nametablespace.getText()))
               {
                  JOptionPane.showMessageDialog(this, "Đổi tên thành công !","Thông Báo",JOptionPane.INFORMATION_MESSAGE);
                  txt_Nametablespace.setText ("");
+                 arr = x.showDataFileAndTablespace ();
+                  showDataOnTable();
               }
               else
               {
@@ -585,25 +603,36 @@ public class S_Tablespaces
         {
              
             JOptionPane.showMessageDialog(this, "Bạn chưa chọn file","Thông báo",JOptionPane.ERROR_MESSAGE);
+            
         }
         else
         {
             int row = Table_Tablespace.getSelectedRow ();
-            int col = Table_Tablespace.getSelectedColumn ();
+             if(row < 0)
+                {
+                    JOptionPane.showMessageDialog(this, "Bạn chưa chọn tên tablespace !","Thông Báo",JOptionPane.INFORMATION_MESSAGE);
+                       return;
+                }
             if(rdo_existDatafile.isSelected ())
             {
-                if(t.addDataFileExistTablespace ( Table_Tablespace.getValueAt (row,col).toString (),absolutePath) || absolutePath.isBlank ()|| absolutePath.isEmpty ())
+               
+                if(t.addDataFileExistTablespace ( Table_Tablespace.getValueAt (row,0).toString (),txt_Linkfile.getText()))
                 {
                      JOptionPane.showMessageDialog(this, "Thêm datafile đã tồn tại thành công!","Thông Báo",JOptionPane.INFORMATION_MESSAGE);
+                     arr = x.showDataFileAndTablespace ();
+                  showDataOnTable();
                 }
                 else
                     JOptionPane.showMessageDialog(this, "Thất bại","Lỗi",JOptionPane.ERROR_MESSAGE);
             }
             else
             {
-                 if(t.addDataFileTablespace (absolutePath, Table_Tablespace.getValueAt (row,col).toString (), txt_Size.getText ()) || absolutePath.isBlank ()|| absolutePath.isEmpty ())
+                
+                 if(t.addDataFileTablespace ( Table_Tablespace.getValueAt (row,0).toString (),txt_Linkfile.getText(), txt_Size.getText ()))
                 {
-                     JOptionPane.showMessageDialog(this, "Xóa datafile thành công !","Thông Báo",JOptionPane.INFORMATION_MESSAGE);
+                     JOptionPane.showMessageDialog(this, "Thêm datafile thành công !","Thông Báo",JOptionPane.INFORMATION_MESSAGE);
+                     arr = x.showDataFileAndTablespace ();
+                  showDataOnTable();
                 }
                 else
                     JOptionPane.showMessageDialog(this, "Thất bại","Lỗi",JOptionPane.ERROR_MESSAGE);
@@ -617,21 +646,32 @@ public class S_Tablespaces
     private void btn_removetablespaceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_removetablespaceMouseClicked
         // TODO add your handling code here:
         int row = Table_Tablespace.getSelectedRow ();
-        int col = Table_Tablespace.getSelectedColumn ();
-            if(t.dropTablespace (Table_Tablespace.getValueAt (row,col).toString ()))
+         if(row < 0)
+                {
+                    JOptionPane.showMessageDialog(this, "Bạn chưa chọn tên tablespace !","Thông Báo",JOptionPane.INFORMATION_MESSAGE);
+                       return;
+                }
+        if(rdo_Tablespace.isSelected())
+        {
+            if(t.dropTablespace (Table_Tablespace.getValueAt (row,0).toString ()))
             {
                  JOptionPane.showMessageDialog(this, "Xóa tablespace thành công !","Thông Báo",JOptionPane.INFORMATION_MESSAGE);
+                 arr = x.showDataFileAndTablespace ();
+                  showDataOnTable();
             }
             else
                 JOptionPane.showMessageDialog(this, "Thất bại","Lỗi",JOptionPane.ERROR_MESSAGE);
-        
-            if(t.dropAllTablespace (Table_Tablespace.getValueAt (row,col).toString ()))
+        }else
+        {
+            if(t.dropAllTablespace (Table_Tablespace.getValueAt (row,0).toString ()))
             {
                  JOptionPane.showMessageDialog(this, "Xóa tablespace thành công !","Thông Báo",JOptionPane.INFORMATION_MESSAGE);
+                 arr = x.showDataFileAndTablespace ();
+                  showDataOnTable();
             }
             else
                 JOptionPane.showMessageDialog(this, "Thất bại","Lỗi",JOptionPane.ERROR_MESSAGE);
-       
+        }
     }//GEN-LAST:event_btn_removetablespaceMouseClicked
     //refesh
     private void btn_ShowDatafileMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_ShowDatafileMouseClicked
@@ -647,10 +687,12 @@ public class S_Tablespaces
             JOptionPane.showMessageDialog(this, "Lỗi kích thước nhé","Lỗi kích thước",JOptionPane.ERROR_MESSAGE);
         }else
          {
-              if(t.resizeDatafile (absolutePath,txt_Linkfile.getText()))
+              if(t.resizeDatafile (txt_Linkfile.getText(),txt_Size.getText()))
               {
                  JOptionPane.showMessageDialog(this, "Thay đổi kích thước thành công !","Thông Báo",JOptionPane.INFORMATION_MESSAGE);
                  txt_Nametablespace.setText ("");
+                  arr = x.showDataFileAndTablespace ();
+                  showDataOnTable();
               }
               else
               {
@@ -663,14 +705,19 @@ public class S_Tablespaces
     private void btn_removeDatafileMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_removeDatafileMouseClicked
         // TODO add your handling code here:
             int row = Table_Tablespace.getSelectedRow ();
-            int col = Table_Tablespace.getSelectedColumn ();
-            if(t.dropDataFileTablespace (absolutePath, Table_Tablespace.getValueAt (row,col).toString ()) || absolutePath.isBlank ()|| absolutePath.isEmpty ())
+            if(t.dropDataFileTablespace (txt_Linkfile.getText(), Table_Tablespace.getValueAt (row,0).toString ()) || absolutePath.isBlank ()|| absolutePath.isEmpty ())
             {
                 JOptionPane.showMessageDialog(this, "Xóa datafile thành công !","Thông Báo",JOptionPane.INFORMATION_MESSAGE);
+                arr = x.showDataFileAndTablespace ();
+                  showDataOnTable();
              }
             else
                 JOptionPane.showMessageDialog(this, "Thất bại","Lỗi",JOptionPane.ERROR_MESSAGE);
     }//GEN-LAST:event_btn_removeDatafileMouseClicked
+
+    private void txt_DiskActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_DiskActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_DiskActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -684,6 +731,7 @@ public class S_Tablespaces
     private javax.swing.JButton btn_removeDatafile;
     private javax.swing.JButton btn_removetablespace;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JComboBox<String> cbb_showTablespace;
     private javax.swing.JButton jButton6;
     private javax.swing.JDesktopPane jDesktopPane2;
