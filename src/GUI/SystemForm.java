@@ -11,6 +11,7 @@ import BLL.ExecuteData;
 import BLL.GetData;
 import BLL.UpdateData;
 import DTO.ImportExport;
+import DTO.RWFile;
 import GUI.UserUI.CreateUser;
 import Ultilities.CMD.ExecuteCMD;
 import Ultilities.ConvertData.ConvertDataORCL;
@@ -361,6 +362,12 @@ public class SystemForm extends javax.swing.JPanel {
         btn_showAllDataFileBKRS = new Ultilities.swing.Controls.buttonCustom();
         btnClearCMD = new Ultilities.swing.Controls.buttonCustom();
         chk_compressBK = new javax.swing.JCheckBox();
+        txt_Date = new javax.swing.JFormattedTextField();
+        txt_time = new javax.swing.JFormattedTextField();
+        jLabel14 = new javax.swing.JLabel();
+        rd_incre = new javax.swing.JRadioButton();
+        rd_lv1 = new javax.swing.JRadioButton();
+        rd_lv0 = new javax.swing.JRadioButton();
         jPanel4 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         btn_backup = new Ultilities.swing.Controls.buttonCustom();
@@ -1564,6 +1571,26 @@ public class SystemForm extends javax.swing.JPanel {
         chk_compressBK.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         chk_compressBK.setText("Compress");
 
+        txt_Date.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd/MM/yyyy"))));
+        txt_Date.setText("01/01/2023");
+        txt_Date.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        txt_time.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("h:mm:ss a"))));
+        txt_time.setText("00:00:00 PM");
+        txt_time.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        jLabel14.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel14.setText("Time Recover");
+
+        grRadio_Backup.add(rd_incre);
+        rd_incre.setText("INCREMENT");
+
+        grRadio_Recover.add(rd_lv1);
+        rd_lv1.setText("LEVEL 1");
+
+        grRadio_Recover.add(rd_lv0);
+        rd_lv0.setText("LEVEL 0");
+
         javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
         jPanel15.setLayout(jPanel15Layout);
         jPanel15Layout.setHorizontalGroup(
@@ -1575,20 +1602,31 @@ public class SystemForm extends javax.swing.JPanel {
                         .addComponent(jScrollPane7))
                     .addGroup(jPanel15Layout.createSequentialGroup()
                         .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lb_slProfile5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel15Layout.createSequentialGroup()
-                                .addComponent(lb_slProfile5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(112, 112, 112))
-                            .addGroup(jPanel15Layout.createSequentialGroup()
-                                .addGap(28, 28, 28)
-                                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(45, 45, 45)
+                                .addGap(34, 34, 34)
                                 .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(chk_compressBK)
                                     .addGroup(jPanel15Layout.createSequentialGroup()
+                                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
                                         .addComponent(rad_bkFull, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(54, 54, 54)
-                                        .addComponent(rad_bkFullArchivelog, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(rad_bkFullArchivelog, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(rd_incre))
+                                    .addGroup(jPanel15Layout.createSequentialGroup()
+                                        .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(jLabel14, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(txt_Date, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txt_time, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(rd_lv0)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(rd_lv1)
+                                        .addGap(32, 32, 32)
+                                        .addComponent(chk_compressBK)))
+                                .addGap(18, 18, 18)))
                         .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(6, 6, 6))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel15Layout.createSequentialGroup()
@@ -1601,14 +1639,24 @@ public class SystemForm extends javax.swing.JPanel {
             .addGroup(jPanel15Layout.createSequentialGroup()
                 .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel15Layout.createSequentialGroup()
-                        .addComponent(lb_slProfile5, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addComponent(lb_slProfile5, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(rad_bkFull)
-                            .addComponent(rad_bkFullArchivelog))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(chk_compressBK))
+                            .addComponent(rad_bkFullArchivelog)
+                            .addComponent(rd_incre))
+                        .addGap(12, 12, 12)
+                        .addComponent(jLabel14)
+                        .addGap(4, 4, 4)
+                        .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(rd_lv1)
+                                .addComponent(rd_lv0))
+                            .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(chk_compressBK)
+                                .addComponent(txt_Date, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txt_time, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel15Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -2058,7 +2106,7 @@ public class SystemForm extends javax.swing.JPanel {
             if(rad_datapump.isSelected() == true)
             {
                 String path = cb_Dir.getSelectedItem().toString();
-                if(ImportExport.ExportDataPump("expdp datacaphe/datacaphe tables="+tableName+" directory="+path+" dumpfile = exp_data_"+tableName+".dmp logfile= exp_data.log"))
+                if(ImportExport.ExportDataPump("expdp datacaphe/datacaphe tables="+tableName+" directory="+path+" dumpfile = exp_data_"+tableName+".dmp logfile= exp_data"+tableName+".log"))
                 {
                     JOptionPane.showMessageDialog(this, "Export Datapump hoàn thành !");
                 }
@@ -2197,6 +2245,7 @@ public class SystemForm extends javax.swing.JPanel {
 
     private void btn_backupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_backupActionPerformed
 
+        //chức năng nén file backup
         if(chk_compressBK.isSelected())
         {
             if(rad_bkFull.isSelected()){
@@ -2226,6 +2275,7 @@ public class SystemForm extends javax.swing.JPanel {
                 } 
             }
         }
+        //không dùng nén file
         else{
             if(rad_bkFull.isSelected()){
                 File file = new File("src/ResourceSQL/backupFull.txt");
@@ -2252,6 +2302,29 @@ public class SystemForm extends javax.swing.JPanel {
                     else
                         JOptionPane.showMessageDialog(null, "Backup Database Has Error !","Backup Alert",JOptionPane.ERROR_MESSAGE);
                 } 
+            // backup increment
+            }else if(rd_incre.isSelected()){
+                //choose level 
+                File file = null;
+                //level 0
+                if(rd_lv0.isSelected()){
+                    file = new File("src/ResourceSQL/Incre0.txt");
+                }
+                //level 1
+                else if(rd_lv1.isSelected()){
+                    file = new File("src/ResourceSQL/Incre1.txt");
+                }
+                //backup increment
+                if(file.canRead())
+                {
+                    System.out.println(file.getAbsoluteFile().toString());
+                    ExecuteCMD.txtAreas = cmdScreen; 
+                    if(ExecuteCMD.runCommand("RMAN @"+file.getAbsolutePath(), true)){
+                        JOptionPane.showMessageDialog(null, "Backup Database Done !","Backup Alert",JOptionPane.INFORMATION_MESSAGE);
+                    }
+                    else
+                        JOptionPane.showMessageDialog(null, "Backup Database Has Error !","Backup Alert",JOptionPane.ERROR_MESSAGE);
+                } 
             }
         }
            
@@ -2264,6 +2337,17 @@ public class SystemForm extends javax.swing.JPanel {
     private void btn_recoveryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_recoveryActionPerformed
         File file = new File("src/ResourceSQL/recovery.txt");
        
+        String content = String.format("connect target \"sys/Oracle123 as sysdba\";"
+                +"\nSTARTUP FORCE MOUNT;"
+                +"\nrun{"
+                +"\nset UNTIL TIME \"to_date('%s %s','dd/mm/yyyy hh:mi:ss am')\";"
+                +"\nrestore database;"
+                +"\nrecover database;"
+                +"\nalter database open noresetlogs;"
+                +"\n}", txt_Date.getText(), txt_time.getText());
+        //ghi file
+        RWFile.write(file.getAbsolutePath(), content);
+        //execute file
         if(file.canRead())
         {
             System.out.println(file.getAbsoluteFile().toString());
@@ -2369,6 +2453,7 @@ public class SystemForm extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -2413,6 +2498,9 @@ public class SystemForm extends javax.swing.JPanel {
     private javax.swing.JRadioButton rad_bkFullArchivelog;
     private javax.swing.JRadioButton rad_datapump;
     private javax.swing.JRadioButton rad_sqlcl;
+    private javax.swing.JRadioButton rd_incre;
+    private javax.swing.JRadioButton rd_lv0;
+    private javax.swing.JRadioButton rd_lv1;
     private javax.swing.JRadioButton rdo_NotPass;
     private javax.swing.JRadioButton rdo_Pass;
     private Ultilities.swing.Controls.Table table1;
@@ -2423,8 +2511,10 @@ public class SystemForm extends javax.swing.JPanel {
     private Ultilities.swing.Controls.Table table_dataFile;
     private Ultilities.swing.Controls.Table table_tab2;
     private javax.swing.JTextField txtPolicyName;
+    private javax.swing.JFormattedTextField txt_Date;
     private javax.swing.JTextField txt_Pass;
     private javax.swing.JTextField txt_pathFile;
     private javax.swing.JTextField txt_role_name;
+    private javax.swing.JFormattedTextField txt_time;
     // End of variables declaration//GEN-END:variables
 }
