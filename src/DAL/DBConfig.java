@@ -9,7 +9,7 @@ import java.sql.*;
  * @author phatl
  */
 public class DBConfig {
-    private static String servername = "@localhost";
+    private static String servername = "@192.168.251.173";
     private static String port = "1521";
     private static String SID = "caphe";
     public static String username;

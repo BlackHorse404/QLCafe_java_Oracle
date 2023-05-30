@@ -4,6 +4,7 @@ import event.EventMenuSelected;
 import java.awt.Color;
 import javax.swing.JComponent;
 import BLL.GetData;
+import DTO.Chart_PieData;
 import GUI.Dashboard;
 import GUI.HoaDon.CHITIETHOADON;
 import GUI.HoaDon.QLHoaDon;
@@ -50,7 +51,8 @@ public class Dashboard extends javax.swing.JFrame {
             public void selected(int index) {
                 System.out.print(index);
                 if (index == 0) {
-                    setForm(new StartForm());
+                    Chart_PieData t = new Chart_PieData("Tỉ Lệ Bán Nước Của Quán");
+                    setForm(t.createPieChartPanel());
                 } 
                 else if (index == 1)
                 {
@@ -58,6 +60,9 @@ public class Dashboard extends javax.swing.JFrame {
                 }else if (index == 2)
                 {
                     setForm(new Nhanvien_panel());
+                }
+                else if(index ==3){
+                    setForm(new OrderGUI());
                 }
                 else if (index == 4)
                 {

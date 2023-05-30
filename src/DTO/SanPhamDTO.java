@@ -15,6 +15,15 @@ public class SanPhamDTO {
     private String id ;
     private String trangthai;
     private String moTa;
+    private int soLuong;
+
+    public void setSoLuong(int soLuong) {
+        this.soLuong = soLuong;
+    }
+    
+    public int getSoLuong() {
+        return soLuong;
+    }
 
     public String getTrangthai() {
         return trangthai;

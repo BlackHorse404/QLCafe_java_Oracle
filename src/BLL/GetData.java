@@ -215,6 +215,12 @@ public class GetData {
         DataAccess da = new DataAccess("select * from dba_fga_audit_trail");
         return da.QueryTable();
     }
+    
+     public Object[][] getDataSellable(){
+        DataAccess da = new DataAccess("select SOLUONG, TENMON from datacaphe.chitiethoadon, datacaphe.thucdon where THUCDONMAMON = MAMON");
+        return da.QueryContentTable();
+    }
+     
     //<editor-fold defaultstate="collapsed" desc=" Profile Config ">
     public Object[][] getAllProfileName(){
         DataAccess da = new DataAccess("SELECT distinct PROFILE from dba_profiles");
@@ -400,5 +406,7 @@ public class GetData {
         return da.QueryContentTable();
     }
     // </editor-fold>
+    
+    
 
 }

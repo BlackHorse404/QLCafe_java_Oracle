@@ -25,9 +25,6 @@ import java.sql.*;
  */
 public class SanPham extends javax.swing.JPanel {
 
-    /**
-     * Creates new form SanPham
-     */
     GetData x = new GetData();
     
     public SanPham() {
@@ -38,9 +35,6 @@ public class SanPham extends javax.swing.JPanel {
     void loadDataMon(ArrayList info) {
         SanPhamDTO td = new SanPhamDTO();
         
-//        System.out.println("Type of info: " + info.getClass());
-//        System.out.println("Type of info: " + info.get(1).getClass());
-
         // Set up the table with column names
         String[] columnNames = {"Mã món", "Tên món", "Kích cỡ", "Giá", "Hình ảnh"};
         table.setModel(new DefaultTableModel(new Object[][]{}, columnNames) {
@@ -99,12 +93,9 @@ public class SanPham extends javax.swing.JPanel {
                     }
                    
                 } catch (IOException ex) {
-                    //Logger.getLogger(SanPham.class.getName()).log(Level.SEVERE, null, ex);
                 }
             } catch (SQLException ex) {
-                //Logger.getLogger(SanPham.class.getName()).log(Level.SEVERE, null, ex);
             }
-
         }
         table.setRowHeight(100);
     }
